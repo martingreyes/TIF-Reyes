@@ -7,7 +7,6 @@ import re
 class BlowmaxshampooSpider(scrapy.Spider):
     name = "blowmax"
     allowed_domains = ["blowmax.com.ar"]
-    ruta_csv = 'productos/blowmax/'
     contador = 0
     contador_paginas_shampoos = 1
     contador_paginas_gaseosas = 1
@@ -44,6 +43,29 @@ class BlowmaxshampooSpider(scrapy.Spider):
         for articulo in articulos:
             
             nombre_crudo = articulo.css("h2 a::text").get()
+
+            if categoria == "Shampoos" and not nombre_crudo.startswith("SH"):
+                continue
+
+            if categoria == "Gaseosas" and "GASEOSA" not in nombre_crudo:
+                continue
+
+            if categoria == "Panes" and "PANCHO" in nombre_crudo or "PAN DE MIGA" in nombre_crudo  or "TORTILLAS" in nombre_crudo:
+                continue
+
+            if categoria == "Jabones" and "LIQUIDO" in nombre_crudo or "LIQ" in nombre_crudo:
+                continue
+            
+            if categoria == "Arroces" and not nombre_crudo.startswith("ARROZ"):
+                continue
+
+            if categoria == "Fideos" and not nombre_crudo.startswith("FIDEOS"):
+                continue
+        
+            if categoria == "Leches" and "CHOCO" in nombre_crudo:
+                continue
+
+
             precio = articulo.css("bdi").get()
             match = re.search(r'\xa0(\d{1,3}(?:\.\d{3})*(?:,\d{2})?)<\/bdi>', precio)
             precio = match.group(1)
@@ -79,7 +101,6 @@ class BlowmaxshampooSpider(scrapy.Spider):
             next_page_url = "https://blowmax.com.ar/categoria-producto/panificados/page/{}/".format(self.contador_paginas_panes)
         elif categoria == "Arroces":
             self.contador_paginas_arroces = self.contador_paginas_arroces + 1
-            # next_page_url = "https://blowmax.com.ar/page/{}/?s=arroz&post_type=product&dgwt_wcas=1".format(self.contador_paginas_arroces)
             next_page_url = "https://blowmax.com.ar/categoria-producto/almacen/arroz/page/{}/".format(self.contador_paginas_arroces)
                             
         elif categoria == "Jabones":

@@ -28,6 +28,16 @@ class AtomoSpider(scrapy.Spider):
 
         for articulo in articulos:
             nombre_crudo = articulo.css("h2 a::text").get()
+
+            if categoria == "Leches" and "CC." not in nombre_crudo and "LTS." not in nombre_crudo or "CHOCO" in nombre_crudo:
+                continue
+
+            if categoria == "Jabones" and "LIQUIDO" in nombre_crudo:
+                continue
+
+            if categoria == "Fideos" and "FIDEOS" not in nombre_crudo:
+                continue
+
             precio = articulo.css("span.price::text").get()
             url = articulo.css("h2 a").attrib["href"]
 

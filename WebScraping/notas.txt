@@ -1,1 +1,14 @@
 scrapy crawl atomo -o datos.csv
+
+Para ver si un producto es el mismo en los 5 supermercados debo:
+- Comparar marca
+- Comparar volumen
+- Pero la descripción de los productos difiere
+
+● Átomo: ARROZ L.FINO GALLO SELEC 500 GRS $ 1.763,00
+● Blowmax: ARROZ GALLO LARGO FINO PAQUETE X 500GR $ 1.750,00
+● ModoMarket: Arroz Gallo Largo Fino X 500 Gr $ 1.509,72
+● Segal: GALLO ARROZ 500g LARGO FINO $1.419,00
+● SuperA: ARROZ GALLO LARGO FINO PAQUETE X 500GR $1,990.00
+
+No tengo en cuenta leche chocolatada
