@@ -1,5 +1,7 @@
 scrapy crawl atomo -o datos.csv
 
+scrapy shell 'https://blowmax.com.ar/categoria-producto/detergentes/'
+
 Para ver si un producto es el mismo en los 5 supermercados debo:
 - Comparar marca
 - Comparar volumen
@@ -11,4 +13,4 @@ Para ver si un producto es el mismo en los 5 supermercados debo:
 ● Segal: GALLO ARROZ 500g LARGO FINO $1.419,00
 ● SuperA: ARROZ GALLO LARGO FINO PAQUETE X 500GR $1,990.00
 
-No tengo en cuenta leche chocolatada
+No tengo en cuenta leche chocolatada 

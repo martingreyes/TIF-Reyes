@@ -6,6 +6,12 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+from marketscraper.pipelinesAtomo.pipelines import AtomoPrecioPipeline, AtomoPipeline
+from marketscraper.pipelinesBlowmax.pipelines import BlowmaxPrecioPipeline, BlowmaxPipeline
+from marketscraper.pipelinesSegal.pipelines import SegalPrecioPipeline, SegalPipeline
+from marketscraper.pipelinesSupera.pipelines import SuperaPrecioPipeline, SuperaPipeline
+from marketscraper.pipelinesModoMarket.pipelines import ModoMarketPrecioPipeline, ModoMarketPipeline
+from marketscraper.pipelinesNormalizar.pipelines import NormalizarPipeline
 
 
 class MarketscraperPipeline:

@@ -1,5 +1,6 @@
 import scrapy
 from marketscraper.items import MarketscraperItem
+import logging
 
 class AtomoSpider(scrapy.Spider):
     name = "atomo"
@@ -16,6 +17,13 @@ class AtomoSpider(scrapy.Spider):
         ("https://atomoconviene.com/atomo-ecommerce/49-yerba-mate", "Yerbas"),
         ("https://atomoconviene.com/atomo-ecommerce/32-pastas-secas-y-salsas","Fideos")
     ]
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'marketscraper.pipelines.AtomoPrecioPipeline': 290,
+            'marketscraper.pipelines.AtomoPipeline': 300,
+            "marketscraper.pipelines.NormalizarPipeline": 400
+        }
+    }
 
 
     def start_requests(self):
@@ -23,6 +31,7 @@ class AtomoSpider(scrapy.Spider):
             yield scrapy.Request(url=url, meta={'categoria': categoria})
 
     def parse(self, response):  
+        self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")
         categoria = response.meta.get('categoria')
         articulos = response.css("article.product-miniature")
 

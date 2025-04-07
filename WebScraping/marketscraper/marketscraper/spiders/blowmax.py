@@ -2,6 +2,7 @@ import scrapy
 from marketscraper.items import MarketscraperItem
 import requests
 import re
+import logging
 
 
 class BlowmaxshampooSpider(scrapy.Spider):
@@ -24,10 +25,18 @@ class BlowmaxshampooSpider(scrapy.Spider):
                 ("https://blowmax.com.ar/categoria-producto/almacen/arroz/", "Arroces"),               
                 ("https://blowmax.com.ar/categoria-producto/perfumeria/jabones/","Jabones"),
                 # ("https://blowmax.com.ar/categoria-producto/almacen/fideos/","Fideos"),           
-                ("https://blowmax.com.ar/?s=arroz&post_type=product&dgwt_wcas=1" , "Arroces"),    
+                # ("https://blowmax.com.ar/?s=arroz&post_type=product&dgwt_wcas=1" , "Arroces"),    
                 ("https://blowmax.com.ar/?s=yerba&post_type=product&dgwt_wcas=1","Yerbas"),
                 ("https://blowmax.com.ar/?s=fideos&post_type=product&dgwt_wcas=1","Fideos")
                 ]
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'marketscraper.pipelines.BlowmaxPrecioPipeline': 290,
+            'marketscraper.pipelines.BlowmaxPipeline': 300,  
+            "marketscraper.pipelines.NormalizarPipeline": 350     
+        }
+    }
+
 
 
 
@@ -37,6 +46,7 @@ class BlowmaxshampooSpider(scrapy.Spider):
     
 
     def parse(self, response):
+        self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")
         categoria = response.meta.get('categoria')
         articulos = response.css("li.jet-woo-builder-product")
 
@@ -50,20 +60,20 @@ class BlowmaxshampooSpider(scrapy.Spider):
             if categoria == "Gaseosas" and "GASEOSA" not in nombre_crudo:
                 continue
 
-            if categoria == "Panes" and "PANCHO" in nombre_crudo or "PAN DE MIGA" in nombre_crudo  or "TORTILLAS" in nombre_crudo:
+            if categoria == "Panes" and ("PANCHO" in nombre_crudo or "PAN DE MIGA" in nombre_crudo  or "TORTILLAS" in nombre_crudo or "PAN" not in nombre_crudo or "HAMBURGUESA" in nombre_crudo):
                 continue
 
-            if categoria == "Jabones" and "LIQUIDO" in nombre_crudo or "LIQ" in nombre_crudo:
+            if categoria == "Jabones" and ("LIQUIDO" in nombre_crudo or "LIQ" in nombre_crudo):
                 continue
             
-            if categoria == "Arroces" and not nombre_crudo.startswith("ARROZ"):
-                continue
+            # if categoria == "Arroces" and not nombre_crudo.startswith("ARROZ"):
+            #     continue
 
-            if categoria == "Fideos" and not nombre_crudo.startswith("FIDEOS"):
-                continue
+            # if categoria == "Fideos" and not nombre_crudo.startswith("FIDEOS"):
+            #     continue
         
-            if categoria == "Leches" and "CHOCO" in nombre_crudo:
-                continue
+            # if categoria == "Leches" and "CHOCO" in nombre_crudo:
+            #     continue
 
 
             precio = articulo.css("bdi").get()
@@ -78,6 +88,7 @@ class BlowmaxshampooSpider(scrapy.Spider):
             item["contador"] = self.contador
             item["categoria"] = categoria
             self.contador += 1
+           
             
             yield item 
 

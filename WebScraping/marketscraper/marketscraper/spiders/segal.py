@@ -26,6 +26,14 @@ class SegalSpider(scrapy.Spider):
                 ("https://www.casa-segal.com/categoria-producto/almacen/yerbas/", "Yerbas"),
                 ("https://www.casa-segal.com/categoria-producto/almacen/fideos/","Fideos")
                 ]
+    
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'marketscraper.pipelines.SegalPrecioPipeline': 290,
+            'marketscraper.pipelines.SegalPipeline': 300,
+            "marketscraper.pipelines.NormalizarPipeline": 350 
+        }
+    }
 
 
     def start_requests(self):

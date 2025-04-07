@@ -27,7 +27,15 @@ class ModomarketSpider(scrapy.Spider):
     ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/desayuno-y-merienda/yerbas?&_from=0&_to=17&O=OrderByScoreDESC", "Yerbas"),
     ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/pastas-secas-y-salsas?&_from=0&_to=17&O=OrderByScoreDESC", "Fideos")
     ]
-    
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'marketscraper.pipelines.ModoMarketPrecioPipeline': 290,
+            'marketscraper.pipelines.ModoMarketPipeline': 300,
+            "marketscraper.pipelines.NormalizarPipeline": 350,
+            # "marketscraper.pipelines.SaveToMariaDBPipeline": 400  
+        }
+    }
 
 
     #TODO Revisar Arroz, Jabones y Pastas
