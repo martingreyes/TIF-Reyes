@@ -2,6 +2,7 @@ import scrapy
 from marketscraper.items import MarketscraperItem
 import re
 import requests
+import logging
 
 
 class SegalSpider(scrapy.Spider):
@@ -41,6 +42,7 @@ class SegalSpider(scrapy.Spider):
             yield scrapy.Request(url=url, meta={'categoria': table_name})
     
     def parse(self, response): 
+        self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")
         categoria = response.meta.get('categoria')
         articulos = response.css("li.product-col")
 

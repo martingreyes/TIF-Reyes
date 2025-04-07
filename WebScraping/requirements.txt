@@ -1,4 +1,4 @@
 scrapy
 requests
 unidecode
-scrapy-redis
+scrapyrt

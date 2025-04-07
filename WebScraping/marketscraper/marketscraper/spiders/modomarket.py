@@ -1,5 +1,6 @@
 import scrapy
 from marketscraper.items import MarketscraperItem
+import logging
 
 
 class ModomarketSpider(scrapy.Spider):
@@ -32,8 +33,7 @@ class ModomarketSpider(scrapy.Spider):
         'ITEM_PIPELINES': {
             'marketscraper.pipelines.ModoMarketPrecioPipeline': 290,
             'marketscraper.pipelines.ModoMarketPipeline': 300,
-            "marketscraper.pipelines.NormalizarPipeline": 350,
-            # "marketscraper.pipelines.SaveToMariaDBPipeline": 400  
+            "marketscraper.pipelines.NormalizarPipeline": 350 
         }
     }
 
@@ -47,6 +47,7 @@ class ModomarketSpider(scrapy.Spider):
 
 
     def parse(self, response):
+        self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")
         categoria = response.meta.get('categoria')
         resp =response.json()
 

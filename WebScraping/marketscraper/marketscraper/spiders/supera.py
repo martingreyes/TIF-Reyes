@@ -4,6 +4,7 @@ import re
 import requests
 from datetime import datetime
 import os
+import logging
 
 class SuperaSpider(scrapy.Spider):
     name = "supera"
@@ -28,7 +29,6 @@ class SuperaSpider(scrapy.Spider):
                 ("https://supera.com.ar/categoria-producto/almacen/fideos/","Fideos")
                 ]
 
-    #! Pasa por un Pipeline para mostrar mas bonitos los datos
     custom_settings = {
         'ITEM_PIPELINES': {
             'marketscraper.pipelines.SuperaPrecioPipeline': 290,
@@ -45,6 +45,7 @@ class SuperaSpider(scrapy.Spider):
     def parse(self, response): 
         custom_table_name = response.meta.get('custom_table_name')
         articulos = response.css("li.product")
+        self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")
 
         for articulo in articulos:
             nombre_crudo = articulo.css("h2 ::text").get()
