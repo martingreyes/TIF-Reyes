@@ -1,22 +1,26 @@
 import scrapy
 from marketscraper.items import MarketscraperItem
 import logging
+from scrapy_redis.spiders import RedisSpider
 
-class AtomoSpider(scrapy.Spider):
+# class AtomoSpider(scrapy.Spider):
+class AtomoSpider(RedisSpider):
     name = "atomo"
     allowed_domains = ["atomoconviene.com"]
     contador = 0
-    start_urls = [
-        ("https://atomoconviene.com/atomo-ecommerce/135-shampoo", "Shampoos"),
-        ("https://atomoconviene.com/atomo-ecommerce/95-gaseosas", "Gaseosas"),
-        ("https://atomoconviene.com/atomo-ecommerce/234-leches-larga-vida", "Leches"),
-        ("https://atomoconviene.com/atomo-ecommerce/58-pan-lactal", "Panes"),
-        ("https://atomoconviene.com/atomo-ecommerce/20-arroz", "Arroces"),
-        ("https://atomoconviene.com/atomo-ecommerce/21-arroz-listo", "Arroces"),
-        ("https://atomoconviene.com/atomo-ecommerce/151-jabones", "Jabones"),
-        ("https://atomoconviene.com/atomo-ecommerce/49-yerba-mate", "Yerbas"),
-        ("https://atomoconviene.com/atomo-ecommerce/32-pastas-secas-y-salsas","Fideos")
-    ]
+    redis_key = 'atomo:start_urls'
+    max_idle_time = 7
+    # start_urls = [
+    #     ("https://atomoconviene.com/atomo-ecommerce/135-shampoo", "Shampoos"),
+    #     ("https://atomoconviene.com/atomo-ecommerce/95-gaseosas", "Gaseosas"),
+    #     ("https://atomoconviene.com/atomo-ecommerce/234-leches-larga-vida", "Leches"),
+    #     ("https://atomoconviene.com/atomo-ecommerce/58-pan-lactal", "Panes"),
+    #     ("https://atomoconviene.com/atomo-ecommerce/20-arroz", "Arroces"),
+    #     ("https://atomoconviene.com/atomo-ecommerce/21-arroz-listo", "Arroces"),
+    #     ("https://atomoconviene.com/atomo-ecommerce/151-jabones", "Jabones"),
+    #     ("https://atomoconviene.com/atomo-ecommerce/49-yerba-mate", "Yerbas"),
+    #     ("https://atomoconviene.com/atomo-ecommerce/32-pastas-secas-y-salsas","Fideos")
+    # ]
     custom_settings = {
         'ITEM_PIPELINES': {
             'marketscraper.pipelines.AtomoPrecioPipeline': 290,
