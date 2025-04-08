@@ -1,11 +1,13 @@
 import scrapy
 from marketscraper.items import MarketscraperItem
 import requests
+from scrapy_redis.spiders import RedisSpider
 import re
 import logging
+import json
 
-
-class BlowmaxshampooSpider(scrapy.Spider):
+# class BlowmaxshampooSpider(scrapy.Spider:
+class BlowmaxshampooSpider(RedisSpider):
     name = "blowmax"
     allowed_domains = ["blowmax.com.ar"]
     contador = 0
@@ -17,18 +19,20 @@ class BlowmaxshampooSpider(scrapy.Spider):
     contador_paginas_jabones = 1
     contador_paginas_yerbas = 1
     contador_paginas_fideos = 1
-    start_urls = [
-                ("https://blowmax.com.ar/categoria-producto/perfumeria/cuidado-de-cabello/shampoo/", "Shampoos"),
-                ("https://blowmax.com.ar/categoria-producto/bebidas/bebidas-sin-alcohol/gaseosas/", "Gaseosas"),
-                ("https://blowmax.com.ar/categoria-producto/lacteos/leches-larga-vida/","Leches"),
-                ("https://blowmax.com.ar/categoria-producto/panificados/", "Panes"),
-                ("https://blowmax.com.ar/categoria-producto/almacen/arroz/", "Arroces"),               
-                ("https://blowmax.com.ar/categoria-producto/perfumeria/jabones/","Jabones"),
-                # ("https://blowmax.com.ar/categoria-producto/almacen/fideos/","Fideos"),           
-                # ("https://blowmax.com.ar/?s=arroz&post_type=product&dgwt_wcas=1" , "Arroces"),    
-                ("https://blowmax.com.ar/?s=yerba&post_type=product&dgwt_wcas=1","Yerbas"),
-                ("https://blowmax.com.ar/?s=fideos&post_type=product&dgwt_wcas=1","Fideos")
-                ]
+    redis_key = 'blowmax:start_urls'
+    max_idle_time = 7
+    # start_urls = [
+    #             ("https://blowmax.com.ar/categoria-producto/perfumeria/cuidado-de-cabello/shampoo/", "Shampoos"),
+    #             ("https://blowmax.com.ar/categoria-producto/bebidas/bebidas-sin-alcohol/gaseosas/", "Gaseosas"),
+    #             ("https://blowmax.com.ar/categoria-producto/lacteos/leches-larga-vida/","Leches"),
+    #             ("https://blowmax.com.ar/categoria-producto/panificados/", "Panes"),
+    #             ("https://blowmax.com.ar/categoria-producto/almacen/arroz/", "Arroces"),               
+    #             ("https://blowmax.com.ar/categoria-producto/perfumeria/jabones/","Jabones"),
+    #             # ("https://blowmax.com.ar/categoria-producto/almacen/fideos/","Fideos"),           
+    #             # ("https://blowmax.com.ar/?s=arroz&post_type=product&dgwt_wcas=1" , "Arroces"),    
+    #             ("https://blowmax.com.ar/?s=yerba&post_type=product&dgwt_wcas=1","Yerbas"),
+    #             ("https://blowmax.com.ar/?s=fideos&post_type=product&dgwt_wcas=1","Fideos")
+    #             ]
     custom_settings = {
         'ITEM_PIPELINES': {
             'marketscraper.pipelines.BlowmaxPrecioPipeline': 290,
@@ -128,6 +132,15 @@ class BlowmaxshampooSpider(scrapy.Spider):
         if next_page_url:
             respuesta = requests.get(next_page_url)
             if respuesta.status_code == 200:
+
+                self.server.rpush(
+                self.redis_key,
+                json.dumps({
+                    'url': next_page_url,
+                    'meta': {'categoria': categoria}
+                    })
+                )
+
                 yield response.follow(next_page_url, callback=self.parse, meta={'categoria': categoria})        
 
 
