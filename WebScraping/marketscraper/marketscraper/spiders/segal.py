@@ -123,4 +123,4 @@ class SegalSpider(RedisSpider):
                             'meta': {'categoria': categoria}
                         })
                     )
-                    yield response.follow(next_page_url, callback=self.parse, meta={'categoria': categoria})
+                    # yield response.follow(next_page_url, callback=self.parse, meta={'categoria': categoria})
