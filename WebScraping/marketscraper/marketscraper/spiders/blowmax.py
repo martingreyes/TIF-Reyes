@@ -132,16 +132,18 @@ class BlowmaxshampooSpider(RedisSpider):
         if next_page_url:
             respuesta = requests.get(next_page_url)
             if respuesta.status_code == 200:
-
-                self.server.rpush(
-                self.redis_key,
-                json.dumps({
-                    'url': next_page_url,
-                    'meta': {'categoria': categoria}
-                    })
-                )
-
-                yield response.follow(next_page_url, callback=self.parse, meta={'categoria': categoria})        
+                url_key = f"{self.redis_key}:seen_urls"
+                if not self.server.sismember(url_key, next_page_url):
+                    self.server.sadd(url_key, next_page_url)
+                    self.server.rpush(
+                        self.redis_key,
+                        json.dumps({
+                            'url': next_page_url,
+                            'meta': {'categoria': categoria}
+                        })
+                    )
+                    yield response.follow(next_page_url, callback=self.parse, meta={'categoria': categoria})
+      
 
 
 

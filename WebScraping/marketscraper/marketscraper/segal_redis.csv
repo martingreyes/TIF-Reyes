@@ -1,0 +1,259 @@
+categoria,contador,descripcion,marca,nombre_crudo,precio,tienda,url,volumen
+Arroces,0,LARGO FINO,DON MARCOS,DON MARCOS ARROZ 1Kg LARGO FINO,1299.0,Segal,https://www.casa-segal.com/producto/don-marcos-arroz-1kg-largo-fino/,1000
+Arroces,1,PARBOIL,DON MARCOS,DON MARCOS ARROZ 1Kg PARBOIT,1399.0,Segal,https://www.casa-segal.com/producto/don-marcos-arroz-1kg-parboit/,1000
+Arroces,2,LARGO FINO,GALLO,GALLO ARROZ 1Kg LARGO FINO,1699.0,Segal,https://www.casa-segal.com/producto/gallo-arroz-1kg-largo-fino/,1000
+Arroces,3,PARBOIL,GALLO,GALLO ARROZ 1Kg PARBOIL,1899.0,Segal,https://www.casa-segal.com/producto/gallo-arroz-1kg-parboil/,1000
+Arroces,4,DOBLE,GALLO,GALLO ARROZ 500g DOBLE,1599.0,Segal,https://www.casa-segal.com/producto/gallo-arroz-500g-doble/,500
+Arroces,5,INTEGRAL,GALLO,GALLO ARROZ 500g INTEGRAL,979.0,Segal,https://www.casa-segal.com/producto/gallo-arroz-500g-integral/,500
+Arroces,6,LARGO FINO,GALLO,GALLO ARROZ 500g LARGO FINO,899.0,Segal,https://www.casa-segal.com/producto/gallo-arroz-500g-largo-fino/,500
+Arroces,7,PARBOIL,GALLO,GALLO ARROZ 500g PARBOIL,999.0,Segal,https://www.casa-segal.com/producto/gallo-arroz-500g-parboil/,500
+Yerbas,8,,CHAMIGO,CHAMIGO YERBA 1Kg,2599.0,Segal,https://www.casa-segal.com/producto/chamigo-yerba-1kg/,1000
+Yerbas,9,,CHAMIGO,CHAMIGO YERBA 500g,1349.0,Segal,https://www.casa-segal.com/producto/chamigo-yerba-500g/,500
+Yerbas,10,SELECCION,CRUZ DE MALTA,CRUZ DE MALTA SELECCIÓN 1Kg,3799.0,Segal,https://www.casa-segal.com/producto/cruz-de-malta-seleccion-1kg/,1000
+Yerbas,11,ECOPACK,CRUZ DE MALTA,CRUZ DE MALTA YERBA 1Kg ECOPACK,3299.0,Segal,https://www.casa-segal.com/producto/cruz-de-malta-yerba-1kg-ecopack/,1000
+Yerbas,12,ECOPACK,CRUZ DE MALTA,CRUZ DE MALTA YERBA 500g ECOPACK,1999.0,Segal,https://www.casa-segal.com/producto/cruz-de-malta-yerba-500g-ecopack/,500
+Yerbas,13,BCP,MANANITA,MAÑANITA YERBA 1000g BCP,3999.0,Segal,https://www.casa-segal.com/producto/mananita-yerba-1000g-bcp/,1000
+Yerbas,14,BCP,MANANITA,MAÑANITA YERBA 500g BCP,2099.0,Segal,https://www.casa-segal.com/producto/mananita-yerba-500g-bcp/,500
+Yerbas,15,SELECCION,NOBLEZA GAUCHA,NOBLEZA GAUCHA SELECCIÓN 1kg,3099.0,Segal,https://www.casa-segal.com/producto/nobleza-gaucha-seleccion-1kg/,1000
+Yerbas,16,,SALUS,SALUS YERBA 500g,1799.0,Segal,https://www.casa-segal.com/producto/salus-yerba-500g/,500
+Yerbas,17,CON PALO,TARAGUI,TARAGUI YERBA 1Kg CON PALO,3899.0,Segal,https://www.casa-segal.com/producto/taragui-yerba-1kg-con-palo/,1000
+Yerbas,18,SIN PALO,TARAGUI,TARAGUI YERBA 1Kg SIN PALO,4999.0,Segal,https://www.casa-segal.com/producto/taragui-yerba-1kg-sin-palo/,1000
+Yerbas,19,CON PALO,TARAGUI,TARAGUI YERBA 500g CON PALO,2099.0,Segal,https://www.casa-segal.com/producto/taragui-yerba-500g-con-palo/,500
+Gaseosas,20,,SEVEN UP,7UP 2.25Lts,1999.0,Segal,https://www.casa-segal.com/producto/7up-2-25lts/,2250
+Gaseosas,21,FRESH COLA,BAGGIO,BAGGIO FRESH 2.25LT COLA,1000.0,Segal,https://www.casa-segal.com/producto/baggio-fresh-gaseosa-2-25lt-cola/,2250
+Gaseosas,22,FRESH LIMA,BAGGIO,BAGGIO FRESH 2.25LT LIMA LIMÓN,1000.0,Segal,https://www.casa-segal.com/producto/baggio-fresh-gaseosa-2-25lt-lima-limon/,2250
+Gaseosas,23,FRESH NARANJA,BAGGIO,BAGGIO FRESH 2.25LT NARANJA,1000.0,Segal,https://www.casa-segal.com/producto/baggio-fresh-gaseosa-2-25lt-naranja/,2250
+Gaseosas,24,FRESH POMELO,BAGGIO,BAGGIO FRESH 2.25LT POMELO,1000.0,Segal,https://www.casa-segal.com/producto/baggio-fresh-gaseosa-2-25lt-pomelo/,2250
+Gaseosas,25,,COCA COLA,COCA COLA 2.25Lts,2999.0,Segal,https://www.casa-segal.com/producto/coca-cola-2-25lts/,2250
+Gaseosas,26,,COCA COLA,COCA COLA 500ml,999.0,Segal,https://www.casa-segal.com/producto/coca-cola-500ml/,500
+Gaseosas,27,,COCA COLA,COCA COLA LATA 310cc,900.0,Segal,https://www.casa-segal.com/producto/coca-cola-lata-310cc/,310
+Gaseosas,28,SIN AZUCAR,COCA COLA,COCA COLA ZERO 1.5Lts,2499.0,Segal,https://www.casa-segal.com/producto/coca-cola-zero-1-5lts/,1500
+Gaseosas,29,SIN AZUCAR,COCA COLA,COCA COLA ZERO 2.25Lts,2999.0,Segal,https://www.casa-segal.com/producto/coca-cola-zero-2-25lts/,2250
+Gaseosas,30,NARANJA,FANTA,FANTA NARANJA 1.5Lts,2499.0,Segal,https://www.casa-segal.com/producto/fanta-naranja-1-5lts/,1500
+Gaseosas,31,NARANJA,FANTA,FANTA NARANJA 2.25Lts,2999.0,Segal,https://www.casa-segal.com/producto/fanta-naranja-2-25lts/,2250
+Leches,32,1% DESCREMADA,ARMONIA,ARMONÍA LECHE 1L 1% DESCREMADA,1359.0,Segal,https://www.casa-segal.com/producto/armonia-leche-1l-1-descremada/,1000
+Leches,33,1%,LA SERENISIMA,LECHE 1% LA SERENÍSIMA  1Lt SACHET,1439.0,Segal,https://www.casa-segal.com/producto/leche-1-la-serenisima-1lt-sachet/,1000
+Leches,34,3%,LA SERENISIMA,LECHE 3% LA SERENÍSIMA 1Lt SACHET,1439.0,Segal,https://www.casa-segal.com/producto/leche-3-la-serenisima-1lt-sachet/,1000
+Shampoos,35,HIDRATACION INTENSA,DOVE,DOVE SHAMPOO 200ml HIDRATACIÓN INTENSA,2199.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-200ml-hidratacion-intensa/,200
+Shampoos,36,OLEO MICELAR,DOVE,DOVE SHAMPOO 200ml OLEO MICELAR,2199.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-200ml-oleo-micelar/,200
+Shampoos,37,OLEO NUTRICION,DOVE,DOVE SHAMPOO 200ml OLEO NUTRICIÓN,2199.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-200ml-oleo-nutricion/,200
+Shampoos,38,RECONSTRUCCION COMPLETA,DOVE,DOVE SHAMPOO 200ml RECONSTRUCCIÓN COMPLETA,2199.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-200ml-reconstruccion-completa/,200
+Shampoos,39,REGENERACION EXTREMA,DOVE,DOVE SHAMPOO 200ml REGENERACIÓN EXTREMA,2199.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-200ml-regeneracion-extrema/,200
+Shampoos,40,RITUAL REPARACION,DOVE,DOVE SHAMPOO 200ml RITUAL REPARACIÓN,2199.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-200ml-ritual-reparacion/,200
+Shampoos,41,CUIDA Y PROTEGE,DOVE,DOVE SHAMPOO 400ml CUIDA Y PROTEGE,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-cuida-y-protege/,400
+Panes,42,LACTAL,ARGENTINA,PAN LACTAL ARGENTINA 400g,1099.0,Segal,https://www.casa-segal.com/producto/pan-lactal-argentina-400g/,400
+Panes,43,LACTAL,VENEZIANA,PAN LACTAL VENEZIANA 400g,1549.0,Segal,https://www.casa-segal.com/producto/pan-lactal-veneziana-400g/,400
+Panes,44,LACTEADO,VENEZIANA,PAN LACTEADO VENEZIANA 600g,2289.0,Segal,https://www.casa-segal.com/producto/pan-lacteado-veneziana-600g/,600
+Panes,45,MESA,LACTAL,PAN MESA LACTAL 315g,1999.0,Segal,https://www.casa-segal.com/producto/pan-mesa-lactal-315g/,315
+Panes,46,MESA,LACTAL,PAN MESA LACTAL 460g,2819.0,Segal,https://www.casa-segal.com/producto/pan-mesa-lactal-460g/,460
+Panes,47,SALVADO,LACTAL,PAN SALVADO LACTAL 560g,3249.0,Segal,https://www.casa-segal.com/producto/pan-salvado-lactal-560g/,560
+Panes,48,ARTESANO,BIMBO,PAN TIPO ARTESANO BIMBO 500g,4799.0,Segal,https://www.casa-segal.com/producto/pan-tipo-artesano-bimbo-500g/,500
+Panes,49,LACTAL INTEGRAL,VENEZIANA,VENEZIANA PAN LACTAL INTEGRAL 630g,2899.0,Segal,https://www.casa-segal.com/producto/veneziana-pan-lactal-integral-630g/,630
+Jabones,50,ACTIVE 3U,REXONA,JABÓN ACTIVE REXONA 3u 125gr,1799.0,Segal,https://www.casa-segal.com/producto/jabon-active-rexona-3u-125gr/,125
+Jabones,51,BAMBOO FRESH 3U,REXONA,JABÓN BAMBOO FRESH REXONA 3u 125gr,1799.0,Segal,https://www.casa-segal.com/producto/jabon-bamboo-fresh-rexona-3u-125gr/,125
+Fideos,52,SPAGHETTI,FAVORITA,FAVORITA FIDEOS SPAGHETTI 500g,699.0,Segal,https://www.casa-segal.com/producto/favorita-fideos-spaghetti-500g/,500
+Fideos,53,SPAGHETTI,ARCOR,FIDEOS ARCOR 500g SPAGHETTI,999.0,Segal,https://www.casa-segal.com/producto/fideos-arcor-500g-spaghetti/,500
+Fideos,54,CODITOS,TERRABUSI,FIDEOS CODITOS TERRABUSI 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-coditos-terrabusi-500g/,500
+Fideos,55,CODO,LA PROVIDENCIA,FIDEOS CODO LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-codo-la-providencia-500g/,500
+Fideos,56,MONO,LA PROVIDENCIA,FIDEOS MOÑO LA PROVIDENCIA 500g,1199.0,Segal,https://www.casa-segal.com/producto/fideos-mono-la-providencia-500g/,500
+Fideos,57,MONOS,LUCCHETTI,FIDEOS MOÑOS LUCCHETTI 500g,1929.0,Segal,https://www.casa-segal.com/producto/fideos-monos-lucchetti-500g/,500
+Fideos,58,MONOS,MATARAZZO,FIDEOS MOÑOS MATARAZZO 500g,1999.0,Segal,https://www.casa-segal.com/producto/fideos-monos-matarazzo-500g/,500
+Fideos,59,MOSTACHOL,LA PROVIDENCIA,FIDEOS MOSTACHOL LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-mostachol-la-providencia-500g/,500
+Leches,61,CHOCOLATADA,CINDOR,LECHE CHOCOLATADA CINDOR x 1L,5749.0,Segal,https://www.casa-segal.com/producto/leche-chocolatada-cindor-x-1l/,1000
+Leches,62,CHOCOLATADA,ILOLAY,LECHE CHOCOLATADA ILOLAY x 1 LT,2169.0,Segal,https://www.casa-segal.com/producto/leche-chocolatada-ilolay-x-1-lt/,1000
+Leches,63,CHOCOLATADA,LA SERENISIMA,LECHE CHOCOLATADA LA SERENÍSIMA,3159.0,Segal,https://www.casa-segal.com/producto/leche-chocolatada-la-serenisima/,1000
+Shampoos,64,HIDRATACION INTENSA,DOVE,DOVE SHAMPOO 400ml HIDRATACIÓN INTENSA,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-hidratacion-intensa/,400
+Shampoos,65,OLEO MICELAR,DOVE,DOVE SHAMPOO 400ml OLEO MICELAR,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-oleo-micelar/,400
+Shampoos,66,OLEO NUTRICION,DOVE,DOVE SHAMPOO 400ml OLEO NUTRICIÓN,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-oleo-nutricion/,400
+Jabones,67,COTTON 3U,REXONA,JABÓN COTTON REXONA 3u 125gr,1799.0,Segal,https://www.casa-segal.com/producto/jabon-cotton-rexona-3u-125gr/,125
+Jabones,68,FLOR VAINILLA 3U,LUX,JABÓN FLOR VAINILLA LUX 3u 120gr,1899.0,Segal,https://www.casa-segal.com/producto/jabon-flor-vainilla-lux-3u-120gr/,120
+Jabones,69,JAZMIN 3U,LUX,JABÓN JAZMÍN LUX 3u 120gr,1899.0,Segal,https://www.casa-segal.com/producto/jabon-jazmin-lux-3u-120gr/,120
+Jabones,70,LIRIO AZUL 3U,LUX,JABÓN LIRIO AZUL LUX 3u 120gr,1899.0,Segal,https://www.casa-segal.com/producto/jabon-lirio-azul-lux-3u-120gr/,120
+Jabones,71,ORCHID FRESH 3U,REXONA,JABÓN ORCHID FRESH REXONA 3u 125gr,1799.0,Segal,https://www.casa-segal.com/producto/jabon-orchid-fresh-rexona-3u-125gr/,125
+Jabones,72,ORQUIDEA NEGRA 3U,LUX,JABÓN ORQUÍDEA NEGRA LUX 3u 120gr,1899.0,Segal,https://www.casa-segal.com/producto/jabon-orquidea-negra-lux-3u-120gr/,120
+Jabones,73,ROSAS FRANCESAS 3U,LUX,JABÓN ROSAS FRANCESAS LUX 3u 120gr,1899.0,Segal,https://www.casa-segal.com/producto/jabon-rosas-francesas-lux-3u-120gr/,120
+Jabones,74,SENSIBLE FRESH 3U,REXONA,JABÓN SENSIBLE FRESH REXONA 3u 125gr,1799.0,Segal,https://www.casa-segal.com/producto/jabon-sensible-fresh-rexona-3u-125gr/,125
+Fideos,75,MOSTACHOL,LUCCHETTI,FIDEOS MOSTACHOL LUCCHETTI 500g,949.0,Segal,https://www.casa-segal.com/producto/fideos-mostachol-lucchetti-500g/,500
+Fideos,76,MOSTACHOL,MATARAZZO,FIDEOS MOSTACHOL MATARAZZO 500gr,1099.0,Segal,https://www.casa-segal.com/producto/fideos-mostachol-matarazzo-500gr/,500
+Fideos,77,MOSTACHOL,TERRABUSI,FIDEOS MOSTACHOL TERRABUSI 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-mostachol-terrabusi-500g/,500
+Fideos,78,NIDO SPAGHETTI,LA PROVIDENCIA,FIDEOS NIDO SPAGHETTI LA PROVIDENCIA 500g,1199.0,Segal,https://www.casa-segal.com/producto/fideos-nido-spaghetti-la-providencia-500g/,500
+Yerbas,79,SIN PALO,TARAGUI,TARAGUI YERBA 500g SIN PALO,2549.0,Segal,https://www.casa-segal.com/producto/taragui-yerba-500g-sin-palo/,500
+Yerbas,80,,UNION,UNIÓN YERBA 500g,2099.0,Segal,https://www.casa-segal.com/producto/union-yerba-500g/,500
+Yerbas,81,SERRANA,VERDEFLOR,VERDEFLOR YERBA 500g SERRANA,1399.0,Segal,https://www.casa-segal.com/producto/verdeflor-500g-serrana/,500
+Yerbas,82,,BUENAS Y SANTAS,YERBA BUENAS Y SANTAS 500g,2049.0,Segal,https://www.casa-segal.com/producto/yerba-buenas-y-santas-500g/,500
+Yerbas,83,MATE BOLDO Y MENTA,CRUZ DE MALTA,YERBA MATE BOLDO Y MENTA CRUZ DE MALTA 500g,1499.0,Segal,https://www.casa-segal.com/producto/yerba-mate-boldo-y-menta-cruz-de-malta-500g/,500
+Yerbas,84,MATE CON MANZANILLA,CRUZ DE MALTA,YERBA MATE CON MANZANILLA CRUZ DE MALTA 500g,1499.0,Segal,https://www.casa-segal.com/producto/yerba-mate-con-manzanilla-cruz-de-malta-500g/,500
+Yerbas,85,NOBLEZA GAUCHA,SUAVE,YERBA NOBLEZA GAUCHA SUAVE 1kg,3099.0,Segal,https://www.casa-segal.com/producto/yerba-nobleza-gaucha-suave-1kg/,1000
+Yerbas,86,NOBLEZA GAUCHA,SUAVE,YERBA NOBLEZA GAUCHA SUAVE 500g,1599.0,Segal,https://www.casa-segal.com/producto/yerba-nobleza-gaucha-suave-500g/,500
+Gaseosas,87,NARANJA,FANTA,FANTA NARANJA LATA 310cc,900.0,Segal,https://www.casa-segal.com/producto/fanta-naranja-lata-310cc/,310
+Gaseosas,88,CITRUS,MANAOS,MANAOS CITRUS 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-citrus-3l/,3000
+Gaseosas,89,COLA,MANAOS,MANAOS COLA 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-cola-3l/,3000
+Gaseosas,90,LIMA,MANAOS,MANAOS LIMA LIMÓN 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-lima-limon-3l/,3000
+Gaseosas,91,MANZANA,MANAOS,MANAOS MANZANA 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-manzana-3l/,3000
+Gaseosas,92,NARANJA,MANAOS,MANAOS NARANJA 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-naranja-3l/,3000
+Gaseosas,93,POMELO,MANAOS,MANAOS POMELO 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-pomelo-3l/,3000
+Gaseosas,94,,MIRINDA,MIRINDA DESCARTABLE 2.25Lts,1799.0,Segal,https://www.casa-segal.com/producto/mirinda-descartable-2-25lts/,2250
+Gaseosas,95,,PEPSI,PEPSI 2.25Lts,1999.0,Segal,https://www.casa-segal.com/producto/pepsi-2-25lts/,2250
+Gaseosas,96,FRUTOS TROPICALES ROJOS,POWERADE,POWERADE FRUTOS TROPICALES ROJOS 500cc,1450.0,Segal,https://www.casa-segal.com/producto/powerade-frutos-tropicales-rojos-500cc/,500
+Gaseosas,97,M.BLAS AZUL,POWERADE,POWERADE M.BLAS AZUL 500cc,1450.0,Segal,https://www.casa-segal.com/producto/powerade-m-blas-azul-500cc/,500
+Gaseosas,98,TONICA,SCHWEPPES,SCHWEPPES TÓNICA 1.5Lts,2499.0,Segal,https://www.casa-segal.com/producto/schweppes-tonica-1-5lts/,1500
+Fideos,99,PENNE RIGATE,LUCCHETTI,FIDEOS PENNE RIGATE LUCCHETTI 500g,899.0,Segal,https://www.casa-segal.com/producto/fideos-penne-rigate-lucchetti-500g/,500
+Fideos,100,PENNE RIGATE,MATARAZZO,FIDEOS PENNE RIGATE MATARAZZO 500g,1099.0,Segal,https://www.casa-segal.com/producto/fideos-penne-rigate-matarazzo-500g/,500
+Fideos,101,RIGATTI,LA PROVIDENCIA,FIDEOS RIGATTI LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-rigatti-la-providencia-500g/,500
+Fideos,102,SPAGHETTI,LA PROVIDENCIA,FIDEOS SPAGHETTI  LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-la-providencia-500g/,500
+Fideos,103,SPAGHETTI INTEGRAL,MATARAZZO,FIDEOS SPAGHETTI INTEGRAL MATARAZZO 500g,1399.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-integral-matarazzo-500g/,500
+Fideos,104,SPAGHETTI,LUCCHETTI,FIDEOS SPAGHETTI LUCCHETTI 500g,949.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-lucchetti-500g/,500
+Fideos,105,SPAGHETTI,MATARAZZO,FIDEOS SPAGHETTI MATARAZZO 500g,1099.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-matarazzo-500g/,500
+Fideos,106,SPAGHETTI,TERRABUSI,FIDEOS SPAGHETTI TERRABUSI 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-terrabusi-500g/,500
+Fideos,107,TALLARIN,LA PROVIDENCIA,FIDEOS TALLARÍN LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-tallarin-la-providencia-500g/,500
+Fideos,108,TALLARIN,LUCCHETTI,FIDEOS TALLARÍN LUCCHETTI 500g,949.0,Segal,https://www.casa-segal.com/producto/fideos-tallarin-lucchetti-500g/,500
+Fideos,109,TALLARIN,MATARAZZO,FIDEOS TALLARÍN MATARAZZO 500g,1099.0,Segal,https://www.casa-segal.com/producto/fideos-tallarin-matarazzo-500g/,500
+Fideos,110,TALLARIN,TERRABUSI,FIDEOS TALLARÍN TERRABUSI 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-tallarin-terrabusi-500g/,500
+Leches,111,DESCREMADA,TREGAR,LECHE DESCREMADA 1Lt TREGAR,1289.0,Segal,https://www.casa-segal.com/producto/leche-descremada-1lt-tregar/,1000
+Shampoos,112,RECONSTRUCCION COMPLETA,DOVE,DOVE SHAMPOO 400ml RECONSTRUCCIÓN COMPLETA,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-reconstruccion-completa/,400
+Shampoos,113,REGENERACION EXTREMA,DOVE,DOVE SHAMPOO 400ml REGENERACIÓN EXTREMA,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-regeneracion-extrema/,400
+Shampoos,114,RITUAL CRECIMIENTO,DOVE,DOVE SHAMPOO 400ml RITUAL CRECIMIENTO,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-ritual-crecimiento/,400
+Shampoos,115,RITUAL DETOX,DOVE,DOVE SHAMPOO 400ml RITUAL DETOX,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-ritual-detox/,400
+Shampoos,116,RITUAL FORTALECIMIENTO,DOVE,DOVE SHAMPOO 400ml RITUAL FORTALECIMIENTO,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-ritual-fortalecimiento/,400
+Shampoos,117,RITUAL REPARACION,DOVE,DOVE SHAMPOO 400ml RITUAL REPARACIÓN,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-ritual-reparacion/,400
+Shampoos,118,OLEO NUTRICION,DOVE,DOVE SHAMPOO 750ml OLEO NUTRICIÓN,7499.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-750ml-oleo-nutricion/,750
+Shampoos,119,RECONSTRUCCION COMPLETA,DOVE,DOVE SHAMPOO 750ml RECONSTRUCCIÓN COMPLETA,7499.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-750ml-reconstruccion-completa/,750
+Shampoos,120,RITUAL REPARACION,DOVE,DOVE SHAMPOO 750ml RITUAL REPARACIÓN,7499.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-750ml-ritual-reparacion/,750
+Shampoos,121,BOMBA ARGAN,SEDAL,SEDAL SHAMPOO BOMBA ARGAN 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-bomba-argan-190ml/,190
+Shampoos,122,BOMBA ARGAN,SEDAL,SEDAL SHAMPOO BOMBA ARGAN 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-bomba-argan-340ml/,340
+Shampoos,123,BOMBA COCO,SEDAL,SEDAL SHAMPOO BOMBA COCO 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-bomba-coco-190ml/,190
+Leches,124,DESCREMADA,YOGURLAC,LECHE DESCREMADA YOGURLAC 1Lt,1269.0,Segal,https://www.casa-segal.com/producto/leche-descremada-yogurlac-1lt/,1000
+Leches,125,ENTERA,TREGAR,LECHE ENTERA 1Lt TREGAR,1289.0,Segal,https://www.casa-segal.com/producto/leche-entera-1lt-tregar/,1000
+Leches,126,ENTERA,YOGURLAC,LECHE ENTERA YOGURLAC 1Lt,1269.0,Segal,https://www.casa-segal.com/producto/leche-entera-yogurlac-1lt/,1000
+Leches,127,0% LACTOSA,LA SERENISIMA,LECHE PET 0% LACTOSA LA SERENÍSIMA x 1L,1659.0,Segal,https://www.casa-segal.com/producto/leche-pet-0-lactosa-la-serenisima-x-1l/,1000
+Leches,128,1% DESCREMADA,LA SERENISIMA,LECHE PET 1% DESCREMADA LA SERENÍSIMA,1659.0,Segal,https://www.casa-segal.com/producto/leche-pet-1-descremada-la-serenisima/,1000
+Leches,129,3% CLASICA,LA SERENISIMA,LECHE PET 3% CLÁSICA LA SERENÍSIMA,1659.0,Segal,https://www.casa-segal.com/producto/leche-pet-3-clasica-la-serenisima/,1000
+Gaseosas,130,,SPRITE,SPRITE 1.5Lts,2499.0,Segal,https://www.casa-segal.com/producto/sprite-1-5lts/,1500
+Gaseosas,131,,SPRITE,SPRITE 2.25Lts,2999.0,Segal,https://www.casa-segal.com/producto/sprite-2-25lts/,2250
+Gaseosas,132,,SPRITE,SPRITE 500ml,999.0,Segal,https://www.casa-segal.com/producto/sprite-500ml/,500
+Gaseosas,133,,SPRITE,SPRITE LATA 310cc,900.0,Segal,https://www.casa-segal.com/producto/sprite-lata-310cc/,310
+Shampoos,134,BOMBA COCO,SEDAL,SEDAL SHAMPOO BOMBA COCO 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-bomba-coco-340ml/,340
+Shampoos,135,CERAMIDAS,SEDAL,SEDAL SHAMPOO CERAMIDAS 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-ceramidas-190ml/,190
+Shampoos,136,CERAMIDAS,SEDAL,SEDAL SHAMPOO CERAMIDAS 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-ceramidas-340ml/,340
+Shampoos,137,CREMA BALANCE,SEDAL,SEDAL SHAMPOO CREMA BALANCE 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-crema-balance-190ml/,190
+Shampoos,138,CREMA BALANCE,SEDAL,SEDAL SHAMPOO CREMA BALANCE 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-crema-balance-340ml/,340
+Shampoos,139,LISO PERFECTO,SEDAL,SEDAL SHAMPOO LISO PERFECTO 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-liso-perfecto-190ml/,190
+Shampoos,140,LISO PERFECTO,SEDAL,SEDAL SHAMPOO LISO PERFECTO 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-liso-perfecto-340ml/,340
+Shampoos,141,RESTAURACION INSTANTANEA,SEDAL,SEDAL SHAMPOO RESTAURACIÓN INSTANTANEA 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-restauracion-instantanea-190ml/,190
+Shampoos,142,RESTAURACION INSTANTANEA,SEDAL,SEDAL SHAMPOO RESTAURACION INSTANTANEA 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-restauracion-instantanea-340ml/,340
+Shampoos,143,RIZOS DEFINIDOS,SEDAL,SEDAL SHAMPOO RIZOS DEFINIDOS 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-rizos-definidos-190ml/,190
+Shampoos,144,RIZOS DEFINIDOS,SEDAL,SEDAL SHAMPOO RIZOS DEFINIDOS 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-rizos-definidos-340ml/,340
+Shampoos,145,CARBON ACTIVADO,SEDAL,SHAMPOO CARBÓN Y PEONIAS SEDAL 190ml,1899.0,Segal,https://www.casa-segal.com/producto/shampoo-carbon-y-peonias-sedal-190ml/,190
+Fideos,146,TIRABUZON,LA PROVIDENCIA,FIDEOS TIRABUZÓN LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-tirabuzon-la-providencia-500g/,500
+Fideos,147,TIRABUZON,MATARAZZO,FIDEOS TIRABUZÓN MATARAZZO 500g,1099.0,Segal,https://www.casa-segal.com/producto/fideos-tirabuzon-matarazzo-500g/,500
+Fideos,148,TIRABUZON,TERRABUSI,FIDEOS TIRABUZÓN TERRABUSI 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-tirabuzon-terrabusi-500g/,500
+Fideos,149,SPAGHETTI,DON FELIPE,SPAGHETTI DON FELIPE 500gr,1399.0,Segal,https://www.casa-segal.com/producto/spaghetti-don-felipe-500gr/,500
+Fideos,150,TALLARINES,DON FELIPE,TALLARINES DON FELIPE 500g,1399.0,Segal,https://www.casa-segal.com/producto/tallarines-don-felipe-500g/,500
+Fideos,151,TIRABUZONES,DON FELIPE,TIRABUZONES DON FELIPE 500g,1399.0,Segal,https://www.casa-segal.com/producto/tirabuzones-don-felipe-500g/,500
+Leches,152,SERENISIMA CHOCOLATADA,?,SERENISIMA CHOCOLATADA 1LT,1899.0,Segal,https://www.casa-segal.com/producto/serenisima-chocolatada-1-litro/,1000
+Shampoos,153,CARBON ACTIVADO,SEDAL,SHAMPOO CARBÓN Y PEONIAS SEDAL 340ml,2599.0,Segal,https://www.casa-segal.com/producto/shampoo-carbon-y-peonias-sedal-340ml/,340
+Shampoos,154,COLAGENO VIT C,SEDAL,SHAMPOO COLÁGENO Y VIT C SEDAL 190ml,1899.0,Segal,https://www.casa-segal.com/producto/shampoo-colageno-y-vit-c-sedal-190ml/,190
+Shampoos,155,COLAGENO VIT C,SEDAL,SHAMPOO COLÁGENO Y VIT C SEDAL 340ml,2599.0,Segal,https://www.casa-segal.com/producto/shampoo-colageno-y-vit-c-sedal-340ml/,340
+Shampoos,156,HIALURONICO Y VIT A,SEDAL,SHAMPOO HIALURÓNICO Y VIT A SEDAL 190ml,1899.0,Segal,https://www.casa-segal.com/producto/shampoo-hialuronico-y-vit-a-sedal-190ml/,190
+Shampoos,157,HIALURONICO Y VIT A,SEDAL,SHAMPOO HIALURÓNICO Y VIT A SEDAL 340ml,2599.0,Segal,https://www.casa-segal.com/producto/shampoo-hialuronico-y-vit-a-sedal-340ml/,340
+Shampoos,158,ANTIOXIDANTE,PLUSBELLE,SHAMPOO PLUSBELLE ANTIOXIDANTE 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-antioxidante-1lt/,1000
+Shampoos,159,BALANCE,PLUSBELLE,SHAMPOO PLUSBELLE BALANCE 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-balance-1lt/,1000
+Shampoos,160,BRILLO,PLUSBELLE,SHAMPOO PLUSBELLE BRILLO 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-brillo-1lt/,1000
+Shampoos,161,FRESCURA,PLUSBELLE,SHAMPOO PLUSBELLE FRESCURA 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-frescura-1lt/,1000
+Shampoos,162,NUTRICION,PLUSBELLE,SHAMPOO PLUSBELLE NUTRICIÓN 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-nutricion-1lt/,1000
+Shampoos,163,SUAVIDAD,PLUSBELLE,SHAMPOO PLUSBELLE SUAVIDAD 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-suavidad-1lt/,1000
+Shampoos,164,BAJO POO NUTRICION,TRESEMME,TRESEMMÉ SHAMPOO 400ml BAJO POO NUTRICIÓN,4569.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-400ml-bajo-poo-nutricion/,400
+Shampoos,165,DETOX CAPILAR,TRESEMME,TRESEMMÉ SHAMPOO 400ml DETOX CAPILAR,4569.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-400ml-detox-capilar/,400
+Shampoos,166,HIDRATACION PROFUNDA,TRESEMME,TRESEMMÉ SHAMPOO 400ml HIDRATACIÓN PROFUNDA,4569.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-400ml-hidratacion-profunda/,400
+Shampoos,167,REGENERACION TRESPLEX,TRESEMME,TRESEMMÉ SHAMPOO 400ml REGENERACIÓN TRESPLEX,4569.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-400ml-regeneracion-tresplex/,400
+Shampoos,168,HIDRATACION PROFUNDA,TRESEMME,TRESEMMÉ SHAMPOO 750ml HIDRATACIÓN PROFUNDA,7999.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-750ml-hidratacion-profunda/,750
+Leches,169,DESCREMADA,TREGAR,LECHE DESCREMADA 1Lt TREGAR,1289.0,Segal,https://www.casa-segal.com/producto/leche-descremada-1lt-tregar/,1000
+Leches,170,DESCREMADA,YOGURLAC,LECHE DESCREMADA YOGURLAC 1Lt,1269.0,Segal,https://www.casa-segal.com/producto/leche-descremada-yogurlac-1lt/,1000
+Leches,171,ENTERA,TREGAR,LECHE ENTERA 1Lt TREGAR,1289.0,Segal,https://www.casa-segal.com/producto/leche-entera-1lt-tregar/,1000
+Leches,172,ENTERA,YOGURLAC,LECHE ENTERA YOGURLAC 1Lt,1269.0,Segal,https://www.casa-segal.com/producto/leche-entera-yogurlac-1lt/,1000
+Leches,173,0% LACTOSA,LA SERENISIMA,LECHE PET 0% LACTOSA LA SERENÍSIMA x 1L,1659.0,Segal,https://www.casa-segal.com/producto/leche-pet-0-lactosa-la-serenisima-x-1l/,1000
+Leches,174,1% DESCREMADA,LA SERENISIMA,LECHE PET 1% DESCREMADA LA SERENÍSIMA,1659.0,Segal,https://www.casa-segal.com/producto/leche-pet-1-descremada-la-serenisima/,1000
+Leches,175,3% CLASICA,LA SERENISIMA,LECHE PET 3% CLÁSICA LA SERENÍSIMA,1659.0,Segal,https://www.casa-segal.com/producto/leche-pet-3-clasica-la-serenisima/,1000
+Gaseosas,176,,SPRITE,SPRITE 1.5Lts,2499.0,Segal,https://www.casa-segal.com/producto/sprite-1-5lts/,1500
+Gaseosas,177,,SPRITE,SPRITE 2.25Lts,2999.0,Segal,https://www.casa-segal.com/producto/sprite-2-25lts/,2250
+Gaseosas,178,,SPRITE,SPRITE 500ml,999.0,Segal,https://www.casa-segal.com/producto/sprite-500ml/,500
+Gaseosas,179,,SPRITE,SPRITE LATA 310cc,900.0,Segal,https://www.casa-segal.com/producto/sprite-lata-310cc/,310
+Shampoos,180,RECONSTRUCCION COMPLETA,DOVE,DOVE SHAMPOO 400ml RECONSTRUCCIÓN COMPLETA,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-reconstruccion-completa/,400
+Shampoos,181,REGENERACION EXTREMA,DOVE,DOVE SHAMPOO 400ml REGENERACIÓN EXTREMA,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-regeneracion-extrema/,400
+Shampoos,182,RITUAL CRECIMIENTO,DOVE,DOVE SHAMPOO 400ml RITUAL CRECIMIENTO,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-ritual-crecimiento/,400
+Shampoos,183,RITUAL DETOX,DOVE,DOVE SHAMPOO 400ml RITUAL DETOX,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-ritual-detox/,400
+Fideos,184,PENNE RIGATE,LUCCHETTI,FIDEOS PENNE RIGATE LUCCHETTI 500g,899.0,Segal,https://www.casa-segal.com/producto/fideos-penne-rigate-lucchetti-500g/,500
+Fideos,185,PENNE RIGATE,MATARAZZO,FIDEOS PENNE RIGATE MATARAZZO 500g,1099.0,Segal,https://www.casa-segal.com/producto/fideos-penne-rigate-matarazzo-500g/,500
+Fideos,186,RIGATTI,LA PROVIDENCIA,FIDEOS RIGATTI LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-rigatti-la-providencia-500g/,500
+Fideos,187,SPAGHETTI,LA PROVIDENCIA,FIDEOS SPAGHETTI  LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-la-providencia-500g/,500
+Fideos,188,SPAGHETTI INTEGRAL,MATARAZZO,FIDEOS SPAGHETTI INTEGRAL MATARAZZO 500g,1399.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-integral-matarazzo-500g/,500
+Fideos,189,SPAGHETTI,LUCCHETTI,FIDEOS SPAGHETTI LUCCHETTI 500g,949.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-lucchetti-500g/,500
+Fideos,190,SPAGHETTI,MATARAZZO,FIDEOS SPAGHETTI MATARAZZO 500g,1099.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-matarazzo-500g/,500
+Fideos,191,SPAGHETTI,TERRABUSI,FIDEOS SPAGHETTI TERRABUSI 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-spaghetti-terrabusi-500g/,500
+Fideos,192,TALLARIN,LA PROVIDENCIA,FIDEOS TALLARÍN LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-tallarin-la-providencia-500g/,500
+Fideos,193,TALLARIN,LUCCHETTI,FIDEOS TALLARÍN LUCCHETTI 500g,949.0,Segal,https://www.casa-segal.com/producto/fideos-tallarin-lucchetti-500g/,500
+Fideos,194,TALLARIN,MATARAZZO,FIDEOS TALLARÍN MATARAZZO 500g,1099.0,Segal,https://www.casa-segal.com/producto/fideos-tallarin-matarazzo-500g/,500
+Fideos,195,TIRABUZON,LA PROVIDENCIA,FIDEOS TIRABUZÓN LA PROVIDENCIA 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-tirabuzon-la-providencia-500g/,500
+Fideos,196,TIRABUZON,MATARAZZO,FIDEOS TIRABUZÓN MATARAZZO 500g,1099.0,Segal,https://www.casa-segal.com/producto/fideos-tirabuzon-matarazzo-500g/,500
+Fideos,197,TIRABUZON,TERRABUSI,FIDEOS TIRABUZÓN TERRABUSI 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-tirabuzon-terrabusi-500g/,500
+Fideos,198,SPAGHETTI,DON FELIPE,SPAGHETTI DON FELIPE 500gr,1399.0,Segal,https://www.casa-segal.com/producto/spaghetti-don-felipe-500gr/,500
+Fideos,199,TALLARINES,DON FELIPE,TALLARINES DON FELIPE 500g,1399.0,Segal,https://www.casa-segal.com/producto/tallarines-don-felipe-500g/,500
+Fideos,200,TIRABUZONES,DON FELIPE,TIRABUZONES DON FELIPE 500g,1399.0,Segal,https://www.casa-segal.com/producto/tirabuzones-don-felipe-500g/,500
+Leches,201,SERENISIMA CHOCOLATADA,?,SERENISIMA CHOCOLATADA 1LT,1899.0,Segal,https://www.casa-segal.com/producto/serenisima-chocolatada-1-litro/,1000
+Gaseosas,202,NARANJA,FANTA,FANTA NARANJA LATA 310cc,900.0,Segal,https://www.casa-segal.com/producto/fanta-naranja-lata-310cc/,310
+Gaseosas,203,CITRUS,MANAOS,MANAOS CITRUS 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-citrus-3l/,3000
+Gaseosas,204,COLA,MANAOS,MANAOS COLA 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-cola-3l/,3000
+Gaseosas,205,LIMA,MANAOS,MANAOS LIMA LIMÓN 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-lima-limon-3l/,3000
+Shampoos,206,RITUAL FORTALECIMIENTO,DOVE,DOVE SHAMPOO 400ml RITUAL FORTALECIMIENTO,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-ritual-fortalecimiento/,400
+Shampoos,207,RITUAL REPARACION,DOVE,DOVE SHAMPOO 400ml RITUAL REPARACIÓN,4229.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-400ml-ritual-reparacion/,400
+Shampoos,208,OLEO NUTRICION,DOVE,DOVE SHAMPOO 750ml OLEO NUTRICIÓN,7499.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-750ml-oleo-nutricion/,750
+Shampoos,209,RECONSTRUCCION COMPLETA,DOVE,DOVE SHAMPOO 750ml RECONSTRUCCIÓN COMPLETA,7499.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-750ml-reconstruccion-completa/,750
+Shampoos,210,RITUAL REPARACION,DOVE,DOVE SHAMPOO 750ml RITUAL REPARACIÓN,7499.0,Segal,https://www.casa-segal.com/producto/dove-shampoo-750ml-ritual-reparacion/,750
+Shampoos,211,BOMBA ARGAN,SEDAL,SEDAL SHAMPOO BOMBA ARGAN 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-bomba-argan-190ml/,190
+Shampoos,212,BOMBA ARGAN,SEDAL,SEDAL SHAMPOO BOMBA ARGAN 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-bomba-argan-340ml/,340
+Shampoos,213,BOMBA COCO,SEDAL,SEDAL SHAMPOO BOMBA COCO 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-bomba-coco-190ml/,190
+Fideos,214,TALLARIN,TERRABUSI,FIDEOS TALLARÍN TERRABUSI 500g,799.0,Segal,https://www.casa-segal.com/producto/fideos-tallarin-terrabusi-500g/,500
+Gaseosas,215,MANZANA,MANAOS,MANAOS MANZANA 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-manzana-3l/,3000
+Gaseosas,216,NARANJA,MANAOS,MANAOS NARANJA 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-naranja-3l/,3000
+Gaseosas,217,POMELO,MANAOS,MANAOS POMELO 3L,1499.0,Segal,https://www.casa-segal.com/producto/manaos-pomelo-3l/,3000
+Gaseosas,218,,MIRINDA,MIRINDA DESCARTABLE 2.25Lts,1799.0,Segal,https://www.casa-segal.com/producto/mirinda-descartable-2-25lts/,2250
+Gaseosas,219,,PEPSI,PEPSI 2.25Lts,1999.0,Segal,https://www.casa-segal.com/producto/pepsi-2-25lts/,2250
+Gaseosas,220,FRUTOS TROPICALES ROJOS,POWERADE,POWERADE FRUTOS TROPICALES ROJOS 500cc,1450.0,Segal,https://www.casa-segal.com/producto/powerade-frutos-tropicales-rojos-500cc/,500
+Gaseosas,221,M.BLAS AZUL,POWERADE,POWERADE M.BLAS AZUL 500cc,1450.0,Segal,https://www.casa-segal.com/producto/powerade-m-blas-azul-500cc/,500
+Gaseosas,222,TONICA,SCHWEPPES,SCHWEPPES TÓNICA 1.5Lts,2499.0,Segal,https://www.casa-segal.com/producto/schweppes-tonica-1-5lts/,1500
+Shampoos,223,DETOX CAPILAR,TRESEMME,TRESEMMÉ SHAMPOO 400ml DETOX CAPILAR,4569.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-400ml-detox-capilar/,400
+Shampoos,224,HIDRATACION PROFUNDA,TRESEMME,TRESEMMÉ SHAMPOO 400ml HIDRATACIÓN PROFUNDA,4569.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-400ml-hidratacion-profunda/,400
+Shampoos,225,REGENERACION TRESPLEX,TRESEMME,TRESEMMÉ SHAMPOO 400ml REGENERACIÓN TRESPLEX,4569.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-400ml-regeneracion-tresplex/,400
+Shampoos,226,HIDRATACION PROFUNDA,TRESEMME,TRESEMMÉ SHAMPOO 750ml HIDRATACIÓN PROFUNDA,7999.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-750ml-hidratacion-profunda/,750
+Yerbas,227,SIN PALO,TARAGUI,TARAGUI YERBA 500g SIN PALO,2549.0,Segal,https://www.casa-segal.com/producto/taragui-yerba-500g-sin-palo/,500
+Yerbas,228,,UNION,UNIÓN YERBA 500g,2099.0,Segal,https://www.casa-segal.com/producto/union-yerba-500g/,500
+Shampoos,229,BOMBA COCO,SEDAL,SEDAL SHAMPOO BOMBA COCO 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-bomba-coco-340ml/,340
+Shampoos,230,CERAMIDAS,SEDAL,SEDAL SHAMPOO CERAMIDAS 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-ceramidas-190ml/,190
+Shampoos,231,CERAMIDAS,SEDAL,SEDAL SHAMPOO CERAMIDAS 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-ceramidas-340ml/,340
+Shampoos,232,CREMA BALANCE,SEDAL,SEDAL SHAMPOO CREMA BALANCE 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-crema-balance-190ml/,190
+Shampoos,233,CREMA BALANCE,SEDAL,SEDAL SHAMPOO CREMA BALANCE 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-crema-balance-340ml/,340
+Shampoos,234,LISO PERFECTO,SEDAL,SEDAL SHAMPOO LISO PERFECTO 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-liso-perfecto-190ml/,190
+Shampoos,235,LISO PERFECTO,SEDAL,SEDAL SHAMPOO LISO PERFECTO 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-liso-perfecto-340ml/,340
+Shampoos,236,RESTAURACION INSTANTANEA,SEDAL,SEDAL SHAMPOO RESTAURACIÓN INSTANTANEA 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-restauracion-instantanea-190ml/,190
+Shampoos,237,RESTAURACION INSTANTANEA,SEDAL,SEDAL SHAMPOO RESTAURACION INSTANTANEA 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-restauracion-instantanea-340ml/,340
+Shampoos,238,CARBON ACTIVADO,SEDAL,SHAMPOO CARBÓN Y PEONIAS SEDAL 340ml,2599.0,Segal,https://www.casa-segal.com/producto/shampoo-carbon-y-peonias-sedal-340ml/,340
+Shampoos,239,COLAGENO VIT C,SEDAL,SHAMPOO COLÁGENO Y VIT C SEDAL 190ml,1899.0,Segal,https://www.casa-segal.com/producto/shampoo-colageno-y-vit-c-sedal-190ml/,190
+Shampoos,240,COLAGENO VIT C,SEDAL,SHAMPOO COLÁGENO Y VIT C SEDAL 340ml,2599.0,Segal,https://www.casa-segal.com/producto/shampoo-colageno-y-vit-c-sedal-340ml/,340
+Shampoos,241,HIALURONICO Y VIT A,SEDAL,SHAMPOO HIALURÓNICO Y VIT A SEDAL 190ml,1899.0,Segal,https://www.casa-segal.com/producto/shampoo-hialuronico-y-vit-a-sedal-190ml/,190
+Shampoos,242,HIALURONICO Y VIT A,SEDAL,SHAMPOO HIALURÓNICO Y VIT A SEDAL 340ml,2599.0,Segal,https://www.casa-segal.com/producto/shampoo-hialuronico-y-vit-a-sedal-340ml/,340
+Shampoos,243,ANTIOXIDANTE,PLUSBELLE,SHAMPOO PLUSBELLE ANTIOXIDANTE 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-antioxidante-1lt/,1000
+Shampoos,244,BALANCE,PLUSBELLE,SHAMPOO PLUSBELLE BALANCE 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-balance-1lt/,1000
+Shampoos,245,BRILLO,PLUSBELLE,SHAMPOO PLUSBELLE BRILLO 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-brillo-1lt/,1000
+Shampoos,246,FRESCURA,PLUSBELLE,SHAMPOO PLUSBELLE FRESCURA 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-frescura-1lt/,1000
+Shampoos,247,NUTRICION,PLUSBELLE,SHAMPOO PLUSBELLE NUTRICIÓN 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-nutricion-1lt/,1000
+Shampoos,248,SUAVIDAD,PLUSBELLE,SHAMPOO PLUSBELLE SUAVIDAD 1Lt,2549.0,Segal,https://www.casa-segal.com/producto/shampoo-plusbelle-suavidad-1lt/,1000
+Shampoos,249,BAJO POO NUTRICION,TRESEMME,TRESEMMÉ SHAMPOO 400ml BAJO POO NUTRICIÓN,4569.0,Segal,https://www.casa-segal.com/producto/tresemme-shampoo-400ml-bajo-poo-nutricion/,400
+Yerbas,250,SERRANA,VERDEFLOR,VERDEFLOR YERBA 500g SERRANA,1399.0,Segal,https://www.casa-segal.com/producto/verdeflor-500g-serrana/,500
+Yerbas,251,,BUENAS Y SANTAS,YERBA BUENAS Y SANTAS 500g,2049.0,Segal,https://www.casa-segal.com/producto/yerba-buenas-y-santas-500g/,500
+Yerbas,252,MATE BOLDO Y MENTA,CRUZ DE MALTA,YERBA MATE BOLDO Y MENTA CRUZ DE MALTA 500g,1499.0,Segal,https://www.casa-segal.com/producto/yerba-mate-boldo-y-menta-cruz-de-malta-500g/,500
+Yerbas,253,MATE CON MANZANILLA,CRUZ DE MALTA,YERBA MATE CON MANZANILLA CRUZ DE MALTA 500g,1499.0,Segal,https://www.casa-segal.com/producto/yerba-mate-con-manzanilla-cruz-de-malta-500g/,500
+Yerbas,254,NOBLEZA GAUCHA,SUAVE,YERBA NOBLEZA GAUCHA SUAVE 1kg,3099.0,Segal,https://www.casa-segal.com/producto/yerba-nobleza-gaucha-suave-1kg/,1000
+Yerbas,255,NOBLEZA GAUCHA,SUAVE,YERBA NOBLEZA GAUCHA SUAVE 500g,1599.0,Segal,https://www.casa-segal.com/producto/yerba-nobleza-gaucha-suave-500g/,500
+Shampoos,256,RIZOS DEFINIDOS,SEDAL,SEDAL SHAMPOO RIZOS DEFINIDOS 190ml,1899.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-rizos-definidos-190ml/,190
+Shampoos,257,RIZOS DEFINIDOS,SEDAL,SEDAL SHAMPOO RIZOS DEFINIDOS 340ml,2599.0,Segal,https://www.casa-segal.com/producto/sedal-shampoo-rizos-definidos-340ml/,340
+Shampoos,258,CARBON ACTIVADO,SEDAL,SHAMPOO CARBÓN Y PEONIAS SEDAL 190ml,1899.0,Segal,https://www.casa-segal.com/producto/shampoo-carbon-y-peonias-sedal-190ml/,190

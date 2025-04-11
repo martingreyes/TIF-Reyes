@@ -1,9 +1,12 @@
 import scrapy
 from marketscraper.items import MarketscraperItem
 import logging
+from scrapy_redis.spiders import RedisSpider
+import json
 
 
-class ModomarketSpider(scrapy.Spider):
+# class ModomarketSpider(scrapy.Spider):
+class ModoMarketSpider(RedisSpider):
     name = "modomarket"
     allowed_domains = ["www.modomarket.com"]
     contador_shampoos = 0
@@ -15,19 +18,20 @@ class ModomarketSpider(scrapy.Spider):
     contador_jabones = 0
     contador_yerbas = 0
     contador_fideos = 0
-    
+    redis_key = 'modomarket:start_urls'
+    max_idle_time = 7
 
-    start_urls = [
-    ("https://www.modomarket.com/api/catalog_system/pub/products/search/perfumeria/cuidado-capilar/shampoo?&_from=0&_to=17&O=OrderByScoreDESC","Shampoos"),
-    ("https://www.modomarket.com/api/catalog_system/pub/products/search/bebidas/gaseosas?&_from=0&_to=17&O=OrderByScoreDESC", "Gaseosas"),
-    ("https://www.modomarket.com/api/catalog_system/pub/products/search/lacteos/leches/leches-refrigeradas-y-lar?&_from=0&_to=17&O=OrderByScoreDESC", "Leches"),
-    ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/panificados/pan-lactal?&_from=0&_to=17&O=OrderByScoreDESC","Panes"),
-    ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/arroz-y-legumbres/arroz?&_from=0&_to=17&O=OrderByScoreDESC","Arroces"),
-    ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/arroz-y-legumbres/arroz-listo?&_from=0&_to=17&O=OrderByScoreDESC", "Arroces2"),
-    ("https://www.modomarket.com/api/catalog_system/pub/products/search/perfumeria/cuidado-personal/jabones?&_from=0&_to=17&O=OrderByScoreDESC", "Jabones" ),
-    ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/desayuno-y-merienda/yerbas?&_from=0&_to=17&O=OrderByScoreDESC", "Yerbas"),
-    ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/pastas-secas-y-salsas?&_from=0&_to=17&O=OrderByScoreDESC", "Fideos")
-    ]
+    # start_urls = [
+    # ("https://www.modomarket.com/api/catalog_system/pub/products/search/perfumeria/cuidado-capilar/shampoo?&_from=0&_to=17&O=OrderByScoreDESC","Shampoos"),
+    # ("https://www.modomarket.com/api/catalog_system/pub/products/search/bebidas/gaseosas?&_from=0&_to=17&O=OrderByScoreDESC", "Gaseosas"),
+    # ("https://www.modomarket.com/api/catalog_system/pub/products/search/lacteos/leches/leches-refrigeradas-y-lar?&_from=0&_to=17&O=OrderByScoreDESC", "Leches"),
+    # ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/panificados/pan-lactal?&_from=0&_to=17&O=OrderByScoreDESC","Panes"),
+    # ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/arroz-y-legumbres/arroz?&_from=0&_to=17&O=OrderByScoreDESC","Arroces"),
+    # ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/arroz-y-legumbres/arroz-listo?&_from=0&_to=17&O=OrderByScoreDESC", "Arroces2"),
+    # ("https://www.modomarket.com/api/catalog_system/pub/products/search/perfumeria/cuidado-personal/jabones?&_from=0&_to=17&O=OrderByScoreDESC", "Jabones" ),
+    # ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/desayuno-y-merienda/yerbas?&_from=0&_to=17&O=OrderByScoreDESC", "Yerbas"),
+    # ("https://www.modomarket.com/api/catalog_system/pub/products/search/almacen/pastas-secas-y-salsas?&_from=0&_to=17&O=OrderByScoreDESC", "Fideos")
+    # ]
 
     custom_settings = {
         'ITEM_PIPELINES': {
@@ -158,7 +162,20 @@ class ModomarketSpider(scrapy.Spider):
         if categoria == "Fideos":
             next_page_url = f"{response.url.split('&_from=')[0]}&_from={self.contador_fideos}&_to={self.contador_fideos + 17}&O=OrderByScoreDESC"
 
-        yield scrapy.Request(url=next_page_url, callback=self.parse,meta={'categoria': categoria})
+        url_key = f"{self.redis_key}:seen_urls"
+
+        if not self.server.sismember(url_key, next_page_url):
+            self.server.sadd(url_key, next_page_url)
+            self.server.rpush(
+                self.redis_key,
+                json.dumps({
+                    'url': next_page_url,
+                    'meta': {'categoria': categoria}
+                })
+            )
+
+            yield scrapy.Request(url=next_page_url, callback=self.parse,meta={'categoria': categoria})
+
 
 
 
