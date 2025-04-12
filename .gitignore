@@ -1,3 +1,5 @@
 .DS_Store
 WebScraping/marketscraper/marketscraper/logs
 notas.txt
+__pycache__/
+*.pyc
