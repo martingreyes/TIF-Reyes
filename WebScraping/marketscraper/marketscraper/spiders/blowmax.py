@@ -5,7 +5,7 @@ import re
 import logging
 
 
-class BlowmaxshampooSpider(scrapy.Spider):
+class BlowmaxSpider(scrapy.Spider):
     name = "blowmax"
     allowed_domains = ["blowmax.com.ar"]
     contador = 0
