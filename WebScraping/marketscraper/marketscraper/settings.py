@@ -7,6 +7,19 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+#! REDIS
+
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+
+SCHEDULER_PERSIST = True
+
+import os
+REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
+REDIS_PORT = int(os.getenv('REDIS_PORT', 6379))
+
+#! REDIS FIN
+
 BOT_NAME = "marketscraper"
 
 SPIDER_MODULES = ["marketscraper.spiders"]

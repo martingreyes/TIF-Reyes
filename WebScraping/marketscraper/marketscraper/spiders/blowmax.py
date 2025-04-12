@@ -1,11 +1,11 @@
-import scrapy
 from marketscraper.items import MarketscraperItem
 import requests
+from scrapy_redis.spiders import RedisSpider
 import re
-import logging
+import json
+from scrapy import signals
 
-
-class BlowmaxSpider(scrapy.Spider):
+class BlowmaxSpider(RedisSpider):
     name = "blowmax"
     allowed_domains = ["blowmax.com.ar"]
     contador = 0
@@ -17,6 +17,9 @@ class BlowmaxSpider(scrapy.Spider):
     contador_paginas_jabones = 1
     contador_paginas_yerbas = 1
     contador_paginas_fideos = 1
+    redis_key = 'blowmax:start_urls'
+    max_idle_time = 7
+
     start_urls = [
                 ("https://blowmax.com.ar/categoria-producto/perfumeria/cuidado-de-cabello/shampoo/", "Shampoos"),
                 ("https://blowmax.com.ar/categoria-producto/bebidas/bebidas-sin-alcohol/gaseosas/", "Gaseosas"),
@@ -29,6 +32,7 @@ class BlowmaxSpider(scrapy.Spider):
                 ("https://blowmax.com.ar/?s=yerba&post_type=product&dgwt_wcas=1","Yerbas"),
                 ("https://blowmax.com.ar/?s=fideos&post_type=product&dgwt_wcas=1","Fideos")
                 ]
+    
     custom_settings = {
         'ITEM_PIPELINES': {
             'marketscraper.pipelines.BlowmaxPrecioPipeline': 290,
@@ -39,11 +43,28 @@ class BlowmaxSpider(scrapy.Spider):
 
 
 
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super(BlowmaxSpider, cls).from_crawler(crawler, *args, **kwargs)
+        crawler.signals.connect(spider.spider_opened, signal=signals.spider_opened)
+        return spider
 
-    def start_requests(self):
+    def spider_opened(self):
+        self.logger.info(f"Spider abierto. Cargando urls en Redis ...")
         for url, categoria in self.start_urls:
-            yield scrapy.Request(url=url, meta={'categoria': categoria})
-    
+            self.server.rpush(
+                self.redis_key,
+                json.dumps({
+                    "url": url,
+                    "meta": {"categoria": categoria}
+                })
+            )
+
+        
+    def closed(self, reason):
+        self.logger.info(f"Spider cerrado con razón: {reason}. Limpiando claves Redis.")
+        self.server.delete(self.redis_key)
+        self.server.delete(f"{self.redis_key}:seen_urls")    
 
     def parse(self, response):
         self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")
@@ -128,8 +149,17 @@ class BlowmaxSpider(scrapy.Spider):
         if next_page_url:
             respuesta = requests.get(next_page_url)
             if respuesta.status_code == 200:
-                yield response.follow(next_page_url, callback=self.parse, meta={'categoria': categoria})        
-
+                url_key = f"{self.redis_key}:seen_urls"
+                if not self.server.sismember(url_key, next_page_url):
+                    self.server.sadd(url_key, next_page_url)
+                    self.server.rpush(
+                        self.redis_key,
+                        json.dumps({
+                            'url': next_page_url,
+                            'meta': {'categoria': categoria}
+                        })
+                    )
+      
 
 
 

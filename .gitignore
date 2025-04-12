@@ -3,3 +3,5 @@ WebScraping/marketscraper/marketscraper/logs
 notas.txt
 __pycache__/
 *.pyc
+DataIngestion/App/prueba.ipynb
+.env

@@ -1,9 +1,9 @@
-import scrapy
 from marketscraper.items import MarketscraperItem
-import logging
+from scrapy_redis.spiders import RedisSpider
+import json
+from scrapy import signals
 
-
-class ModomarketSpider(scrapy.Spider):
+class ModoMarketSpider(RedisSpider):
     name = "modomarket"
     allowed_domains = ["www.modomarket.com"]
     contador_shampoos = 0
@@ -15,7 +15,8 @@ class ModomarketSpider(scrapy.Spider):
     contador_jabones = 0
     contador_yerbas = 0
     contador_fideos = 0
-    
+    redis_key = 'modomarket:start_urls'
+    max_idle_time = 7
 
     start_urls = [
     ("https://www.modomarket.com/api/catalog_system/pub/products/search/perfumeria/cuidado-capilar/shampoo?&_from=0&_to=17&O=OrderByScoreDESC","Shampoos"),
@@ -37,14 +38,28 @@ class ModomarketSpider(scrapy.Spider):
         }
     }
 
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super(ModoMarketSpider, cls).from_crawler(crawler, *args, **kwargs)
+        crawler.signals.connect(spider.spider_opened, signal=signals.spider_opened)
+        return spider
 
-    #TODO Revisar Arroz, Jabones y Pastas
-
-
-    def start_requests(self):
+    def spider_opened(self):
+        self.logger.info(f"Spider abierto. Cargando urls en Redis ...")
         for url, categoria in self.start_urls:
-            yield scrapy.Request(url=url, meta={'categoria': categoria})
+            self.server.rpush(
+                self.redis_key,
+                json.dumps({
+                    "url": url,
+                    "meta": {"categoria": categoria}
+                })
+            )
 
+        
+    def closed(self, reason):
+        self.logger.info(f"Spider cerrado con razón: {reason}. Limpiando claves Redis.")
+        self.server.delete(self.redis_key)
+        self.server.delete(f"{self.redis_key}:seen_urls")   
 
     def parse(self, response):
         self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")
@@ -95,7 +110,6 @@ class ModomarketSpider(scrapy.Spider):
             if categoria == "Fideos" and "Fideos" not in nombre_crudo:
                 self.contador_fideos += 1
                 continue
-
 
             
             try:
@@ -158,10 +172,20 @@ class ModomarketSpider(scrapy.Spider):
         if categoria == "Fideos":
             next_page_url = f"{response.url.split('&_from=')[0]}&_from={self.contador_fideos}&_to={self.contador_fideos + 17}&O=OrderByScoreDESC"
 
-        yield scrapy.Request(url=next_page_url, callback=self.parse,meta={'categoria': categoria})
+        url_key = f"{self.redis_key}:seen_urls"
+
+        if not self.server.sismember(url_key, next_page_url):
+            self.server.sadd(url_key, next_page_url)
+            self.server.rpush(
+                self.redis_key,
+                json.dumps({
+                    'url': next_page_url,
+                    'meta': {'categoria': categoria}
+                })
+            )
 
 
-
+    #TODO Revisar Arroz, Jabones y Pastas
     #TODO La tienda ModoMarket utiliza AJAX (?) (scrollear para que se carguen mas productos). Para ello:
     #? https://pypi.org/project/scrapy-ajax-utils/
     #? https://codehunter.cc/a/python/can-scrapy-be-used-to-scrape-dynamic-content-from-websites-that-are-using-ajax
