@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-RUN git clone --filter=blob:none --sparse https://github.com/martingreyes/TIF-Reyes.git . \
+RUN git clone --filter=blob:none --sparse --branch scrapy-redis https://github.com/martingreyes/TIF-Reyes.git . \
     && git sparse-checkout init --cone \
     && git sparse-checkout set WebScraping
 

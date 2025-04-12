@@ -1,26 +1,25 @@
-import scrapy
 from marketscraper.items import MarketscraperItem
-import logging
 from scrapy_redis.spiders import RedisSpider
+from scrapy import signals
+import json
 
-# class AtomoSpider(scrapy.Spider):
 class AtomoSpider(RedisSpider):
     name = "atomo"
     allowed_domains = ["atomoconviene.com"]
     contador = 0
     redis_key = 'atomo:start_urls'
     max_idle_time = 7
-    # start_urls = [
-    #     ("https://atomoconviene.com/atomo-ecommerce/135-shampoo", "Shampoos"),
-    #     ("https://atomoconviene.com/atomo-ecommerce/95-gaseosas", "Gaseosas"),
-    #     ("https://atomoconviene.com/atomo-ecommerce/234-leches-larga-vida", "Leches"),
-    #     ("https://atomoconviene.com/atomo-ecommerce/58-pan-lactal", "Panes"),
-    #     ("https://atomoconviene.com/atomo-ecommerce/20-arroz", "Arroces"),
-    #     ("https://atomoconviene.com/atomo-ecommerce/21-arroz-listo", "Arroces"),
-    #     ("https://atomoconviene.com/atomo-ecommerce/151-jabones", "Jabones"),
-    #     ("https://atomoconviene.com/atomo-ecommerce/49-yerba-mate", "Yerbas"),
-    #     ("https://atomoconviene.com/atomo-ecommerce/32-pastas-secas-y-salsas","Fideos")
-    # ]
+    start_urls = [
+        ("https://atomoconviene.com/atomo-ecommerce/135-shampoo", "Shampoos"),
+        ("https://atomoconviene.com/atomo-ecommerce/95-gaseosas", "Gaseosas"),
+        ("https://atomoconviene.com/atomo-ecommerce/234-leches-larga-vida", "Leches"),
+        ("https://atomoconviene.com/atomo-ecommerce/58-pan-lactal", "Panes"),
+        ("https://atomoconviene.com/atomo-ecommerce/20-arroz", "Arroces"),
+        ("https://atomoconviene.com/atomo-ecommerce/21-arroz-listo", "Arroces"),
+        ("https://atomoconviene.com/atomo-ecommerce/151-jabones", "Jabones"),
+        ("https://atomoconviene.com/atomo-ecommerce/49-yerba-mate", "Yerbas"),
+        ("https://atomoconviene.com/atomo-ecommerce/32-pastas-secas-y-salsas","Fideos")
+    ]
     custom_settings = {
         'ITEM_PIPELINES': {
             'marketscraper.pipelines.AtomoPrecioPipeline': 290,
@@ -29,10 +28,30 @@ class AtomoSpider(RedisSpider):
         }
     }
 
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super(AtomoSpider, cls).from_crawler(crawler, *args, **kwargs)
+        crawler.signals.connect(spider.spider_opened, signal=signals.spider_opened)
+        return spider
 
-    def start_requests(self):
+    def spider_opened(self):
+        self.logger.info(f"Spider abierto. Cargando urls en Redis ...")
         for url, categoria in self.start_urls:
-            yield scrapy.Request(url=url, meta={'categoria': categoria})
+            self.server.rpush(
+                self.redis_key,
+                json.dumps({
+                    "url": url,
+                    "meta": {"categoria": categoria}
+                })
+            )
+
+        
+    def closed(self, reason):
+        self.logger.info(f"Spider cerrado con razón: {reason}. Limpiando claves Redis.")
+        self.server.delete(self.redis_key)
+        self.server.delete(f"{self.redis_key}:seen_urls")   
+
+
 
     def parse(self, response):  
         self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")

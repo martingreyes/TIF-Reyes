@@ -2,11 +2,10 @@ import scrapy
 from marketscraper.items import MarketscraperItem
 import re
 import requests
-import logging
 from scrapy_redis.spiders import RedisSpider
 import json
+from scrapy import signals
 
-# class SegalSpider(scrapy.Spider):
 class SegalSpider(RedisSpider):
     name = "segal"
     allowed_domains = ["www.casa-segal.com"]
@@ -23,16 +22,16 @@ class SegalSpider(RedisSpider):
     redis_key = 'segal:start_urls'
     max_idle_time = 7
 
-    # start_urls = [
-    #             ("https://www.casa-segal.com/categoria-producto/perfumeria/shampoos/", "Shampoos"),
-    #             ("https://www.casa-segal.com/categoria-producto/bebidas/gaseosas/", "Gaseosas"),
-    #             ("https://www.casa-segal.com/categoria-producto/almacen/leches/","Leches"),
-    #             ("https://www.casa-segal.com/categoria-producto/almacen/panificados/lacteados/","Panes"),
-    #             ("https://www.casa-segal.com/categoria-producto/almacen/arroz/", "Arroces"),
-    #             ("https://www.casa-segal.com/categoria-producto/perfumeria/jabon-de-tocador/", "Jabones"),
-    #             ("https://www.casa-segal.com/categoria-producto/almacen/yerbas/", "Yerbas"),
-    #             ("https://www.casa-segal.com/categoria-producto/almacen/fideos/","Fideos")
-    #             ]
+    start_urls = [
+                ("https://www.casa-segal.com/categoria-producto/perfumeria/shampoos/", "Shampoos"),
+                ("https://www.casa-segal.com/categoria-producto/bebidas/gaseosas/", "Gaseosas"),
+                ("https://www.casa-segal.com/categoria-producto/almacen/leches/","Leches"),
+                ("https://www.casa-segal.com/categoria-producto/almacen/panificados/lacteados/","Panes"),
+                ("https://www.casa-segal.com/categoria-producto/almacen/arroz/", "Arroces"),
+                ("https://www.casa-segal.com/categoria-producto/perfumeria/jabon-de-tocador/", "Jabones"),
+                ("https://www.casa-segal.com/categoria-producto/almacen/yerbas/", "Yerbas"),
+                ("https://www.casa-segal.com/categoria-producto/almacen/fideos/","Fideos")
+                ]
     
     custom_settings = {
         'ITEM_PIPELINES': {
@@ -41,6 +40,29 @@ class SegalSpider(RedisSpider):
             "marketscraper.pipelines.NormalizarPipeline": 350 
         }
     }
+
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super(SegalSpider, cls).from_crawler(crawler, *args, **kwargs)
+        crawler.signals.connect(spider.spider_opened, signal=signals.spider_opened)
+        return spider
+
+    def spider_opened(self):
+        self.logger.info(f"Spider abierto. Cargando urls en Redis ...")
+        for url, categoria in self.start_urls:
+            self.server.rpush(
+                self.redis_key,
+                json.dumps({
+                    "url": url,
+                    "meta": {"categoria": categoria}
+                })
+            )
+
+        
+    def closed(self, reason):
+        self.logger.info(f"Spider cerrado con razón: {reason}. Limpiando claves Redis.")
+        self.server.delete(self.redis_key)
+        self.server.delete(f"{self.redis_key}:seen_urls")  
 
 
     def start_requests(self):
@@ -123,4 +145,4 @@ class SegalSpider(RedisSpider):
                             'meta': {'categoria': categoria}
                         })
                     )
-                    # yield response.follow(next_page_url, callback=self.parse, meta={'categoria': categoria})
+            

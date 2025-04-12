@@ -1,13 +1,10 @@
-import scrapy
 from marketscraper.items import MarketscraperItem
 import requests
 from scrapy_redis.spiders import RedisSpider
 import re
-import logging
 import json
 from scrapy import signals
 
-# class BlowmaxshampooSpider(scrapy.Spider:
 class BlowmaxSpider(RedisSpider):
     name = "blowmax"
     allowed_domains = ["blowmax.com.ar"]
