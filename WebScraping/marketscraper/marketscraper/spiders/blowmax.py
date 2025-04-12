@@ -5,9 +5,10 @@ from scrapy_redis.spiders import RedisSpider
 import re
 import logging
 import json
+from scrapy import signals
 
 # class BlowmaxshampooSpider(scrapy.Spider:
-class BlowmaxshampooSpider(RedisSpider):
+class BlowmaxSpider(RedisSpider):
     name = "blowmax"
     allowed_domains = ["blowmax.com.ar"]
     contador = 0
@@ -21,18 +22,20 @@ class BlowmaxshampooSpider(RedisSpider):
     contador_paginas_fideos = 1
     redis_key = 'blowmax:start_urls'
     max_idle_time = 7
-    # start_urls = [
-    #             ("https://blowmax.com.ar/categoria-producto/perfumeria/cuidado-de-cabello/shampoo/", "Shampoos"),
-    #             ("https://blowmax.com.ar/categoria-producto/bebidas/bebidas-sin-alcohol/gaseosas/", "Gaseosas"),
-    #             ("https://blowmax.com.ar/categoria-producto/lacteos/leches-larga-vida/","Leches"),
-    #             ("https://blowmax.com.ar/categoria-producto/panificados/", "Panes"),
-    #             ("https://blowmax.com.ar/categoria-producto/almacen/arroz/", "Arroces"),               
-    #             ("https://blowmax.com.ar/categoria-producto/perfumeria/jabones/","Jabones"),
-    #             # ("https://blowmax.com.ar/categoria-producto/almacen/fideos/","Fideos"),           
-    #             # ("https://blowmax.com.ar/?s=arroz&post_type=product&dgwt_wcas=1" , "Arroces"),    
-    #             ("https://blowmax.com.ar/?s=yerba&post_type=product&dgwt_wcas=1","Yerbas"),
-    #             ("https://blowmax.com.ar/?s=fideos&post_type=product&dgwt_wcas=1","Fideos")
-    #             ]
+
+    start_urls = [
+                ("https://blowmax.com.ar/categoria-producto/perfumeria/cuidado-de-cabello/shampoo/", "Shampoos"),
+                ("https://blowmax.com.ar/categoria-producto/bebidas/bebidas-sin-alcohol/gaseosas/", "Gaseosas"),
+                ("https://blowmax.com.ar/categoria-producto/lacteos/leches-larga-vida/","Leches"),
+                ("https://blowmax.com.ar/categoria-producto/panificados/", "Panes"),
+                ("https://blowmax.com.ar/categoria-producto/almacen/arroz/", "Arroces"),               
+                ("https://blowmax.com.ar/categoria-producto/perfumeria/jabones/","Jabones"),
+                # ("https://blowmax.com.ar/categoria-producto/almacen/fideos/","Fideos"),           
+                # ("https://blowmax.com.ar/?s=arroz&post_type=product&dgwt_wcas=1" , "Arroces"),    
+                ("https://blowmax.com.ar/?s=yerba&post_type=product&dgwt_wcas=1","Yerbas"),
+                ("https://blowmax.com.ar/?s=fideos&post_type=product&dgwt_wcas=1","Fideos")
+                ]
+    
     custom_settings = {
         'ITEM_PIPELINES': {
             'marketscraper.pipelines.BlowmaxPrecioPipeline': 290,
@@ -43,11 +46,28 @@ class BlowmaxshampooSpider(RedisSpider):
 
 
 
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super(BlowmaxSpider, cls).from_crawler(crawler, *args, **kwargs)
+        crawler.signals.connect(spider.spider_opened, signal=signals.spider_opened)
+        return spider
 
-    def start_requests(self):
+    def spider_opened(self):
+        self.logger.info(f"Spider abierto. Cargando urls en Redis ...")
         for url, categoria in self.start_urls:
-            yield scrapy.Request(url=url, meta={'categoria': categoria})
-    
+            self.server.rpush(
+                self.redis_key,
+                json.dumps({
+                    "url": url,
+                    "meta": {"categoria": categoria}
+                })
+            )
+
+        
+    def closed(self, reason):
+        self.logger.info(f"Spider cerrado con razón: {reason}. Limpiando claves Redis.")
+        self.server.delete(self.redis_key)
+        self.server.delete(f"{self.redis_key}:seen_urls")    
 
     def parse(self, response):
         self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")
@@ -142,7 +162,6 @@ class BlowmaxshampooSpider(RedisSpider):
                             'meta': {'categoria': categoria}
                         })
                     )
-                    yield response.follow(next_page_url, callback=self.parse, meta={'categoria': categoria})
       
 
 
