@@ -1,0 +1,6 @@
+sqlalchemy 
+pymysql
+pandas
+requests
+load_dotenv
+zoneinfo
