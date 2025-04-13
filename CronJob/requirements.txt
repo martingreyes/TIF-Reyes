@@ -3,4 +3,5 @@ pymysql
 pandas
 requests
 load_dotenv
-zoneinfo
+celery
+redlock

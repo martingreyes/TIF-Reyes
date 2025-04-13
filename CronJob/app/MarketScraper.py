@@ -1,4 +1,4 @@
-from zoneinfo import ZoneInfo
+import hashlib
 import requests
 import pandas as pd # type: ignore
 import os
@@ -20,13 +20,20 @@ class MarketScraper:
     
     def get_items(self, data: dict) -> pd.DataFrame:
       
-        ARGENTINA_TZ = ZoneInfo("America/Argentina/Buenos_Aires")
-        timestamp = datetime.now(ARGENTINA_TZ)
+        timestamp = datetime.now()
         spider_name = data.get("spider_name")
         items = data.get("items", [])
         df = pd.DataFrame(items)
 
         df["__ingestion_timestamp"] = timestamp
+
+        df["id_producto"] = df.apply(
+            lambda row: int(hashlib.sha256(
+                f"{row['marca']}_{row['descripcion']}_{row['volumen']}_{row['tienda']}".encode("utf-8")
+            ).hexdigest()[:8], 16),  # Tomamos solo los primeros 8 caracteres
+            axis=1
+        )
+
         df["nombre"] = df["marca"].astype(str) + " " + df["descripcion"].astype(str) + " " + df["volumen"].astype(str)
 
         df["tienda"] = df["tienda"].map({
@@ -37,14 +44,16 @@ class MarketScraper:
             "Supera": 5
         })
 
+        #TODO DROP DUPLCATES ID_PRODUCTO (QUE SOLO QUEDE 1)
+
  
         return df[
-            ["__ingestion_timestamp", "nombre_crudo", "nombre", "marca", "descripcion", "volumen", "precio", "tienda", "url"]
+            ["__ingestion_timestamp", "nombre_crudo", "id_producto","categoria","nombre", "marca", "descripcion", "volumen", "precio", "tienda", "url"]
         ].rename(columns={"tienda": "id_supermercado"})
+    
 
     def get_stats(self, data: dict) -> pd.DataFrame:
-        ARGENTINA_TZ = ZoneInfo("America/Argentina/Buenos_Aires")
-        timestamp = datetime.now(ARGENTINA_TZ)
+        timestamp = datetime.now()
 
         stats = {
             "__ingestion_timestamp": timestamp,

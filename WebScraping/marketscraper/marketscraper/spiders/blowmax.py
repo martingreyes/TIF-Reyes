@@ -51,6 +51,7 @@ class BlowmaxSpider(RedisSpider):
 
     def spider_opened(self):
         self.logger.info(f"Spider abierto. Cargando urls en Redis ...")
+        self.server.delete(self.redis_key)
         for url, categoria in self.start_urls:
             self.server.rpush(
                 self.redis_key,

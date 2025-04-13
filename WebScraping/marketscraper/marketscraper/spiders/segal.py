@@ -49,6 +49,7 @@ class SegalSpider(RedisSpider):
 
     def spider_opened(self):
         self.logger.info(f"Spider abierto. Cargando urls en Redis ...")
+        self.server.delete(self.redis_key)
         for url, categoria in self.start_urls:
             self.server.rpush(
                 self.redis_key,
@@ -64,10 +65,6 @@ class SegalSpider(RedisSpider):
         self.server.delete(self.redis_key)
         self.server.delete(f"{self.redis_key}:seen_urls")  
 
-
-    def start_requests(self):
-        for url, table_name in self.start_urls:
-            yield scrapy.Request(url=url, meta={'categoria': table_name})
     
     def parse(self, response): 
         self.logger.info(f"Parsing URL: {response.url} - Response status: {response.status}")
