@@ -4,4 +4,4 @@ pandas
 requests
 load_dotenv
 celery
-redlock
+redis
