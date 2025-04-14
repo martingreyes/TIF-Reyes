@@ -77,7 +77,7 @@ class SegalSpider(RedisSpider):
             if categoria == "Shampoos" and "ACONDICIONADOR" in nombre_crudo:
                 continue
 
-            if categoria == "Leches" and "ACONDICIONADOR" in nombre_crudo or "ALME" in nombre_crudo or "CONDENSADA" in nombre_crudo or "POLVO" in nombre_crudo or "LA LECHERA" in nombre_crudo or "PURÍSIMA" in nombre_crudo:
+            if categoria == "Leches" and "ACONDICIONADOR" in nombre_crudo or "ALME" in nombre_crudo or "CONDENSADA" in nombre_crudo or "POLVO" in nombre_crudo or "LA LECHERA" in nombre_crudo or "PURÍSIMA" in nombre_crudo or "CHOCOLATADA" in nombre_crudo:
                 continue
 
             if categoria == "Panes" and not "PAN" in nombre_crudo:

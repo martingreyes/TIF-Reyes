@@ -6,6 +6,7 @@ from pipelines import AtomoPipeline
 class TestExpresionesRegulares(unittest.TestCase):
     def test_marca(self):
         atomo = AtomoPipeline()
+        self.assertEqual(atomo.capturar_marca("SHAMPOO HEAD & SHOULDER ANTI COMEZON 375 ML"), "HEAD & SHOULDER")
         self.assertEqual(atomo.capturar_marca("SHAMPOO FLIAR SUAVE BOMBA CERAMIDAS 930 ML."), "SUAVE")
         self.assertEqual(atomo.capturar_marca("SHAMPOO PANTENE LISO INFINITO 400 ML"), "PANTENE")
         self.assertEqual(atomo.capturar_marca("SHAMPOO FLIAR PLUSBELLE FUERZA ANTIOXID 1000 ML."), "PLUSBELLE")

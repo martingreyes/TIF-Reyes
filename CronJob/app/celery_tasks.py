@@ -1,6 +1,6 @@
-from celery_config import app
+from app.celery_config import app
 from app.MarketScraper import MarketScraper
-
+ 
 @app.task
 def fetch_market_data(supermercado):
     scraper = MarketScraper()

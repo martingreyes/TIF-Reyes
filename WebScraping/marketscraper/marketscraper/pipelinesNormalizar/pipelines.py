@@ -16,38 +16,56 @@ class NormalizarPipeline:
 
         return item
 
-    def normalizar_marca(self,marca):
+
+
+
+    def normalizar_marca(self, marca):
         marca = marca.upper()
         marca = unidecode(marca)
+
+        # Si ya está en su forma correcta, no hacemos nada
         if marca == "HEAD & SHOULDERS":
             return marca
-        patrones = {
+
+        # Reemplazos exactos (marca completa)
+        reemplazos_directos = {
             "HEAD & SHOULDER": "HEAD & SHOULDERS",
             "HEAD SHOULDERS": "HEAD & SHOULDERS",
-            "HEAD & SH":"HEAD & SHOULDERS",
-            "HEAD SH": "HEAD & SHOULDERS",
             "P.DE LOS TOROS": "PASO DE LOS TOROS",
             "LUCHETTI": "LUCCHETTI",
             "7UP": "SEVEN UP",
             "LA ESPA?OLA": "LA ESPANOLA",
-            "TRESEMMÉ":"TRESEMME",
-            "ARMONÍA":"ARMONIA",
-            "LA SERENÍSIMA":"LA SERENISIMA",
-            "UNIÓN":"UNION",
+            "TRESEMME":"TRESEMME",
+            "ARMONIA":"ARMONIA",
+            "LA SERENISIMA":"LA SERENISIMA",
+            "UNION":"UNION",
             "LA SEREN.":"LA SERENISIMA",
             "CRUZ MALTA":"CRUZ DE MALTA",
             "LS":"LA SERENISIMA",   
             "JOHNSON": "JOHNSONS",  
             "BAUZAS":"BAUZA" 
-        }   
+        }
 
-        for patron, reemplazo in patrones.items():
-            marca = re.sub(re.escape(patron), reemplazo, marca)
-            if "LA SERENISIMA" not in marca:
-                marca = marca.replace("SERENISIMA", "LA SERENISIMA")         
+        if marca in reemplazos_directos:
+            marca = reemplazos_directos[marca]
 
-        marca = marca.strip()
-        return marca
+        # Reemplazos parciales (solo si aún no es la forma correcta)
+        if marca != "HEAD & SHOULDERS":
+            patrones_parciales = {
+                "HEAD & SH": "HEAD & SHOULDERS",
+                "HEAD SH": "HEAD & SHOULDERS"
+            }
+            for patron, reemplazo in patrones_parciales.items():
+                if patron in marca:
+                    marca = marca.replace(patron, reemplazo)
+
+        # Corrección adicional para "SERENISIMA"
+        if "LA SERENISIMA" not in marca:
+            marca = marca.replace("SERENISIMA", "LA SERENISIMA")
+
+        return marca.strip()
+
+
 
     def normalizar_descripcion(self,descripcion,tipo):
         descripcion = descripcion.upper()

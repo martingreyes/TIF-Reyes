@@ -68,6 +68,8 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_marca("Fideos Terrabusi Mix Vegetal Mostachol X 500 G"), "Terrabusi")
         self.assertEqual(modoMarket.capturar_marca("Fideos Matarazzo Tallarin N°7 X 500 Gr"), "Matarazzo")
         self.assertEqual(modoMarket.capturar_marca("Fideos Matarazzo Spaghetti L/gluten X 500 G"), "Matarazzo")
+        self.assertEqual(modoMarket.capturar_marca(" Pan Rebanado Dialecto Salvado X 360 Gr"), "Dialecto")
+       
     
 
     def test_descripcion(self):
@@ -147,6 +149,7 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Caseritos De Morron X 400 G"), "De Morron")
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Caseritos Marvese De Espinaca X 400 G"), "Marvese De Espinaca")
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Caseritos Marvese Al Huevo X400 G"), "Marvese Al Huevo")
+        self.assertEqual(modoMarket.capturar_descripcion("Pan Rebanado Dialecto Multicereal X 360 Gr"), "Rebanado Multicereal")
         
     
     def test_volumen(self):
@@ -234,6 +237,7 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_volumen('Fideos Robles Don Salvador Al Huevo Fino X500g'), "500")
         # self.assertEqual(modoMarket.capturar_volumen('Tonica Secco X 2.25 Lts'), "2250")
         self.assertEqual(modoMarket.capturar_volumen('Sprite Lata X 354cc'), "354")
+        self.assertEqual(modoMarket.capturar_volumen("Pan Rebanado Dialecto Multicereal X 360 Gr"), "360")
 
 
 

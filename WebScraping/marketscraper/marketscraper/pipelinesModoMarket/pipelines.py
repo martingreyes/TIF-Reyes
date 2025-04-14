@@ -28,7 +28,7 @@ class ModoMarketPipeline:
                     "Milkaut", "Serenisima", "Angelita", "Las Tres Niñas"
                     ]
 
-    marcas_pan = ["Bimbo","Fargo","Lactal","La Española"]
+    marcas_pan = ["Bimbo","Fargo","Lactal","La Española","Dialecto"]
 
     marcas_arroces = ["Gallo", "Tio Carlos", "Mocovi", "Dos Hermanos", "Lucchetti", "Topador", "Primor"]
 
