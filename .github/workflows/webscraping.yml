@@ -30,3 +30,4 @@ jobs:
           file: ./WebScraping/Dockerfile
           push: true
           tags: martingreyes/tif-webscraping:latest
+          platforms: linux/amd64,linux/arm64

@@ -30,3 +30,4 @@ jobs:
           file: ./CronJob/Dockerfile
           push: true
           tags: martingreyes/tif-cronjob:latest
+          platforms: linux/amd64,linux/arm64
