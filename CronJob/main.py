@@ -1,5 +1,6 @@
 from app.MariaDBClient import MariaDBClient
-from app.tasks import fetch_market_data
+from app.celery_tasks import fetch_market_data
+from app.celery_config import app
 import pandas as pd
 
 mariadbclient = MariaDBClient()
@@ -21,4 +22,7 @@ total_stats_df = pd.concat(total_stats, ignore_index=True)
 mariadbclient.insert_into_productos(total_items_df)
 mariadbclient.insert_into_db("webscraping_info", total_stats_df)
 mariadbclient.insert_into_db("historico", total_items_df)
+
+if __name__ == "__main__":
+    app.start()
 
