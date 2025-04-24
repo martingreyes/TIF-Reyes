@@ -44,7 +44,7 @@ class MarketScraper:
             "Supera": 5
         })
 
-        #TODO DROP DUPLCATES ID_PRODUCTO (QUE SOLO QUEDE 1)
+        #TODO DROP DUPLCATES ID_PRODUCTO (QUE SOLO QUEDE 1) 
 
  
         return df[

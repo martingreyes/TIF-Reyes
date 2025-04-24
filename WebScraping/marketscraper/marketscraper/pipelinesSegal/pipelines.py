@@ -96,6 +96,8 @@ class SegalPipeline:
         return descripcion
 
     def capturar_volumen(self, nombre):
+        marca = self.capturar_marca(nombre)
+        descripcion = self.capturar_descripcion(nombre)
         volumen_pattern = r'\bx?\s*\d+(?:[,.]\d+)?\s*(?:Lt|cc|ml|L|Lts|LT|gr|g|Kg|kg)\b'
         match_volumen = re.search(volumen_pattern, nombre)
         if match_volumen:
@@ -116,7 +118,17 @@ class SegalPipeline:
         volumen = volumen.replace("g","")
         volumen = volumen.replace("x","").strip()
         if float(volumen.replace(',', '.')) < 7: 
-            return str(int(float(volumen.replace(',', '.')) * 1000))  
+            return str(int(float(volumen.replace(',', '.')) * 1000))
+
+        if marca in self.marcas_jabones or 'Jabon' in nombre:
+            numeros = re.findall(r'\d+', descripcion)
+            if numeros:  
+                nuevo_volumen = int(volumen) * int(numeros[0])
+                if nuevo_volumen > 600:
+                    return volumen.strip()
+                else:
+                    volumen = str(nuevo_volumen)
+
         return volumen.strip()
 
     def process_item(self, item, spider):

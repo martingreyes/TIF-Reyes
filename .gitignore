@@ -6,3 +6,4 @@ __pycache__/
 *.pyc
 .env
 WebScraping/marketscraper/marketscraper/spiders/__pycache__/
+Borrador/*

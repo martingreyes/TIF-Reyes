@@ -150,7 +150,7 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Caseritos Marvese De Espinaca X 400 G"), "Marvese De Espinaca")
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Caseritos Marvese Al Huevo X400 G"), "Marvese Al Huevo")
         self.assertEqual(modoMarket.capturar_descripcion("Pan Rebanado Dialecto Multicereal X 360 Gr"), "Rebanado Multicereal")
-        
+        self.assertEqual(modoMarket.capturar_descripcion("Jabon Plusbelle 3 X 125 Frescura Intensa"), "3 Frescura Intensa")
     
     def test_volumen(self):
         modoMarket = ModoMarketPipeline()
@@ -187,18 +187,7 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_volumen("Arroz Gallo Risotto Champiñones X 240 Gr"), "240")
         self.assertEqual(modoMarket.capturar_volumen("Arroz Gallo Risotto Española Caja X 240 Gr"), "240")
         self.assertEqual(modoMarket.capturar_volumen("Arroz Gallo Preparado Mix De Vegetales X 240 Grs"), "240")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon Lux Jazmin Cremoso 3 X 125 Gr"), "125")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon De Glicerina Rexona Neutro 3 X 90 G"), "90")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon Lux Orquidea Negra X 125 G"), "125")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon Dove Cuida Y Protege X 90 Gr"), "90")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon De Glicerina Rexona Citrus 3 X 90 G"), "90")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Humectacion Cremosa 3 X 125 Gr"), "125")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle 3 X 125 Frescura Intensa"), "125")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon Rexona Xtracool 3 X 125 G"), "125")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon Campos Verdes Energia 120 Gr"), "120")
-        self.assertEqual(modoMarket.capturar_volumen("Jab.campos Verdes 3 X 120 G Energia"), "120")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon Nivea Antibacterial Aloe Vera 3 X 90 G"), "90")
-        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Relajacion 3 X 125 Gr"), "125")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Lux Jazmin Cremoso 3 X 125 Gr"), "375")
         self.assertEqual(modoMarket.capturar_volumen("Yerba La Tranquera Suave Seleccion Especial 500 Gr"), "500")
         self.assertEqual(modoMarket.capturar_volumen("Yerba Playadito X 1 Kg"), "1000")
         self.assertEqual(modoMarket.capturar_volumen("Yerba Chamigo X 1 Kg"), "1000")
@@ -238,6 +227,47 @@ class TestExpresionesRegulares(unittest.TestCase):
         # self.assertEqual(modoMarket.capturar_volumen('Tonica Secco X 2.25 Lts'), "2250")
         self.assertEqual(modoMarket.capturar_volumen('Sprite Lata X 354cc'), "354")
         self.assertEqual(modoMarket.capturar_volumen("Pan Rebanado Dialecto Multicereal X 360 Gr"), "360")
+
+
+        self.assertEqual(modoMarket.capturar_volumen("Jabon De Glicerina Rexona Neutro 3 X 90 G"), "270")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Lux Orquidea Negra X 125 G"), "125")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Dove Cuida Y Protege X 90 Gr"), "90")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon De Glicerina Rexona Citrus 3 X 90 G"), "270")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Humectacion Cremosa 3 X 125 Gr"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Esencia Todo Tipo De Piel 3 X 125g"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Rexona Xtracool 3 X 125 G"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Campos Verdes Energia 120 Gr"), "120")
+        self.assertEqual(modoMarket.capturar_volumen("Jab.campos Verdes 3 X 120 G Energia"), "360")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Nivea Antibacterial Aloe Vera 3 X 90 G"), "270")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Relajacion 3 X 125 Gr"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Campos Verdes Aromaterapia 3 X 120 G"), "360")
+
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Rexona Bamboo Fresh 3 X 125 Gr"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Rexona Nutritive Orchid 3 X 125 Gr"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Rexona Xtracool 3 X 125 G"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Lux Rosas Francesas 3 X 120 Gr"), "360")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Rexona Cotton Fresh 3 X 125 Gr"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Dove Exfoliacion X 90 Gr"), "90")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Nivea Coconut Milk 3 X 125 G"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Lux Rosas Francesas X 125 G"), "125")
+        self.assertEqual(modoMarket.capturar_volumen("Veritas Jabon Naranja  Y Limon  Energizante X 120"), "120")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Palmolive Naturals Frambuesa X 150 Gr"), "150")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Campos Verdes Frescura 3 X 120 Gr"), "360")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Campos Verdes Pausa En El Campo 3 X 120 Gr"), "360")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Energia Renovadora 3 X 125 Gr"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Relajacion  3 X 125 Gr"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Energia Renovadora X 125 Gr"), "125")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Humectante Nivea Avena 3 X 125 G"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Lux Jazmin Cremoso X 120 G"), "120")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Nutricion  X 120 Gr"), "120")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Rexona Nutritive Orchid X 120 Gr"), "120")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Dove Original 3 X 90 Gr"), "270")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Rexona Futbol Fanatics 3 X 120 Gr"), "360")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Esencia Todo Tipo De Piel 3 X 125g"), "375")
+
+
+
+        
 
 
 

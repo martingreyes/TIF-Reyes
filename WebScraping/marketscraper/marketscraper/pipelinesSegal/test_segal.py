@@ -171,12 +171,6 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(segal.capturar_volumen("DON MARCOS ARROZ 1Kg PARBOIT"), "1000")
         self.assertEqual(segal.capturar_volumen("GALLO ARROZ 1Kg PARBOIL"), "1000")
         self.assertEqual(segal.capturar_volumen("GALLO ARROZ 1Kg LARGO FINO"), "1000")
-        self.assertEqual(segal.capturar_volumen("JABÓN ACTIVE REXONA 3u 125gr"), "125")
-        self.assertEqual(segal.capturar_volumen("JABÓN ORQUÍDEA NEGRA LUX 3u 125gr"), "125")
-        self.assertEqual(segal.capturar_volumen("JABÓN SENSIBLE FRESH REXONA 3u 125gr"), "125")
-        self.assertEqual(segal.capturar_volumen("JABÓN ROSAS FRANCESAS LUX 3u 125gr"), "125")
-        self.assertEqual(segal.capturar_volumen("JABÓN BAMBOO FRESH REXONA 3u 125gr"), "125")
-        self.assertEqual(segal.capturar_volumen("JABÓN ORCHID FRESH REXONA 3u 125gr"), "125")
         self.assertEqual(segal.capturar_volumen("CRUZ DE MALTA SELECCIÓN 1Kg"), "1000")
         self.assertEqual(segal.capturar_volumen("MAÑANITA YERBA 500g BCP"), "500")
         self.assertEqual(segal.capturar_volumen("TARAGUI YERBA 500g CON PALO"), "500")
@@ -189,6 +183,26 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(segal.capturar_volumen("FIDEOS MOSTACHOL MIX KNORR 500g"), "500")
         self.assertEqual(segal.capturar_volumen("KNORR FIDEOS CABELLO DE ÁNGEL 500g"), "500")
         self.assertEqual(segal.capturar_volumen("FIDEOS TIRABUZÓN KNORR 500g"), "500")
+
+        self.assertEqual(segal.capturar_volumen("JABÓN ACTIVE REXONA 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN ORQUÍDEA NEGRA LUX 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN SENSIBLE FRESH REXONA 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN ROSAS FRANCESAS LUX 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN BAMBOO FRESH REXONA 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN ORCHID FRESH REXONA 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN ACTIVE REXONA 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN BAMBOO FRESH REXONA 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN COTTON REXONA 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN FLOR VAINILLA LUX 3u 120gr"), "360")
+        self.assertEqual(segal.capturar_volumen("JABÓN JAZMÍN LUX 3u 120gr"), "360")
+        self.assertEqual(segal.capturar_volumen("JABÓN LIRIO AZUL LUX 3u 120gr"), "360")
+        self.assertEqual(segal.capturar_volumen("JABÓN ORCHID FRESH REXONA 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("JABÓN ORQUÍDEA NEGRA LUX 3u 120gr"), "360")
+        self.assertEqual(segal.capturar_volumen("JABÓN ROSAS FRANCESAS LUX 3u 120gr"), "360")
+        self.assertEqual(segal.capturar_volumen("JABÓN SENSIBLE FRESH REXONA 3u 125gr"), "375")
+
+
+
 
 
 if __name__ == '__main__':

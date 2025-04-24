@@ -103,6 +103,7 @@ class BlowmaxPipeline:
 
 
     def capturar_volumen(self,nombre):
+        marca = self.capturar_marca(nombre)
         descripcion = self.capturar_descripcion(nombre)
         nombre = nombre.replace(descripcion,"")
         volumen_pattern = r'\bX?\s*\d+(?:[,.]\d+)?\s*(?:LT|CC.|CC|C|ML|L|GRS|KG|GR|G)\b'
@@ -111,11 +112,11 @@ class BlowmaxPipeline:
             volumen = match_volumen.group(0)
         elif not match_volumen and "UAT BOTELLA" in nombre:
             return "1000"
-        elif not match and marca in self.marcas_panes:
+        elif not match and marca in self.marcas_panes: # type: ignore
             numero_pattern = r'\d+'
             match = re.search(numero_pattern,nombre)
             volumen = match.group()+"GR"
-        elif not match and marca in self.marcas_jabones:
+        elif not match and marca in self.marcas_jabones: # type: ignore
             numero_pattern = r'(?<=X)\d+[A-Za-z]+'
             match = re.search(numero_pattern,nombre)
             volumen = "X" + match.group(0)
@@ -134,7 +135,20 @@ class BlowmaxPipeline:
         volumen = volumen.replace(".",",")
         if float(volumen.replace(',', '.')) < 7: 
             return str(int(float(volumen.replace(',', '.')) * 1000)).strip() 
+        
+        if marca in self.marcas_jabones:
+            numeros = re.findall(r'\d+', descripcion)
+            if numeros:  # asegúrate de que la lista no esté vacía
+                nuevo_volumen = int(volumen) * int(numeros[0])
+                if nuevo_volumen > 600:
+                    return volumen.strip()
+                else:
+                    volumen = str(nuevo_volumen)
+
         return volumen.strip()
+
+
+        
 
     def process_item(self, item, spider):
         adapter = ItemAdapter(item)

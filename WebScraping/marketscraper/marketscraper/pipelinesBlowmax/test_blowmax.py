@@ -177,12 +177,11 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(blowmax.capturar_volumen("ARROZ TIO CARLOS LARGO FINO X 500GR"), "500")
         self.assertEqual(blowmax.capturar_volumen("ARROZ GALLO ORO PARBOIL X 500GR"), "500")
         self.assertEqual(blowmax.capturar_volumen("ARROZ TIO CARLOS DOBLE CAROLINA X 500GR"), "500")
-        self.assertEqual(blowmax.capturar_volumen("JABON KENIA COLOR MIX 3X90GR"), "90")
         self.assertEqual(blowmax.capturar_volumen("JABON DOVE BLANCO X 90GRS"), "90")
-        self.assertEqual(blowmax.capturar_volumen("JABON KENIA CREMOSO 4X90G"), "90")
-        self.assertEqual(blowmax.capturar_volumen("JABON KENIA GLICERINA OFERTA 3+1 360GR"), "360") #Suma el peso de los 4 jabones
+        self.assertEqual(blowmax.capturar_volumen("JABON KENIA CREMOSO 4X90G"), "360")
+        self.assertEqual(blowmax.capturar_volumen("JABON KENIA GLICERINA OFERTA 3+1 360GR"), "360") 
         self.assertEqual(blowmax.capturar_volumen("JABON LUX JAZMIN BOTANIC CR 125G"), "125")
-        self.assertEqual(blowmax.capturar_volumen("JABON LUX JAZMIN BOTANIC CR 3 X 125G"), "125")
+        self.assertEqual(blowmax.capturar_volumen("JABON LUX JAZMIN BOTANIC CR 3 X 125G"), "375")
         self.assertEqual(blowmax.capturar_volumen("JABON LUX ROSAS FRANCESAS BOTANIC 125GR"), "125")
         self.assertEqual(blowmax.capturar_volumen("JABON PATRICIA ALLEN TROPICALX130GR"), "130")
         self.assertEqual(blowmax.capturar_volumen("JABON PLUSBELLE BALANCE NUTRIOIL 125GRS"), "125")
@@ -202,9 +201,30 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(blowmax.capturar_volumen("FIDEOS SAN AGUSTIN TALLARIN X 500GR"), "500")
         self.assertEqual(blowmax.capturar_volumen("FIDEOS TERRABUSI MOSTACHOL 500GR"), "500")
         self.assertEqual(blowmax.capturar_volumen("GASEOSA SCHWEPPES POMELO S/AZUCAR LATA X310C"), "310")
- 
-        
-        
+
+        self.assertEqual(blowmax.capturar_volumen("JABON KENIA COLOR MIX 3X90GR"), "270")
+        self.assertEqual(blowmax.capturar_volumen("JABON KENIA CREMOSO 4X90G"), "360")
+        self.assertEqual(blowmax.capturar_volumen("JABON KENIA GLICERINA OFERTA 3+1 360GR"), "360")
+        self.assertEqual(blowmax.capturar_volumen("JABON LUX FLOR DE VAINILLA BOTA.3 X 125G"), "375")
+        self.assertEqual(blowmax.capturar_volumen("JABON LUX LIRIO AZUL BOTANIC 3 X 125G"), "375")
+        self.assertEqual(blowmax.capturar_volumen("JABON LUX ORQUIDEA NEGRA 125G"), "125")
+        self.assertEqual(blowmax.capturar_volumen("JABON LUX ORQUIDEA NEGRA BOTANIC 3 X 125G"), "375")
+        self.assertEqual(blowmax.capturar_volumen("JABON PLUSBELLE ENERGIA NUTRIOIL 3X125GR"), "375")
+        self.assertEqual(blowmax.capturar_volumen("JABON PLUSBELLE FRESCURA NUTRIOIL 3X125GR"), "375")
+        self.assertEqual(blowmax.capturar_volumen("JABON PLUSBELLE FRESCURA NUTRIOL X125GR"), "125")
+        self.assertEqual(blowmax.capturar_volumen("JABON PLUSBELLE RELAJACION NUTRIOIL 3X125GR"), "375")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA ANTIB FRESH X90G"), "90")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA ANTIBACTERIAL ALOE 3X90G"), "270")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA ANTIBACTERIAL ORIG.90GR"), "90")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA BAMBOO X125G"), "125")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA GLICERINA NEUTRO HIPORLARG 3X90G"), "270")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA GLICERINA NEUTRO X90G"), "90")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA NUTRITIVA ORCHID 125GR"), "125")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA NUTRITIVA ORCHID 3X125GR"), "375")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA SENSIBLE FR DERM X125G"), "125")
+        self.assertEqual(blowmax.capturar_volumen("JABON REXONA SENSIBLE FRESH 3X125G"), "375")
+
+
 
 
 

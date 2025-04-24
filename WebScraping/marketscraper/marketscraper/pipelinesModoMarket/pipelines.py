@@ -104,6 +104,7 @@ class ModoMarketPipeline:
 
     def capturar_volumen(self,nombre):
         marca = self.capturar_marca(nombre)
+        descripcion = self.capturar_descripcion(nombre)
         volumen_pattern = r"\b(?:X\s*)?(?:\d+(?:.\d+)?\s*)?(\d+(?:.\d+)?)\s*(?:(?:Lt|lt|Cc|cc|Ml|ml|L|l|Grs|Gr|G|Kg|K|gr|g|M)\b)"
         match_volumen = re.search(volumen_pattern, nombre)
         if match_volumen:
@@ -138,6 +139,18 @@ class ModoMarketPipeline:
 
         if float(volumen.replace(',', '.')) < 7: 
             return str(int(float(volumen.replace(',', '.')) * 1000)).strip() 
+        
+        if marca in self.marcas_jabones or 'Jabon' in nombre:
+            numeros = re.findall(r'\d+', descripcion)
+            if numeros:  # asegúrate de que la lista no esté vacía
+                nuevo_volumen = int(volumen) * int(numeros[0])
+                if nuevo_volumen > 600:
+                    return volumen.strip()
+                else:
+                    volumen = str(nuevo_volumen)
+
+        return volumen.strip()
+
         return volumen.strip()
 
 
