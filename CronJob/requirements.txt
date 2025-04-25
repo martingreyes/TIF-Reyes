@@ -3,5 +3,6 @@ pymysql
 pandas
 requests
 load_dotenv
-celery
-redis
+# celery
+# redis
+aiohttp

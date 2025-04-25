@@ -22,7 +22,7 @@ class ModoMarketPipeline:
 
     marcas_gaseosas = ['Coca Cola', 'Powerade', 'Pepsi', 'Schweppes', 'Sprite', 
                         'Mirinda', '7Up', 'Levite', 'Fanta', 'Paso De Los Toros', 
-                        'Secco', 'Manaos', 'Rumipal', 'Yaci', 'Talca',"Sierra De Los Padres"]
+                        'Secco', 'Manaos', 'Rumipal', 'Yaci', 'Talca',"Sierra De Los Padres", "Pritty Limon"]
 
     marcas_leche = ["Tregar", "Ilolay", "La Serenisima", "Veronica", 
                     "Milkaut", "Serenisima", "Angelita", "Las Tres Niñas"
@@ -40,7 +40,7 @@ class ModoMarketPipeline:
                     "La Tranquera","Yervita","Don Lucas","Don Arregui","La Hoja", "Nobleza  Gaucha", "Pipore","Canarias","Cachamate"]
 
     marcas_fideos = ["Terrabusi","Matarazzo","Don Vicente","Lucchetti","Robles","San Agustin",
-                    "Favorita","Knorr","Soyarroz","Grandiet", "Arcor", "Caseritos"]
+                    "Favorita","Knorr","Soyarroz","Grandiet", "Arcor", "Caseritos", "Yuka","Wakas"]
 
     def capturar_marca(self,nombre):
         if any(marca in nombre for marca in self.marcas_yerbas):

@@ -36,7 +36,7 @@ class SegalPipeline:
 
     marcas_yerbas = ["CRUZ DE MALTA","MAÑANITA","NOBLEZA GAUCHA","TARAGUI","UNIÓN","VERDEFLOR", "CHAMIGO","SALUS", "BUENAS Y SANTAS"]
 
-    marcas_fideos = ["LA PROVIDENCIA","KNORR","FAVORITA","LUCCHETTI","MATARAZZO","TERRABUSI","DON VICENTE", "DON FELIPE","ARCOR"]
+    marcas_fideos = ["LA PROVIDENCIA","KNORR","FAVORITA","LUCCHETTI","MATARAZZO","TERRABUSI","DON VICENTE", "DON FELIPE","ARCOR","PROVIDENCIA"]
 
     def capturar_marca(self, nombre):
         if any(marca in nombre for marca in self.marcas_shampoo):

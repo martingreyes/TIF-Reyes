@@ -128,7 +128,9 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(segal.capturar_descripcion("SPAGHETTI DON FELIPE 500gr"), "SPAGHETTI")
         self.assertEqual(segal.capturar_descripcion("TALLARINES DON FELIPE 500g"), "TALLARINES")
         self.assertEqual(segal.capturar_descripcion("KNORR FIDEOS CABELLO DE ÁNGEL 500g"), "CABELLO DE ÁNGEL")
-        self.assertEqual(segal.capturar_descripcion("FIDEOS TIRABUZÓN KNORR 500g"), "TIRABUZÓN")  
+        self.assertEqual(segal.capturar_descripcion("FIDEOS TIRABUZÓN KNORR 500g"), "TIRABUZÓN")
+        self.assertEqual(segal.capturar_descripcion("FIDEOS DEDALITO PROVIDENCIA 500gr"), "DEDALITO")  
+        self.assertEqual(segal.capturar_descripcion("FIDEOS MUNICIÓN PROVIDENCIA 500gr"), "MUNICIÓN")  
 
 
     def test_volumen(self):
@@ -200,6 +202,8 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(segal.capturar_volumen("JABÓN ORQUÍDEA NEGRA LUX 3u 120gr"), "360")
         self.assertEqual(segal.capturar_volumen("JABÓN ROSAS FRANCESAS LUX 3u 120gr"), "360")
         self.assertEqual(segal.capturar_volumen("JABÓN SENSIBLE FRESH REXONA 3u 125gr"), "375")
+        self.assertEqual(segal.capturar_volumen("FIDEOS DEDALITO PROVIDENCIA 500gr"), "500")
+        self.assertEqual(segal.capturar_volumen("FIDEOS MUNICIÓN PROVIDENCIA 500gr"), "500")
 
 
 

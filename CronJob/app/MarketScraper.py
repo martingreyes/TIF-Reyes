@@ -4,6 +4,7 @@ import pandas as pd # type: ignore
 import os
 from datetime import datetime
 from dotenv import load_dotenv
+import aiohttp
 
 load_dotenv()
 
@@ -13,12 +14,18 @@ class MarketScraper:
         self.port = os.getenv("ENDPOINT_PORT")
         self.url = 'http://{}:{}/crawl.json?start_requests=true&spider_name='.format(self.host, self.port)  
 
-    def fetch_data(self, spider_name: str) -> dict:
-        response = requests.get(self.url+spider_name)
-        response.raise_for_status()
-        return response.json()
+    # def fetch_data(self, spider_name: str) -> dict:
+    #     response = requests.get(self.url+spider_name)
+    #     response.raise_for_status()
+    #     return response.json()
+
+    async def fetch_data(self, spider_name: str) -> dict:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(self.url + spider_name) as response:
+                response.raise_for_status()
+                return await response.json()
     
-    def get_items(self, data: dict) -> pd.DataFrame:
+    async def get_items(self, data: dict) -> pd.DataFrame:
       
         timestamp = datetime.now()
         spider_name = data.get("spider_name")
@@ -52,7 +59,7 @@ class MarketScraper:
         ].rename(columns={"tienda": "id_supermercado"})
     
 
-    def get_stats(self, data: dict) -> pd.DataFrame:
+    async def get_stats(self, data: dict) -> pd.DataFrame:
         timestamp = datetime.now()
 
         stats = {

@@ -151,6 +151,9 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Caseritos Marvese Al Huevo X400 G"), "Marvese Al Huevo")
         self.assertEqual(modoMarket.capturar_descripcion("Pan Rebanado Dialecto Multicereal X 360 Gr"), "Rebanado Multicereal")
         self.assertEqual(modoMarket.capturar_descripcion("Jabon Plusbelle 3 X 125 Frescura Intensa"), "3 Frescura Intensa")
+        self.assertEqual(modoMarket.capturar_descripcion("Fideos Wakas Penne Rigate Maiz X 300 G"), "Penne Rigate Maiz")
+        self.assertEqual(modoMarket.capturar_descripcion("Fideos Yuka Tirabuzon Garbanzo S/gluten X 250 G"), "Tirabuzon Garbanzo S/gluten")
+        self.assertEqual(modoMarket.capturar_descripcion("Gaseosa Pritty Limon X 3 Lt"), "")
     
     def test_volumen(self):
         modoMarket = ModoMarketPipeline()
@@ -264,6 +267,14 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_volumen("Jabon Dove Original 3 X 90 Gr"), "270")
         self.assertEqual(modoMarket.capturar_volumen("Jabon Rexona Futbol Fanatics 3 X 120 Gr"), "360")
         self.assertEqual(modoMarket.capturar_volumen("Jabon Plusbelle Esencia Todo Tipo De Piel 3 X 125g"), "375")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Campos Verdes Frescura 120 Gr"), "120")
+        self.assertEqual(modoMarket.capturar_volumen("Jabon Campos Verdes Frescura 3 X 120 Gr"), "360")
+        self.assertEqual(modoMarket.capturar_volumen("Fideos Wakas Penne Rigate Maiz X 300 G"), "300")
+        self.assertEqual(modoMarket.capturar_volumen("Fideos Yuka Tirabuzon Garbanzo S/gluten X 250 G"), "250")
+        self.assertEqual(modoMarket.capturar_volumen("Gaseosa Pritty Limon X 3 Lt"), "3000")
+
+        
+        
 
 
 

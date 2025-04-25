@@ -34,9 +34,9 @@ class AtomoPipeline:
                         "MIRINDA","RUMIPAL", "PASO DE LOS TOROS"
                     ]
     
-    marcas_leches = ["LA SERENISIMA","VERONICA"]
+    marcas_leches = ["LA SERENISIMA","VERONICA","ILOLAY"]
 
-    marcas_panes = ["LACTAL", "BELIER", "BIMBO", "MILLAN"] 
+    marcas_panes = ["LACTAL", "BELIER", "BIMBO", "MILLAN","FARGO"] 
 
     marcas_arroces = ["GALLO","TIO CARLOS","AMANDA","NOBLE","SAN JAVIER", "ALA", "DON MARCOS", "MENCHO", "MOCOVI", "VINCHA DE ORO", "APOSTOLES"]
 
@@ -49,7 +49,7 @@ class AtomoPipeline:
                     ,"BUENAS Y SANTAS","MAS SABOR","DON ARREGUI","SALUS","LA HOJA", "MAÑANITA",
                     "DON LUCAS","CACHAMAI","CRUZ DE MALTA","LA MERCED"]
     
-    marcas_fideos = ["BAUZA","LA PROVIDENCIA","LUCCHETTI","LUCHETTI", "MATARAZZO", "FAVORITA", "ROBLES","LUCIA", "SAN AGUSTIN", "YUKA","MAROLIO"]
+    marcas_fideos = ["BAUZA","LA PROVIDENCIA","LUCCHETTI","LUCHETTI", "MATARAZZO", "FAVORITA", "ROBLES","LUCIA", "SAN AGUSTIN", "YUKA","MAROLIO","PASTASOLE"]
 
 
 

@@ -43,7 +43,8 @@ class NormalizarPipeline:
             "CRUZ MALTA":"CRUZ DE MALTA",
             "LS":"LA SERENISIMA",   
             "JOHNSON": "JOHNSONS",  
-            "BAUZAS":"BAUZA" 
+            "BAUZAS":"BAUZA",
+            "PROVIDENCIA":"LA PROVIDENCIA",
         }
 
         if marca in reemplazos_directos:

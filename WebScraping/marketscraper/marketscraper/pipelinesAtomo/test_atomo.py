@@ -113,6 +113,13 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(atomo.capturar_descripcion("FIDEOS GUISEROS LUCCHETTI PENNE RIGATE 500 GRS"), "GUISEROS PENNE RIGATE")
         self.assertEqual(atomo.capturar_descripcion("FIDEOS LARGOS LUCIA SPAGHETTI 500 GRS"), "LARGOS SPAGHETTI")
         self.assertEqual(atomo.capturar_descripcion("FIDEOS GUISEROS ROBLES TIRABUZON MULTICOLOR 500 GRS"), "GUISEROS TIRABUZON MULTICOLOR")
+        self.assertEqual(atomo.capturar_descripcion("LECHE U.A.T. ILOLAY ENTERA 1000 CC."), "ENTERA")
+        self.assertEqual(atomo.capturar_descripcion("LECHE U.A.T. ILOLAY DESCREMADA 1000 CC."), "DESCREMADA")
+        self.assertEqual(atomo.capturar_descripcion("PAN REBANADO FARGO LACTEADO 585 GRS"), "REBANADO LACTEADO")
+        self.assertEqual(atomo.capturar_descripcion("FIDEOS GUISEROS PASTASOLE SPAGHETTI 500 GRS"), "GUISEROS SPAGHETTI")
+        
+
+        
         
 
 
@@ -162,6 +169,12 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(atomo.capturar_volumen("FIDEOS LARGOS BAUZA LAMINADO MEDIAN 500 GRS"), "500")
         self.assertEqual(atomo.capturar_volumen("FIDEOS LARGOS LUCHETTI TALLARIN 500 GRS"), "500")
         self.assertEqual(atomo.capturar_volumen("FIDEOS GUISEROS LUCCHETTI PENNE RIGATE 500 GRS"), "500")
+        self.assertEqual(atomo.capturar_volumen("LECHE U.A.T. ILOLAY ENTERA 1000 CC."), "1000")
+        self.assertEqual(atomo.capturar_volumen("LECHE U.A.T. ILOLAY DESCREMADA 1000 CC."), "1000")
+        self.assertEqual(atomo.capturar_volumen("PAN REBANADO FARGO LACTEADO 585 GRS"), "585")
+        self.assertEqual(atomo.capturar_volumen("FIDEOS GUISEROS PASTASOLE SPAGHETTI 500 GRS"), "500")
+        
+        
 
 
 if __name__ == '__main__':

@@ -24,6 +24,9 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(normalizar.normalizar_marca("Cruz Malta"), "CRUZ DE MALTA")
         self.assertEqual(normalizar.normalizar_marca("UNIÓN"), "UNION")
         self.assertEqual(normalizar.normalizar_marca("HEAD & SHOULDER"), "HEAD & SHOULDERS")
+        self.assertEqual(normalizar.normalizar_marca("Head & Sh"), "HEAD & SHOULDERS")
+        self.assertEqual(normalizar.normalizar_marca("LA PROVIDENCIA"), "LA PROVIDENCIA")
+        self.assertEqual(normalizar.normalizar_marca("PROVIDENCIA"), "LA PROVIDENCIA")
 
     def test_descripcion(self):
         normalizar = NormalizarPipeline()
