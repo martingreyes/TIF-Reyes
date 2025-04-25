@@ -4,3 +4,5 @@ docker rm -f tif-webscraping && docker run -p 9080:9080 -e REDIS_HOST=redis -e R
 
 docker rm -f tif-webscraping && docker run -p 9080:9080 -e REDIS_HOST=host.docker.internal -e REDIS_PORT=6379 --name tif-webscraping martingreyes/tif-webscraping:latest
 
+docker rm -f tif-cronjob && docker run -e ENDPOINT_HOST=host.docker.internal -e ENDPOINT_PORT=9080 -e DB_HOST=host.docker.internal -e DB_PORT=3306 -e DB_USER=versus -e DB_PASSWORD=versus -e DB_NAME=Versus --name tif-cronjob martingreyes/tif-cronjob:latest python main.py
+
