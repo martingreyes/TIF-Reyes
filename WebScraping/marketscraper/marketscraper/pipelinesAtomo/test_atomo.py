@@ -117,6 +117,8 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(atomo.capturar_descripcion("LECHE U.A.T. ILOLAY DESCREMADA 1000 CC."), "DESCREMADA")
         self.assertEqual(atomo.capturar_descripcion("PAN REBANADO FARGO LACTEADO 585 GRS"), "REBANADO LACTEADO")
         self.assertEqual(atomo.capturar_descripcion("FIDEOS GUISEROS PASTASOLE SPAGHETTI 500 GRS"), "GUISEROS SPAGHETTI")
+        self.assertEqual(atomo.capturar_descripcion("FIDEOS SOPEROS TERRABUSI AVE MARIA 1 500 GRS"), "SOPEROS AVE MARIA 1")
+        self.assertEqual(atomo.capturar_descripcion("FIDEOS SOPEROS TERRABUSI DEDALITOS 500 GRS"), "SOPEROS DEDALITOS")
         
 
         
@@ -173,6 +175,8 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(atomo.capturar_volumen("LECHE U.A.T. ILOLAY DESCREMADA 1000 CC."), "1000")
         self.assertEqual(atomo.capturar_volumen("PAN REBANADO FARGO LACTEADO 585 GRS"), "585")
         self.assertEqual(atomo.capturar_volumen("FIDEOS GUISEROS PASTASOLE SPAGHETTI 500 GRS"), "500")
+        self.assertEqual(atomo.capturar_volumen("FIDEOS SOPEROS TERRABUSI AVE MARIA 1 500 GRS"), "500")
+        self.assertEqual(atomo.capturar_volumen("FIDEOS SOPEROS TERRABUSI DEDALITOS 500 GRS"), "500")
         
         
 

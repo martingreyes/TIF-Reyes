@@ -4,6 +4,8 @@ from app.celery_tasks import fetch_market_data
 from app.celery_config import app
 import pandas as pd
 import asyncio
+import logging
+from datetime import datetime
 
 
 #! Celery + Redis Approach
@@ -22,15 +24,22 @@ import asyncio
 # mariadbclient.insert_into_db("webscraping_info", total_stats_df)
 # mariadbclient.insert_into_db("historico", total_items_df)
 
+logging.basicConfig(
+    level=logging.INFO,  # nivel INFO para ver los logs
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
 
 #! Asyncio + Aiohttp Approach
 async def async_scraping(supermercados):
     market_scraper = MarketScraper()
 
     async def process_supermercado(supermercado):
+        logging.info(f"Scraping {supermercado}")
         data = await market_scraper.fetch_data(supermercado)
         items = await market_scraper.get_items(data)
         stats = await market_scraper.get_stats(data)
+        logging.info(f"Scraping {supermercado} finalizado")
         return items, stats
 
     tasks = [process_supermercado(s) for s in supermercados]
@@ -38,6 +47,10 @@ async def async_scraping(supermercados):
 
 
 def main():
+
+    start_time = datetime.now()
+    logging.info("Iniciando")
+
     mariadbclient = MariaDBClient()
     supermercados = mariadbclient.get_active_tables()
 
@@ -52,6 +65,10 @@ def main():
     mariadbclient.insert_into_productos(total_items_df)
     mariadbclient.insert_into_db("webscraping_info", total_stats_df)
     mariadbclient.insert_into_db("historico", total_items_df)
+
+    end_time = datetime.now()
+    elapsed = end_time - start_time
+    logging.info(f"Finalizado en: {elapsed}")
 
 
 if __name__ == "__main__":

@@ -1,10 +1,11 @@
 import hashlib
-import requests
+import numpy
 import pandas as pd # type: ignore
 import os
 from datetime import datetime
 from dotenv import load_dotenv
 import aiohttp
+import requests
 
 load_dotenv()
 
@@ -14,19 +15,19 @@ class MarketScraper:
         self.port = os.getenv("ENDPOINT_PORT")
         self.url = 'http://{}:{}/crawl.json?start_requests=true&spider_name='.format(self.host, self.port)  
 
-    # def fetch_data(self, spider_name: str) -> dict:
-    #     response = requests.get(self.url+spider_name)
-    #     response.raise_for_status()
-    #     return response.json()
+    def fetch_data(self, spider_name: str) -> dict:
+        response = requests.get(self.url+spider_name)
+        response.raise_for_status()
+        return response.json()
 
-    async def fetch_data(self, spider_name: str) -> dict:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(self.url + spider_name) as response:
-                response.raise_for_status()
-                return await response.json()
+    # async def fetch_data(self, spider_name: str) -> dict:
+    #     async with aiohttp.ClientSession() as session:
+    #         async with session.get(self.url + spider_name) as response:
+    #             response.raise_for_status()
+    #             return await response.json()
     
-    async def get_items(self, data: dict) -> pd.DataFrame:
-      
+    # async def get_items(self, data: dict) -> pd.DataFrame:
+    def get_items(self, data: dict) -> pd.DataFrame:
         timestamp = datetime.now()
         spider_name = data.get("spider_name")
         items = data.get("items", [])
@@ -37,9 +38,12 @@ class MarketScraper:
         df["id_producto"] = df.apply(
             lambda row: int(hashlib.sha256(
                 f"{row['marca']}_{row['descripcion']}_{row['volumen']}_{row['tienda']}".encode("utf-8")
-            ).hexdigest()[:8], 16),  # Tomamos solo los primeros 8 caracteres
+            ).hexdigest()[:8], 16), 
             axis=1
         )
+
+        #TODO DROP DUPLCATES ID_PRODUCTO (QUE SOLO QUEDE 1) 
+        df = df.drop_duplicates(subset='id_producto', keep='first') 
 
         df["nombre"] = df["marca"].astype(str) + " " + df["descripcion"].astype(str) + " " + df["volumen"].astype(str)
 
@@ -51,15 +55,23 @@ class MarketScraper:
             "Supera": 5
         })
 
-        #TODO DROP DUPLCATES ID_PRODUCTO (QUE SOLO QUEDE 1) 
+        df['id_grupo'] = df.apply(
+            lambda row: int(hashlib.sha256(
+                f"{row['marca']}_{row['categoria']}_{row['volumen']}".encode("utf-8")
+            ).hexdigest()[:8], 16), 
+            axis=1
+        )
+
+        df['id_subgrupo'] = numpy.nan
 
  
         return df[
-            ["__ingestion_timestamp", "nombre_crudo", "id_producto","categoria","nombre", "marca", "descripcion", "volumen", "precio", "tienda", "url"]
+            ["__ingestion_timestamp", "nombre_crudo", "id_producto","categoria","nombre", "marca", "descripcion", "volumen", "precio", "tienda", "id_grupo", "id_subgrupo","url"]
         ].rename(columns={"tienda": "id_supermercado"})
     
 
-    async def get_stats(self, data: dict) -> pd.DataFrame:
+    # async def get_stats(self, data: dict) -> pd.DataFrame:
+    def get_stats(self, data: dict) -> pd.DataFrame:
         timestamp = datetime.now()
 
         stats = {

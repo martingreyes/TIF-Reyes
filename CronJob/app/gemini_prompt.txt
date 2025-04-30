@@ -1,0 +1,39 @@
+"""
+A continuación, te proporcionaré una lista de productos comercializados por distintos supermercados. Cada producto es una cadena de texto con el siguiente formato:
+
+"ID_Producto - Categoría - Marca - Descripción - Volumen - Supermercado"
+
+Tu tarea es agrupar los productos equivalentes, entendiendo por equivalentes aquellos que coinciden en categoría, marca, descripción (con cierta tolerancia) y volumen, pero provienen de supermercados diferentes.
+
+Reglas para agrupar:
+- **Cada grupo debe contener productos equivalentes, sin repetir supermercados dentro del mismo grupo**. La parte "Supermercado" (última parte de la cadena) es lo que se debe considerar como el identificador del supermercado, por ejemplo "Blowmax", "Atomo", "Modo Market". Es decir, un grupo no puede tener dos productos del mismo supermercado.
+- **Puede haber entre 1 y 4 productos por grupo** (ya que hay 4 supermercados distintos). Cada grupo puede estar formado por un mínimo de 1 producto y un máximo de 4 productos, cada uno de un supermercado distinto.
+- Un mismo producto no puede pertenecer a más de un grupo.
+- Dos productos se consideran equivalentes aunque su descripción difiera en solo una palabra no determinante. 
+    Por ejemplo, considera equivalentes las descripciones "BRILLO LUMINOSIDAD" y "BRILLO", "LARGOS SPAGUETTI" y "SPAGUETTI", "TIRABUZON HUEVO" y "AL HUEVO TIRABUZON", "MEN 2EN1 FZA EXTREM" y "2 EN 1 FUERZA EXTREMA", ya que la diferencia no altera significativamente el significado del producto.
+
+Ejemplo 1 de input:
+['434004420 - Yerbas - VERDEFLOR -  - 500 - Blowmax', 'Yerbas - VERDEFLOR - BOLDO - 500 - Atomo', 'Yerbas - VERDEFLOR - BOLDO - 500 - Blowmax', 'Yerbas - VERDEFLOR - BOLDO - 500 - Modo Market', 'Yerbas - VERDEFLOR - CEDRON - 500 - Atomo', 'Yerbas - VERDEFLOR - CEDRON - 500 - Blowmax', 'Yerbas - VERDEFLOR - CEDRON - 500 - Modo Market', 'Yerbas - VERDEFLOR - HIERBAS - 500 - Atomo', 'Yerbas - VERDEFLOR - MENTA - 500 - Atomo', 'Yerbas - VERDEFLOR - MENTA - 500 - Blowmax', 'Yerbas - VERDEFLOR - MENTA - 500 - Modo Market', 'Yerbas - VERDEFLOR - NARANJA - 500 - Blowmax', 'Yerbas - VERDEFLOR - NARANJA - 500 - Modo Market', 'Yerbas - VERDEFLOR - PEPERINA - 500 - Blowmax', 'Yerbas - VERDEFLOR - SERRANA - 500 - Casa Segal', 'Yerbas - VERDEFLOR - TRADICIONAL ROJA CON PALO - 500 - Modo Market']
+
+Ejemplo 1 de output esperado (formato final):
+[ ['Yerbas - VERDEFLOR -  - 500 - Blowmax'], ['Yerbas - VERDEFLOR - BOLDO - 500 - Atomo', 'Yerbas - VERDEFLOR - BOLDO - 500 - Blowmax', 'Yerbas - VERDEFLOR - BOLDO - 500 - Modo Market'], ['Yerbas - VERDEFLOR - CEDRON - 500 - Atomo', 'Yerbas - VERDEFLOR - CEDRON - 500 - Blowmax', 'Yerbas - VERDEFLOR - CEDRON - 500 - Modo Market'], ['Yerbas - VERDEFLOR - HIERBAS - 500 - Atomo'], ['Yerbas - VERDEFLOR - MENTA - 500 - Atomo', 'Yerbas - VERDEFLOR - MENTA - 500 - Blowmax', 'Yerbas - VERDEFLOR - MENTA - 500 - Modo Market'], ['Yerbas - VERDEFLOR - NARANJA - 500 - Blowmax', 'Yerbas - VERDEFLOR - NARANJA - 500 - Modo Market'], ['Yerbas - VERDEFLOR - PEPERINA - 500 - Blowmax'], ['Yerbas - VERDEFLOR - SERRANA - 500 - Casa Segal'], ['Yerbas - VERDEFLOR - TRADICIONAL ROJA CON PALO - 500 - Modo Market'] ]
+
+Ejemplo 2 de input:
+['Shampoos - PLUSBELLE - ANTIOXIDANTE - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - BALANCE - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - BALANCE REPARADOR - 1000 - Blowmax', 'Shampoos - PLUSBELLE - BRILLO - 1000 - Blowmax', 'Shampoos - PLUSBELLE - BRILLO - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - BRILLO LUMINOSIDAD - 1000 - Modo Market', 'Shampoos - PLUSBELLE - CUIDADO SUAVIDAD - 1000 - Modo Market', 'Shampoos - PLUSBELLE - ESENCIA CONTROL FRIZZ - 1000 - Modo Market', 'Shampoos - PLUSBELLE - FRESCURA - 1000 - Modo Market', 'Shampoos - PLUSBELLE - FRESCURA - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - FRESCURA VITALIDAD - 1000 - Blowmax', 'Shampoos - PLUSBELLE - FUERZA ANTIOXID - 1000 - Atomo', 'Shampoos - PLUSBELLE - FUERZA ANTIOXIDANTE - 1000 - Modo Market', 'Shampoos - PLUSBELLE - HIDRATACION - 1000 - Blowmax', 'Shampoos - PLUSBELLE - NUTRICION - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - NUTRICION CR OLEO MACADA - 1000 - Blowmax', 'Shampoos - PLUSBELLE - NUTRICION CREME - 1000 - Modo Market', 'Shampoos - PLUSBELLE - PROTECCION - 1000 - Modo Market', 'Shampoos - PLUSBELLE - REACTIVACION HIDRATANTE - 1000 - Blowmax', 'Shampoos - PLUSBELLE - SUAVIDAD - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - SUAVIDAD MANZANA - 1000 - Blowmax', 'Shampoos - PLUSBELLE - VITALIDAD RENOVADORA - 1000 - Blowmax']
+
+Ejemplo 2 de output esperado (formato final):
+[['Shampoos - PLUSBELLE - ANTIOXIDANTE - 1000 - Casa Segal'], ['Shampoos - PLUSBELLE - BALANCE - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - BALANCE REPARADOR - 1000 - Blowmax'], ['Shampoos - PLUSBELLE - BRILLO - 1000 - Blowmax', 'Shampoos - PLUSBELLE - BRILLO - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - BRILLO LUMINOSIDAD - 1000 - Modo Market'], ['Shampoos - PLUSBELLE - CUIDADO SUAVIDAD - 1000 - Modo Market'], ['Shampoos - PLUSBELLE - ESENCIA CONTROL FRIZZ - 1000 - Modo Market'], ['Shampoos - PLUSBELLE - FRESCURA - 1000 - Modo Market', 'Shampoos - PLUSBELLE - FRESCURA - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - FRESCURA VITALIDAD - 1000 - Blowmax'], ['Shampoos - PLUSBELLE - FUERZA ANTIOXID - 1000 - Atomo', 'Shampoos - PLUSBELLE - FUERZA ANTIOXIDANTE - 1000 - Modo Market'], ['Shampoos - PLUSBELLE - HIDRATACION - 1000 - Blowmax'], ['Shampoos - PLUSBELLE - NUTRICION CR OLEO MACADA - 1000 - Blowmax', 'Shampoos - PLUSBELLE - NUTRICION CREME - 1000 - Modo Market', 'Shampoos - PLUSBELLE - NUTRICION - 1000 - Casa Segal'], ['Shampoos - PLUSBELLE - PROTECCION - 1000 - Modo Market'], ['Shampoos - PLUSBELLE - REACTIVACION HIDRATANTE - 1000 - Blowmax'], ['Shampoos - PLUSBELLE - SUAVIDAD - 1000 - Casa Segal', 'Shampoos - PLUSBELLE - SUAVIDAD MANZANA - 1000 - Blowmax'], ['Shampoos - PLUSBELLE - VITALIDAD RENOVADORA - 1000 - Blowmax']]
+
+Ejemplo 3 de input:
+['Arroces - GALLO - DOBLE CAROLINA - 1000 - Blowmax', 'Arroces - GALLO - DOBLE CAROLINA - 1000 - Modo Market', 'Arroces - GALLO - INTEGRAL SELECCION ESTU - 1000 - Atomo', 'Arroces - GALLO - LARGO FINO - 1000 - Atomo', 'Arroces - GALLO - LARGO FINO - 1000 - Casa Segal', 'Arroces - GALLO - LARGO FINO D.CAROLINA - 1000 - Atomo', 'Arroces - GALLO - LARGO FINO LARGO FIN - 1000 - Atomo', 'Arroces - GALLO - LARGO FINO SELEC - 1000 - Atomo', 'Arroces - GALLO - ORO - 1000 - Modo Market', 'Arroces - GALLO - ORO - 1000 - Modo Market', 'Arroces - GALLO - ORO PARBOIL - 1000 - Blowmax', 'Arroces - GALLO - PARBOIL - 1000 - Atomo', 'Arroces - GALLO - PARBOIL - 1000 - Casa Segal', 'Arroces - GALLO - PARBOIL SELEC - 1000 - Atomo']
+
+Ejemplo 3 de output esperado (formato final):
+[['Arroces - GALLO - DOBLE CAROLINA - 1000 - Blowmax', 'Arroces - GALLO - DOBLE CAROLINA - 1000 - Modo Market', 'Arroces - GALLO - LARGO FINO D.CAROLINA - 1000 - Atomo'], ['Arroces - GALLO - INTEGRAL SELECCION ESTU - 1000 - Atomo'], ['Arroces - GALLO - LARGO FINO - 1000 - Atomo', 'Arroces - GALLO - LARGO FINO - 1000 - Casa Segal'], ['Arroces - GALLO - LARGO FINO LARGO FIN - 1000 - Atomo'], ['Arroces - GALLO - LARGO FINO SELEC - 1000 - Atomo'], ['Arroces - GALLO - PARBOIL - 1000 - Atomo', 'Arroces - GALLO - PARBOIL - 1000 - Casa Segal', 'Arroces - GALLO - ORO - 1000 - Modo Market', 'Arroces - GALLO - ORO PARBOIL - 1000 - Blowmax'], ['Arroces - GALLO - PARBOIL SELEC - 1000 - Atomo']]
+
+- El output debe ser una lista de listas, donde cada sublista representa un grupo de productos equivalentes.
+- La salida debe estar en una única línea, sin saltos de línea (\n), sin tabulaciones (\t), ni ningún tipo de formato multilineal.
+- La salida debe poder escribirse directamente en un archivo `.txt`.
+- **No agregues ningún tipo de texto adicional**. Solo devuélveme la lista de listas, sin explicaciones, sin código ni instrucciones.
+
+Devuélveme únicamente la lista de listas, sin ningún texto adicional.
+"""

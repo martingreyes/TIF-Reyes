@@ -6,3 +6,4 @@ load_dotenv
 celery
 redis
 aiohttp
+google-genai
