@@ -7,3 +7,5 @@ __pycache__/
 .env
 WebScraping/marketscraper/marketscraper/spiders/__pycache__/
 Borrador/*
+CronJob/venv
+WebScraping/venv

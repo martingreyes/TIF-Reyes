@@ -34,6 +34,10 @@ class BlowmaxSpider(RedisSpider):
                 ]
     
     custom_settings = {
+        'DOWNLOAD_TIMEOUT': 20,
+        # 'RETRY_ENABLED': True,
+        # 'RETRY_TIMES': 2,
+        # 'REDIS_IDLE_BEFORE_CLOSE': 10,
         'ITEM_PIPELINES': {
             'marketscraper.pipelines.BlowmaxPrecioPipeline': 290,
             'marketscraper.pipelines.BlowmaxPipeline': 300,  
