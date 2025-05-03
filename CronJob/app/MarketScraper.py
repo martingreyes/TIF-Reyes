@@ -6,6 +6,8 @@ from datetime import datetime
 from dotenv import load_dotenv
 import aiohttp
 import requests
+from zoneinfo import ZoneInfo
+
 
 load_dotenv()
 
@@ -28,7 +30,7 @@ class MarketScraper:
     
     async def get_items(self, data: dict) -> pd.DataFrame:
     # def get_items(self, data: dict) -> pd.DataFrame:
-        timestamp = datetime.now()
+        timestamp = datetime.now(ZoneInfo("America/Argentina/Buenos_Aires"))
         spider_name = data.get("spider_name")
         items = data.get("items", [])
         df = pd.DataFrame(items)
@@ -71,7 +73,7 @@ class MarketScraper:
 
     async def get_stats(self, data: dict) -> pd.DataFrame:
     # def get_stats(self, data: dict) -> pd.DataFrame:
-        timestamp = datetime.now()
+        timestamp = datetime.now(ZoneInfo("America/Argentina/Buenos_Aires"))
 
         stats = {
             "__ingestion_timestamp": timestamp,
