@@ -39,10 +39,14 @@ class MarketScraper:
 
         df["id_producto"] = df.apply(
             lambda row: int(hashlib.sha256(
-                f"{row['marca'].strip().lower()}_{row['descripcion'].strip().lower()}_{row['volumen']}_{row['tienda'].strip().lower()}".encode("utf-8")
-            ).hexdigest()[:8], 16), 
+                f"{str(row['marca']).strip().lower().replace(' ', '')}_"
+                f"{str(row['descripcion']).strip().lower().replace(' ', '')}_"
+                f"{str(row['volumen'])}_"
+                f"{str(row['tienda']).strip().lower().replace(' ', '')}".encode("utf-8")
+            ).hexdigest()[:8], 16),
             axis=1
         )
+
 
         df = df.drop_duplicates(subset='id_producto', keep='first') 
 
