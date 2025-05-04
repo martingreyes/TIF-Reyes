@@ -4,3 +4,4 @@ sqlalchemy
 jsonify
 python-dotenv
 gunicorn
+gevent
