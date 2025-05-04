@@ -1,5 +1,5 @@
-from app.celery_config import app
-from app.MarketScraper import MarketScraper
+from main.celery_config import app
+from main.MarketScraper import MarketScraper
  
 @app.task
 def fetch_market_data(supermercado):

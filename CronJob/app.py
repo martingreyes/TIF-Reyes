@@ -1,8 +1,8 @@
-from app.MariaDBClient import MariaDBClient
-from app.MarketScraper import MarketScraper
-from app.GeminiClient import GeminiClient
-from app.celery_tasks import fetch_market_data
-from app.celery_config import app
+from main.MariaDBClient import MariaDBClient
+from main.MarketScraper import MarketScraper
+from main.GeminiClient import GeminiClient
+from main.celery_tasks import fetch_market_data
+from main.celery_config import app
 import pandas as pd
 import asyncio
 import logging
