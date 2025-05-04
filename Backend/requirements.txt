@@ -1,0 +1,6 @@
+flask
+pymysql
+sqlalchemy
+jsonify
+python-dotenv
+gunicorn
