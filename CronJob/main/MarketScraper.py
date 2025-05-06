@@ -8,6 +8,8 @@ import aiohttp
 from aiohttp import ClientTimeout
 import requests
 from zoneinfo import ZoneInfo
+import logging
+import asyncio
 
 
 load_dotenv()
@@ -24,11 +26,12 @@ class MarketScraper:
     #     return response.json()
 
     async def fetch_data(self, spider_name: str) -> dict:
-        timeout = ClientTimeout(total=360 if spider_name.lower() == "blowmax" else None)
+        timeout = ClientTimeout(total=800 if spider_name.lower() == "blowmax" else None)
         async with aiohttp.ClientSession() as session:
             async with session.get(self.url + spider_name, timeout=timeout ) as response:
                 response.raise_for_status()
                 return await response.json()
+
     
     async def get_items(self, data: dict) -> pd.DataFrame:
     # def get_items(self, data: dict) -> pd.DataFrame:
