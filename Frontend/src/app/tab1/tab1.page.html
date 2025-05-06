@@ -1,0 +1,72 @@
+<app-header></app-header>
+
+<h3 style="margin-left: 5%;">Categorías</h3> 
+
+<ion-grid [fixed]="true">
+    <ion-content>
+    <ion-card-content>
+            <ion-list>
+                        <!-- <ion-item (click)="ver()"> -->
+                        <ion-item (click)="ver('Arroces')">
+                            <ion-thumbnail slot="start">
+                                <!-- <i class="fa-solid fa-bowl-rice fa-3x"></i> -->
+                                <img src="assets/rice.svg" alt="" style="background-color: white;">
+                            </ion-thumbnail>
+                            <ion-label style="font-size:large;">Arroces</ion-label>
+                        </ion-item>
+
+                        <ion-item (click)="ver('Fideos')">
+                            <ion-thumbnail slot="start">
+                                <img src="assets/pastas.svg" alt="" style="background-color: white;">
+                            </ion-thumbnail>
+                            <ion-label style="font-size:large;">Fideos</ion-label>
+                        </ion-item>
+
+                        <ion-item (click)="ver('Gaseosas')">
+                            <ion-thumbnail slot="start">
+                                <img src="assets/soda.svg" alt="" style="background-color: white;">
+                            </ion-thumbnail>
+                            <ion-label style="font-size:large;">Gaseosas</ion-label>
+                        </ion-item>
+
+                        <ion-item (click)="ver('Jabones')">
+                            <ion-thumbnail slot="start">
+                                <img src="assets/soap.svg" alt="" style="background-color: white;">
+                            </ion-thumbnail>
+                            <ion-label style="font-size:large;">Jabónes</ion-label>
+                        </ion-item>
+
+                        <ion-item (click)="ver('Leches')">
+                            <ion-thumbnail slot="start">
+                                <img src="assets/milk.svg" alt="" style="background-color: white;">
+                            </ion-thumbnail>
+                            <ion-label style="font-size:large;">Leches</ion-label>
+                        </ion-item>
+
+                        <ion-item (click)="ver('Panes')">
+                            <ion-thumbnail slot="start">
+                                <img src="assets/bread.svg" alt="" style="background-color: white;">
+                            </ion-thumbnail>
+                            <ion-label style="font-size:large;">Panes</ion-label>
+                        </ion-item>
+
+                        <ion-item (click)="ver('Shampoos')">
+                            <ion-thumbnail slot="start">
+                                <img src="assets/shampoo.svg" alt="" style="background-color: white;">
+                            </ion-thumbnail>
+                            <ion-label style="font-size:large;">Shampoos</ion-label>
+                        </ion-item>
+
+                        <ion-item (click)="ver('Yerbas')">
+                            <ion-thumbnail slot="start">
+                                <img src="assets/herb.svg" alt="" style="background-color: white;">
+                            </ion-thumbnail>
+                            <ion-label style="font-size:large;">Yerba Mate</ion-label>
+                        </ion-item>
+    
+            </ion-list>
+    </ion-card-content>
+    <ion-infinite-scroll>
+    </ion-infinite-scroll>
+</ion-content>
+    
