@@ -5,3 +5,4 @@ jsonify
 python-dotenv
 gunicorn
 gevent
+flask_cors

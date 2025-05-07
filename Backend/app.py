@@ -2,9 +2,10 @@ from flask import Flask, jsonify, request # type: ignore
 from main.MariaDBClient import MariaDBClient
 from dotenv import load_dotenv
 import logging
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 load_dotenv()
 
 mariadbclient = MariaDBClient()
