@@ -29,7 +29,6 @@ def get_productos():
             "data": data
         }
 
-    
     elif descripcion:
         data = mariadbclient.get_products_by_description(descripcion)
         cantidad_total_productos = sum(len(subgrupo) for subgrupo in data)
