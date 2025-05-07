@@ -1,3 +1,34 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
+
+
+<ion-modal #modal [isOpen]="isModalOpen" (ionBackdropTap)="setOpen(false)">
+  <ng-template>
+
+    <ion-buttons slot="end" class="close-button">
+      <ion-button (click)="setOpen(false)" size="large">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  
+    <ion-content class="ion-padding">
+
+      <h1 style="text-align: center">Bienvenido a Versus</h1>
+      <br>
+      <h3 style="text-align: center">¿Dónde compro?</h3>
+      <br>
+      <h4>1) Elegí la categoría</h4>
+      <h4>2) Agregá productos a tu carrito</h4>
+      <h4>3) Hacé click en Carrito <ion-icon style="vertical-align: middle;" class="aligned-icon" aria-hidden="true" name="cart"></ion-icon></h4>
+      <h4>4) Ajustá cantidades</h4>
+      <h4>5) Hacé click en VER FACTURAS</h4>
+      <h4>6) Visualizá los costos estimados en cada supermercado para tu carrito, ordenados del más barato al más caro</h4>
+      <h4>Para obtener más información, hacé click en <ion-icon style="vertical-align: middle;" class="aligned-icon" aria-hidden="true" name="information-circle"></ion-icon></h4>
+      <div style="display: flex; justify-content:end; margin-top: 20px;">
+        <ion-button (click)="setOpen(false)">ENTENDIDO</ion-button>
+      </div>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -3,12 +3,7 @@
   <ion-col size="12" size-sm="5">
     <ion-card style="margin-top: -2px; max-width: 800px;">
       <ion-card-content style="font-size: medium; padding: 10px;">
-        <ng-container *ngIf="categoria === 'Gaseosas' || categoria === 'Shampoos'; else notGaseosasOrShampoos">
-          {{ item[0].producto }} ml
-        </ng-container>
-        <ng-template #notGaseosasOrShampoos>
-          {{ item[0].producto }} g
-        </ng-template>
+          {{ item[0].nombre }}
       </ion-card-content>
   
       <ion-card-content style="font-size: small; padding: 10px;"> Disponible en: 

@@ -1,17 +1,65 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="auto">
+        <ion-icon style="margin-top: 40%;" (click)="home()" name="arrow-back" size="large"></ion-icon>
+      </ion-col>
+      <ion-col size="auto">
+        <h3 >Categorías</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card style="max-width: 1200px; margin: 20px auto; overflow: hidden;">
+          <ion-card-header>
+            <ion-card-title>Trabajo Integrador Final de Martín Reyes</ion-card-title>
+            <ion-card-subtitle>Web Scraping de supermercados mendocinos</ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content style="text-align: justify;">
+
+            <p><b>¿Qué es Versus?</b></p>
+            <p>
+              Versus es una aplicación web que compara los precios de productos en 
+              {{supermarkets?.length || 'varios'}} supermercados en línea de Mendoza:
+              
+              <!-- Lista dinámica de supermercados -->
+              <span *ngFor="let market of supermarkets; let last = last">
+                <a [href]="market.url" target="_blank">{{market.supermercado}}</a>{{last ? '' : ', '}}
+              </span>
+              . Esta aplicación utiliza técnicas de Web Scraping para recopilar información de ocho tipos de artículos diferentes, que incluyen arroz, fideos, gaseosas, jabones, leches, panes, shampoos y yerba mate. Los precios se actualizan todos los días directamente desde los sitios web de los supermercados, lo que permite a los usuarios comparar fácilmente los costos y determinar el supermercado más barato para su carrito de compras.
+              
+            </p> 
+            <br>
+            <p><b>¿De cuándo son los precios?</b></p>
+            <p>Precios actualizados el <b>{{lastUpdate}}</b></p>
+            <br>
+            <p><b>¿Cómo utilizo Versus?</b></p>
+            <ol>
+              <li>Elegí la categoría</li>
+              <li>Agregá productos a tu carrito</li>
+              <li>Hacé click en Carrito <ion-icon style="vertical-align: middle;" class="aligned-icon" aria-hidden="true" name="cart"></ion-icon></li>
+              <li>Ajustá cantidades</li>
+              <li>Hacé click en VER FACTURAS</li>
+              <li>Visualizá los costos estimados en cada supermercado para tu carrito, ordenados del más barato al más caro</li>
+            </ol>
+            <br>
+
+
+          </ion-card-content>
+          
+
+
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll>
+  </ion-infinite-scroll>
 </ion-content>

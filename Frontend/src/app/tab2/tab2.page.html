@@ -1,17 +1,102 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content >
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="auto">
+        <ion-icon style="margin-top: 40%;" (click)="home()" name="arrow-back" size="large"></ion-icon>
+      </ion-col>
+      <ion-col size="auto">
+        <h3 >Categorías</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ng-container *ngFor="let tiendaObj of facturas2, let i = index">
+
+
+    <ion-card  style="max-width: 1200px; margin: 20px auto; overflow: hidden">
+      
+        <ion-row style="align-items: center;">
+          <ion-col size="auto"><ion-icon [style.color]="getIconColor(i)" size="large" [name]="getIconName(i)"></ion-icon></ion-col>
+          <a [href]="getTiendaUrl(tiendaObj)" target="_blank">
+           <ion-col><ion-card-title>{{ getKey(tiendaObj) | uppercase}}</ion-card-title></ion-col>
+          </a>     
+         </ion-row>
+
+         <ion-grid>
+
+          <ion-row>
+            <ion-col size="6"><ion-card-content style="font-size: small;"> Artículo</ion-card-content></ion-col>
+            <ion-col size="3" ><ion-card-content style="font-size: small;">   Cant.</ion-card-content></ion-col>
+            <ion-col size="3"><ion-card-content style="font-size: small;">P.U.</ion-card-content></ion-col>
+          </ion-row>
+  
+          <ion-list style="max-height: 200px; overflow-y: auto;">
+            <ng-container *ngFor="let producto of tiendaObj[getKey(tiendaObj)]; let x = index">
+             
+                <ion-row>
+                  <ion-col size="6" >
+     
+
+                    <ng-container *ngIf="producto.precio === null; else notNull">
+                      <ion-card-content>
+                        <span style="color: rgb(252, 51, 91); font-size: small;">{{ producto.producto }}</span>
+                      </ion-card-content>
+                    </ng-container>
+  
+                  <ng-template #notNull>
+                      <a href="{{ producto.url }}" target="_blank">
+                          <ion-card-content>
+                            <ng-container *ngIf="obtenerUltimaPalabra(producto.producto)  === 'Gaseosa' || obtenerUltimaPalabra(producto.producto) === 'Leche' || obtenerUltimaPalabra(producto.producto)  === 'Shampoo'; else otraOpcion">
+                              <span style="font-size: small;">{{ producto.producto }} ml</span>
+                            </ng-container>
+                            <ng-template #otraOpcion>
+                              <span style="font-size: small;">{{ producto.producto }} g</span>
+                            </ng-template>
+
+                          </ion-card-content>
+                      </a>
+                  </ng-template>
+                
+                  </ion-col>
+                  <ion-col size="3">
+                    <ion-card-content>
+                      <span style="font-size: small;">{{ cantidades[x] }}</span>
+                    </ion-card-content>
+                    
+                  </ion-col>
+                  <ion-col size="3">
+                    <ion-card-content *ngIf="producto.precio !== null">
+                      <span style="font-size: small;">${{ producto.precio }}</span>
+                    </ion-card-content>
+            
+                    
+                  </ion-col>
+                </ion-row>
+
+                 <!-- <ion-row>
+                  <ion-col size="12">
+                    <div class="separator"></div>
+                  </ion-col>
+                </ion-row>  -->
+              
+            </ng-container>
+           </ion-list>
+
+         </ion-grid>    
+         
+         <ion-card-content>
+          <ion-card-title style="font-size: medium" > <strong>TOTAL $ {{data[i][2]}} </strong></ion-card-title>
+         </ion-card-content>
+
+         
+
+
+    </ion-card>
+
+  
+  </ng-container>
+  
 </ion-content>

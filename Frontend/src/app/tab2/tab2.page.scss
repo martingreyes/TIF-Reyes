@@ -1,0 +1,35 @@
+swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .counter__section {
+    display: flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+
+  .swiper-button-next {
+    background-color: white;
+    color: red;
+  }
+
+  .separator {
+    border-bottom: 0.5px solid gray; /* Establece el borde inferior de la línea */
+    margin-bottom: 10px; /* Espacio después de la línea */
+  }
+
+  .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+

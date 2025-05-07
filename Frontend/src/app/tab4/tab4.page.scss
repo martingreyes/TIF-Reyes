@@ -1,0 +1,15 @@
+.counter__section {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+  }
+
+  .separator {
+    border-bottom: 1px solid gray; /* Establece el borde inferior de la línea */
+    margin-bottom: 10px; /* Espacio después de la línea */
+  }
+
+  
+  .button2:hover {
+    color: black;
+  }

@@ -1,0 +1,78 @@
+<app-header></app-header>
+
+<ion-content> 
+  <ion-grid>
+    <ion-row>
+      <ion-col size="auto">
+        <ion-icon style="margin-top: 40%;" (click)="home()" name="arrow-back" size="large"></ion-icon>
+      </ion-col>
+      <ion-col size="auto">
+        <h3 >Categorías / {{categoria}}</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid>
+
+    <ng-container *ngFor="let item of articulos; let i = index">
+
+      <!-- TODO ACA DEBERIA LLAMARSE A UN COMPONENTE ARTICULO  -->
+
+      <!-- <app-articulo [item]="item" [categoria]="categoria" [cantidad]="articulosYcantidad[i].cantidad"></app-articulo> -->
+
+      <ion-row style="max-width: 1700px; margin-left: auto; overflow: hidden;">
+
+        <ion-col size="12" size-sm="5">
+          <ion-card style="margin-top: -2px; max-width: 800px;">
+            <ion-card-content style="font-size: medium; padding: 10px;">
+                <ion-label>{{item[0].nombre }}</ion-label>
+
+            </ion-card-content>
+
+            <ion-card-content style="font-size: small; padding: 10px;"> Disponible en: 
+              <ng-container *ngFor="let data of item; let i=index">
+
+                <a href={{data.url}} target="_blank">
+                  {{ data.supermercado }}
+                </a>  
+                <ng-container *ngIf="i !== item.length - 1">, </ng-container>
+              </ng-container>
+            </ion-card-content>
+            
+          </ion-card>
+        </ion-col>
+
+        <ion-row>
+
+          <ion-col [offset]="28" size="6" size-sm="6" offset-sm="0">
+            <!-- <ion-button class="button button2" (click)="addToCart(item[0])">Agregar</ion-button> -->
+            <ion-button class="button button2" (click)="addToCart(item)">Agregar</ion-button>
+          </ion-col>
+          
+          
+        </ion-row>
+        
+      </ion-row>
+
+ 
+      <ion-row>
+        <ion-col size="12">
+          <div class="separator"></div>
+        </ion-col>
+      </ion-row>
+
+        <!-- TODO HSTA ACA DEBERIA LLAMARSE A UN COMPONENTE ARTICULO  -->
+
+    </ng-container>
+
+  </ion-grid>
+  
+  <ion-infinite-scroll>
+  </ion-infinite-scroll>
+
+  
+</ion-content>
+
+
+
