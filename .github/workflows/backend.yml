@@ -3,7 +3,7 @@ name: Build and Push Backend Image
 on:
   push:
     paths:
-      - 'CronJob/**'
+      - 'Backend/**'
       - '.github/workflows/backend.yml'
 
 jobs:
