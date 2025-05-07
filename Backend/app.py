@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request # type: ignore
 from main.MariaDBClient import MariaDBClient
 from dotenv import load_dotenv
 import logging
-from flask_cors import CORS
+from flask_cors import CORS # type: ignore
 
 app = Flask(__name__)
 CORS(app)
@@ -43,7 +43,6 @@ def get_productos():
         return jsonify({"error": "Debe proporcionar al menos un parámetro: 'categoria' o 'descripcion'"}), 400
 
     return jsonify(response), 200
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
