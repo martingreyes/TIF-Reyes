@@ -36,7 +36,7 @@ class MariaDBClient:
 
                 for subgrupo in subgrupos:
                     productos_result = session.execute(
-                        text("SELECT p.categoria as categoria, p.nombre as nombre, p.precio as precio, s.nombre as supermercado, p.url as url FROM productos p INNER JOIN supermercados s on p.id_supermercado = s.id_supermercado WHERE p.categoria = :categoria  AND p.id_grupo = :grupo AND p.id_subgrupo = :subgrupo"),
+                        text("SELECT p.categoria as categoria, p.nombre as nombre, p.precio as precio, s.nombre as supermercado, p.url as url, p.id_producto as p_id FROM productos p INNER JOIN supermercados s on p.id_supermercado = s.id_supermercado WHERE p.categoria = :categoria  AND p.id_grupo = :grupo AND p.id_subgrupo = :subgrupo"),
                         {"categoria": categoria,  "grupo": grupo, "subgrupo": subgrupo}
                     )
 
@@ -67,7 +67,8 @@ class MariaDBClient:
                             "nombre": ' '.join(nombre_mod.title().split()),
                             "precio": row.precio,
                             "supermercado": row.supermercado.title(),
-                            "url": row.url
+                            "url": row.url,
+                            "p_id": row.p_id
                         }
                         articulos.append(articulo)
 
@@ -102,7 +103,7 @@ class MariaDBClient:
 
                 for subgrupo in subgrupos:
                     productos_result = session.execute(
-                        text(f"SELECT p.categoria as categoria, p.nombre as nombre, p.precio as precio, s.nombre as supermercado, p.url as url FROM productos p INNER JOIN supermercados s ON p.id_supermercado = s.id_supermercado WHERE UPPER(p.nombre) LIKE :nombre AND p.id_grupo = :grupo AND p.id_subgrupo = :subgrupo"),
+                        text(f"SELECT p.categoria as categoria, p.nombre as nombre, p.precio as precio, s.nombre as supermercado, p.url as url, p.id_producto as p_id FROM productos p INNER JOIN supermercados s ON p.id_supermercado = s.id_supermercado WHERE UPPER(p.nombre) LIKE :nombre AND p.id_grupo = :grupo AND p.id_subgrupo = :subgrupo"),
                         {"nombre": f"%{nombre}%", "grupo": grupo, "subgrupo": subgrupo}
                     )
 
@@ -134,7 +135,8 @@ class MariaDBClient:
                             "nombre": ' '.join(nombre_mod.title().split()),
                             "precio": row.precio,
                             "supermercado": row.supermercado.title(),
-                            "url": row.url
+                            "url": row.url,
+                            "p_id": row.p_id
                         }
                         articulos.append(articulo)
 
