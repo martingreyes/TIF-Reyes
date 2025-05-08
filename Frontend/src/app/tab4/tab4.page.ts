@@ -1,6 +1,5 @@
 import { Component,Input,OnInit,Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MycartService } from '../services/mycart.service';
 import { BackendApiService } from '../services/backend-api.service';
@@ -18,6 +17,7 @@ export class Tab4Page implements OnInit{
   categoria: any;
   item: any
   articulosYcantidad: any
+  showToast = false
   
   constructor(
     private router: Router,
@@ -44,7 +44,7 @@ export class Tab4Page implements OnInit{
     this.backendApi.getProductosByCategory(categoria).subscribe({
       next: (response: any) => {
         this.articulos = response.data; // Extrae solo el array de data
-        console.log('Cantidad de productos de la categoria ', this.categoria, ' : ', response.cantidad_productos)
+        // console.log('Cantidad de productos de la categoria ', this.categoria, ' : ', response.cantidad_productos)
         // console.log('Productos cargados:', this.articulos);
       },
       error: (error) => {
@@ -60,6 +60,14 @@ export class Tab4Page implements OnInit{
   addToCart(product: any) {
     this.mycartService.addToCart(product);
     this.refresh.emit(true);
+    this.showToastMessage()
+  }
+
+  showToastMessage() {
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000);
   }
 
 

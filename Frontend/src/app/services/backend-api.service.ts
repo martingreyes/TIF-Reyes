@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,12 @@ export class BackendApiService {
     return this.http.get(`${this.apiUrl}/productos/`, { params });
   }
 
-  getProductosByDescription(descripcion: string): Observable<any> {
-    const params = new HttpParams().set('descripcion', descripcion);
-    return this.http.get(`${this.apiUrl}/productos/`, { params });
+  getProductosByDescription(description: string): Observable<any> {
+    // Verifica que la descripción no esté vacía
+    if (!description || description.trim().length === 0) {
+      return throwError(() => new Error('Debe ingresar un término de búsqueda'));
+    }
+    
+    return this.http.get(`${this.apiUrl}/productos?descripcion=${encodeURIComponent(description)}`);
   }
 }

@@ -7,10 +7,21 @@
         <ion-icon style="margin-top: 40%;" (click)="home()" name="arrow-back" size="large"></ion-icon>
       </ion-col>
       <ion-col size="auto">
-        <h3 >Categorías / {{categoria}}</h3>
+        <h3>Buscador</h3>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-toolbar>
+    <ion-searchbar 
+    [(ngModel)]="searchTerm"
+    (ionChange)="searchProducts()"
+    placeholder="Buscar productos..."
+    debounce="500"
+    showCancelButton="focus"
+    clearIcon="close-circle">
+  </ion-searchbar>
+  </ion-toolbar>
 
 
   <ion-grid>
