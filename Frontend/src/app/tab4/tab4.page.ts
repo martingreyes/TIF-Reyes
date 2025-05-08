@@ -45,7 +45,7 @@ export class Tab4Page implements OnInit{
       next: (response: any) => {
         this.articulos = response.data; // Extrae solo el array de data
         console.log('Cantidad de productos de la categoria ', this.categoria, ' : ', response.cantidad_productos)
-        console.log('Productos cargados:', this.articulos);
+        // console.log('Productos cargados:', this.articulos);
       },
       error: (error) => {
         console.error('Error al cargar productos:', error);

@@ -2,182 +2,139 @@ import { Component, OnInit } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { MycartService } from '../services/mycart.service';
 import { Router } from '@angular/router';
+
 register();
+
 @Component({
   standalone: false,
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-
-export class Tab2Page implements OnInit{
+export class Tab2Page implements OnInit {
   cartItems: any[] = [];
-  cantidades: any[] = []
-  totales: any[] = []
-  nulos: any[] = []
   isModalOpen = false;
   tiendaObjKey: string | undefined;
-  data: any[] = []
-  supers: any[] = ["Atomo","Blowmax","ModoMarket","Segal","Supera"]
-  facturas2: any[] = [{"Atomo":[]},{"Blowmax":[]},{"ModoMarket":[]},{"Segal":[]},{"Supera":[]},]
+  supermarketGroups: { [supermercado: string]: any[] } = {};
+  sortedSupermarkets: { 
+    supermercado: string, 
+    productos: any[], 
+    total: number, 
+    missingProducts: number,
+    url: string  // <- Nueva propiedad para la URL base
+  }[] = [];
+
+  // Mapeo de supermercados a sus URLs base
+  private supermarketUrls: { [key: string]: string } = {
+    'Atomo': 'https://atomoconviene.com/atomo-ecommerce/',
+    'Modo Market': 'https://www.modomarket.com',
+    'Blowmax': 'https://blowmax.com.ar',
+    'Casa Segal': 'https://www.casa-segal.com',
+    'Supera': 'https://supera.com.ar'
+  };
 
   ngOnInit() {
     this.cartItems = this.mycartService.getCartItems();
     this.mycartService.cartUpdated.subscribe((cartItems: any[]) => {
       this.cartItems = cartItems;
-    });    
-    this.getFacturas()
-    this.calcularTotal()
-    this.ordenarFacturas()
+      this.groupBySupermarket();
+    });
+    console.log('Carrito:',this.cartItems)
+    this.groupBySupermarket();
   }
 
-  
-  getFacturas() {
+  constructor(
+    private mycartService: MycartService,
+    private router: Router,
+  ) {}
 
-    for (let x = 0; x < this.cartItems.length; x++) {
-      let quantity =  this.cartItems[x].quantity
-      this.cantidades.push(quantity)
-
-      for (let i = 0; i < Object.keys(this.cartItems[x]).length - 1; i++) {  
-        switch (this.cartItems[x][i].tienda) {
-          case 'Atomo':
-            this.facturas2[0].Atomo.push(this.cartItems[x][i])
-            break;
-          case 'Blowmax':
-            this.facturas2[1].Blowmax.push(this.cartItems[x][i])
-            break;
-          case 'ModoMarket':
-            this.facturas2[2].ModoMarket.push(this.cartItems[x][i])
-            break;
-          case 'Segal':
-            this.facturas2[3].Segal.push(this.cartItems[x][i])
-            break;
-          case 'Supera':
-            this.facturas2[4].Supera.push(this.cartItems[x][i])
-            break;
+  groupBySupermarket(): void {
+    const allSupermarkets = new Set<string>();
+    this.cartItems.forEach(item => {
+      Object.keys(item).forEach(key => {
+        if (key !== 'quantity' && item[key]?.supermercado) {
+          allSupermarkets.add(item[key].supermercado);
         }
-      }
-    }
-
-    let p_ids: any[] = [];
-    let nombre_productos: any[] = [];
-
-    for (let x = 0; x < this.facturas2.length; x++) {
-
-      const tienda = this.facturas2[x];
-
-      Object.keys(tienda).forEach((nombreTienda) => {
-    
-        const productos = tienda[nombreTienda];
-    
-        productos.forEach((producto: any) => {
-
-          if (!p_ids.includes(producto.p_id)) {
-              p_ids.push(producto.p_id);
-              nombre_productos.push(producto.producto);
-            }
-
-        });
       });
-    }
+    });
 
+    this.supermarketGroups = {};
+    allSupermarkets.forEach(supermercado => {
+      this.supermarketGroups[supermercado] = [];
+    });
 
-    for (let x = 0; x < this.facturas2.length; x++) {
+    this.cartItems.forEach(item => {
+      const firstProductKey = Object.keys(item).find(key => key !== 'quantity');
+      const productName = firstProductKey ? item[firstProductKey]?.nombre : 'Producto sin nombre';
+      const productId = firstProductKey ? item[firstProductKey]?.p_id : 0;
+      const quantity = item.quantity;
 
-      const tienda = this.facturas2[x];
-    
-      Object.keys(tienda).forEach((nombreTienda) => {
-      
-
-            const productos = tienda[nombreTienda];
-            let p_ids_supermercado: any[] = [];
-            productos.forEach((producto: any) => {
-    
-            p_ids_supermercado.push(producto.p_id)
-            });
-
-            let faltantes = p_ids.filter(p_id => !p_ids_supermercado.includes(p_id));
-  
-            for (let i = 0; i < faltantes.length; i++) {
-              let posicion = p_ids.indexOf(faltantes[i])
-          
-              let nombre_product = nombre_productos[posicion]
-              let product = {
-                marca: null,
-                p_id: faltantes[i],
-                precio: null,
-                producto: nombre_product,
-                tienda: nombreTienda,
-                url: null,
-                volumen: null
-            }
-              productos.splice(posicion,0,product)
-            }
+      allSupermarkets.forEach(supermercado => {
+        let productInSupermarket: any = null;
+        Object.keys(item).forEach(key => {
+          if (key !== 'quantity' && item[key]?.supermercado === supermercado) {
+            productInSupermarket = item[key];
+          }
         });
 
-      }  
-  }
+        if (productInSupermarket) {
+          this.supermarketGroups[supermercado].push({
+            nombre: productInSupermarket.nombre,
+            p_id: productInSupermarket.p_id,
+            precio: productInSupermarket.precio,
+            url: productInSupermarket.url, // URL específica del producto
+            quantity: quantity
+          });
+        } else {
+          this.supermarketGroups[supermercado].push({
+            nombre: productName,
+            p_id: productId,
+            precio: null,
+            url: null,
+            quantity: quantity
+          });
+        }
+      });
+    });
 
+    // Calcular total, productos faltantes y asignar URL base
+    this.sortedSupermarkets = Object.keys(this.supermarketGroups).map(supermercado => {
+      const productos = this.supermarketGroups[supermercado];
+      let total = 0;
+      let missingProducts = 0;
 
-  calcularTotal() {
+      productos.forEach((producto: any) => {
+        if (producto.precio !== null) {
+          total += parseFloat(producto.precio) * producto.quantity;
+        } else {
+          missingProducts++;
+        }
+      });
 
-    for (let x = 0; x < this.facturas2.length; x++) {
+      return {
+        supermercado,
+        productos,
+        total,
+        missingProducts,
+        url: this.supermarketUrls[supermercado] || '#' // Asignar URL base
+      };
+    });
 
-      const tienda = this.facturas2[x];
-    
-      Object.keys(tienda).forEach((nombreTienda) => {
-            const productos = tienda[nombreTienda];
-            let suma = 0
-            let nulo = 0
-            let indice_producto = 0
-            productos.forEach((producto: any) => {
-              console.log(producto.tienda)
-              if (producto.precio === null) {
-                console.log("precio",producto.precio,"es null")
-                nulo = nulo + 1
-              }
-              suma = suma + producto.precio*this.cantidades[indice_producto]
-              indice_producto = indice_producto + 1
-            });
-            this.totales.push(suma)
-            this.nulos.push(nulo)
-        });
-      }  
-  }
-
-
-  ordenarFacturas() {
-    for (let x = 0; x < this.supers.length; x++) {
-      this.data.push([this.supers[x],this.nulos[x],this.totales[x]])
-    }
-
-   this.data.sort((a, b) => {
-      // Ordenar por el segundo elemento ascendente
-      if (a[1] !== b[1]) {
-          return a[1] - b[1];
+    // Ordenar (misma lógica anterior)
+    this.sortedSupermarkets.sort((a, b) => {
+      if (a.missingProducts === 0 && b.missingProducts === 0) {
+        return a.total - b.total;
+      } else if (a.missingProducts === 0) {
+        return -1;
+      } else if (b.missingProducts === 0) {
+        return 1;
       } else {
-          // Si los segundos elementos son iguales, ordenar por el tercer elemento ascendente
-          return a[2] - b[2];
+        return b.missingProducts - a.missingProducts || b.total - a.total;
       }
-  });
+    });
 
-    console.log(this.data)
-    let orden: any = {};
-    for (let x = 0; x < this.data.length; x++) {
-      orden[this.data[x][0]] = x
-    }
-    console.log(orden)
-
-    this.facturas2.sort((a, b) => {
-      const keyA = Object.keys(a)[0];
-      const keyB = Object.keys(b)[0];
-      return orden[keyA] - orden[keyB];
-  });
-
-    console.log(this.facturas2)
-
+    console.log('Supermercados ordenados con URLs:', this.sortedSupermarkets);
   }
-
 
   getIconColor(index: number): string {
     // Asigna el color en función del índice
@@ -200,51 +157,21 @@ export class Tab2Page implements OnInit{
     }
   }
 
-
-
-  constructor(
-    private mycartService: MycartService,
-    private router: Router,
-  ) {}
-
-  getKey(obj: any): string {
-    return Object.keys(obj)[0];
+  formatPrice(precio: string): string {
+    // Verificamos si el precio termina en ".00"
+    if (precio.endsWith('.00')) {
+      return precio.slice(0, -3); // Eliminamos los últimos 3 caracteres (".00")
+    }
+    return precio; // Dejamos el precio tal cual si tiene otros decimales
   }
   
-  getTiendaUrl(tiendaObj: any): string {
-    const tienda = this.getKey(tiendaObj); // Obtener el nombre de la tienda
 
-    // Asignar la URL correspondiente según el nombre de la tienda
-    switch (tienda) {
-        case 'Atomo':
-            return 'https://atomoconviene.com/atomo-ecommerce/';
-        case 'ModoMarket':
-            return 'https://www.modomarket.com';
-        case 'Blowmax':
-            return 'https://blowmax.com.ar';
-        case 'Segal':
-            return 'https://www.casa-segal.com';
-        case 'Supera':
-            return 'https://supera.com.ar';
-        default:
-            return '#'; // En caso de que no haya una URL definida para la tienda
-    }
-}
+  setOpen(isOpen: boolean, key?: string) {
+    this.isModalOpen = isOpen;
+    this.tiendaObjKey = key;
+  }
 
-obtenerUltimaPalabra(cadena: string): string {
-  const palabras = cadena.split(' ');
-  return palabras[0];
-}
-
-setOpen(isOpen: boolean, key?: string) {
-  this.isModalOpen = isOpen;
-  this.tiendaObjKey = key;
-
-}
-
-home() {
-  this.router.navigateByUrl("")
-}
-
-  
+  home() {
+    this.router.navigateByUrl("");
+  }
 }
