@@ -40,7 +40,7 @@ class ModoMarketPipeline:
                     "La Tranquera","Yervita","Don Lucas","Don Arregui","La Hoja", "Nobleza  Gaucha", "Pipore","Canarias","Cachamate"]
 
     marcas_fideos = ["Terrabusi","Matarazzo","Don Vicente","Lucchetti","Robles","San Agustin",
-                    "Favorita","Knorr","Soyarroz","Grandiet", "Arcor", "Caseritos", "Yuka","Wakas"]
+                    "Favorita","Knorr","Soyarroz","Grandiet", "Arcor", "Caseritos", "Yuka","Wakas","Barilla"]
 
     def capturar_marca(self,nombre):
         if any(marca in nombre for marca in self.marcas_yerbas):

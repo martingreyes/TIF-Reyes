@@ -154,6 +154,7 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Wakas Penne Rigate Maiz X 300 G"), "Penne Rigate Maiz")
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Yuka Tirabuzon Garbanzo S/gluten X 250 G"), "Tirabuzon Garbanzo S/gluten")
         self.assertEqual(modoMarket.capturar_descripcion("Gaseosa Pritty Limon X 3 Lt"), "")
+        self.assertEqual(modoMarket.capturar_descripcion("Fideos Barilla Tortiglioni X 500g"), "Tortiglioni")
     
     def test_volumen(self):
         modoMarket = ModoMarketPipeline()
@@ -231,7 +232,7 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_volumen('Sprite Lata X 354cc'), "354")
         self.assertEqual(modoMarket.capturar_volumen("Pan Rebanado Dialecto Multicereal X 360 Gr"), "360")
 
-
+        self.assertEqual(modoMarket.capturar_volumen("Fideos Barilla Tortiglioni X 500g"), "500")
         self.assertEqual(modoMarket.capturar_volumen("Jabon De Glicerina Rexona Neutro 3 X 90 G"), "270")
         self.assertEqual(modoMarket.capturar_volumen("Jabon Lux Orquidea Negra X 125 G"), "125")
         self.assertEqual(modoMarket.capturar_volumen("Jabon Dove Cuida Y Protege X 90 Gr"), "90")
