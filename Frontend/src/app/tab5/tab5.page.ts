@@ -36,14 +36,18 @@ export class Tab5Page implements OnInit {
   }
 
   ngOnInit() {
-    // Configuramos el debounce para las búsquedas
     this.searchSubject.pipe(
-      debounceTime(500), // Espera 500ms después de la última tecla
-      distinctUntilChanged() // Solo ejecuta si el valor cambió
-    ).subscribe(searchTerm => {
-      this.searchProducts();
+      debounceTime(500),
+      distinctUntilChanged()
+    ).subscribe(term => {
+      if (term && term.trim().length > 0) {
+        this.loadProductos(term.trim());
+      } else {
+        this.loadProductos(this.categoria || '');
+      }
     });
   }
+  
 
   searchProducts() {
     if (this.searchTerm && this.searchTerm.trim().length > 0) {
@@ -55,26 +59,33 @@ export class Tab5Page implements OnInit {
   }
 
   onSearchInput(event: any) {
-    this.searchSubject.next(event.target.value);
+    const value = event.target.value;
+    this.searchSubject.next(value);
   }
+  
 
-  loadProductos(description: string) {
-    this.loading = true; // Activa spinner
+  loadProductos(searchParam: string) {
+    // Evita peticiones vacías
+    if (!searchParam) {
+      this.articulos = [];
+      return;
+    }
+
+    this.loading = true;
     
-    this.backendApi.getProductosByDescription(description).subscribe({
+    this.backendApi.getProductosByDescription(searchParam).subscribe({
       next: (response: any) => {
-        this.articulos = response.data;
-        this.loading = false; // Desactiva spinner
+        this.articulos = response.data || [];
+        this.loading = false;
       },
       error: (error) => {
-        console.error('Error al cargar productos:', error);
-        this.loading = false; // Desactiva spinner incluso en error
-        this.articulos = []; // Vacía los resultados
+        console.error('Error:', error);
+        this.loading = false;
+        this.articulos = [];
         
-        if (error.error?.error === "Debe proporcionar al menos un parámetro") {
-          alert("Por favor ingrese un término de búsqueda válido");
-        } else {
-          alert("Error al buscar productos. Intente nuevamente.");
+        // Solo muestra alerta para búsquedas activas
+        if (this.searchTerm.trim().length > 0) {
+          alert(error.error?.message || "Error al buscar productos");
         }
       }
     });

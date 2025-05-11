@@ -49,7 +49,9 @@ export class Tab4Page implements OnInit{
       },
       error: (error) => {
         console.error('Error al cargar productos:', error);
-        alert("Estamos actualizando los precios. Intente acceder a " + categoria + " en minutos. Muchas gracias :)");
+        alert('Error al cargar productos');
+        
+        // alert("Estamos actualizando los precios. Intente acceder a " + categoria + " en minutos. Muchas gracias :)");
         this.router.navigateByUrl("");
       }
     });

@@ -7,7 +7,7 @@
         <ion-icon style="margin-top: 40%;" (click)="home()" name="arrow-back" size="large"></ion-icon>
       </ion-col>
       <ion-col size="auto">
-        <h3>Buscador</h3>
+        <h3>Categorias</h3>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -15,16 +15,28 @@
   <ion-toolbar>
     <ion-searchbar 
     [(ngModel)]="searchTerm"
-    (ionChange)="searchProducts()"
+    (ionInput)="onSearchInput($event)"
     placeholder="Buscar productos..."
     debounce="500"
     showCancelButton="focus"
     clearIcon="close-circle">
-  </ion-searchbar>
+  </ion-searchbar>  
   </ion-toolbar>
 
+  <!-- Spinner de carga -->
+  <div class="ion-text-center" *ngIf="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Buscando productos...</p>
+  </div>
 
-  <ion-grid>
+  <!-- Mensaje cuando no hay resultados -->
+  <ion-item *ngIf="!loading && articulos && articulos.length === 0">
+    <ion-label class="ion-text-center">
+      No se encontraron productos para "{{searchTerm}}"
+    </ion-label>
+  </ion-item>
+
+  <ion-grid *ngIf="!loading && articulos && articulos.length > 0">
 
     <ng-container *ngFor="let item of articulos; let i = index">
 
