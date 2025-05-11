@@ -26,8 +26,9 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
-          context: ./CronJob
+          context: ./Frontend
           file: ./Frontend/Dockerfile
           push: true
           tags: martingreyes/tif-frontend:latest
           platforms: linux/amd64,linux/arm64
+
