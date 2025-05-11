@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
+import { EnvService } from './env.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,12 @@ import { Observable, throwError } from 'rxjs';
 export class BackendApiService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private envService: EnvService
+  ) {
+    this.apiUrl = this.envService.apiUrl;
+  }
 
   getInfo() {
     return this.http.get(`${this.apiUrl}/info`);
