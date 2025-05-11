@@ -1,9 +1,18 @@
-// src/app/services/env.service.ts
+// env.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnvService {
-  public apiUrl = (window as any)['env']['apiUrl'] || 'http://localhost:5001';
+  public apiUrl = '';
+
+  constructor() {
+    this.loadEnvironment();
+  }
+
+  private loadEnvironment() {
+    const env = (window as any).env;
+    this.apiUrl = env?.apiUrl || '';
+  }
 }

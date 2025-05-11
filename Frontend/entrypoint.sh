@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Combina el host y puerto para generar la API URL
-BACKEND_URL="${BACKEND_HOST}:${BACKEND_PORT}"
+# Agrega http:// explícitamente y verifica variables
+BACKEND_URL="http://${BACKEND_HOST}:${BACKEND_PORT}"
 
 echo "Generando archivo env-config.js con BACKEND_URL=${BACKEND_URL}"
 
