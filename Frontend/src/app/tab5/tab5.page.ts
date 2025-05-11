@@ -83,12 +83,19 @@ export class Tab5Page implements OnInit {
         this.loading = false;
         this.articulos = [];
         
-        // Solo muestra alerta para búsquedas activas
         if (this.searchTerm.trim().length > 0) {
-          alert(error.error?.message || "Error al buscar productos");
+          if (error.status === 423) {
+            alert("Estamos actualizando los precios. Intente realizar la búsqueda de nuevo en minutos. Muchas gracias :)");
+          } else {
+            alert(error.error?.message || "Error al buscar productos");
+          }
         }
       }
     });
+    
+
+
+
   }
 
   @Output() refresh: EventEmitter<boolean> = new EventEmitter();

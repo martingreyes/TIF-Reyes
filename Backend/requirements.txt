@@ -6,3 +6,5 @@ python-dotenv
 gunicorn
 gevent
 flask_cors
+redis
+python-redis-lock

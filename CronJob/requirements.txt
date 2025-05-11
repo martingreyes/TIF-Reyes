@@ -7,3 +7,4 @@ celery
 redis
 aiohttp
 google-genai
+python-redis-lock

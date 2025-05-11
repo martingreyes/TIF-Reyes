@@ -49,13 +49,18 @@ export class Tab4Page implements OnInit{
       },
       error: (error) => {
         console.error('Error al cargar productos:', error);
-        alert('Error al cargar productos');
-        
-        // alert("Estamos actualizando los precios. Intente acceder a " + categoria + " en minutos. Muchas gracias :)");
+  
+        if (error.status === 423) {
+          alert("Estamos actualizando los precios. Intente acceder a " + categoria + " en minutos. Muchas gracias :)");
+        } else {
+          alert('Error al cargar productos');
+        }
+  
         this.router.navigateByUrl("");
       }
     });
   }
+  
 
   @Output() refresh: EventEmitter<boolean> = new EventEmitter();
 
