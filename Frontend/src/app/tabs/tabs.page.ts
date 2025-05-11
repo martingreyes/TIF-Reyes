@@ -76,6 +76,11 @@ export class TabsPage implements OnInit {
     alert("Tu carrito está vacío. Agrega productos para continuar.")
   }
 
+  goToTab2() {
+    this.isModalOpen = false;
+    this.router.navigate(['/tabs/tab2']);
+  }
+
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header: header,
@@ -85,9 +90,5 @@ export class TabsPage implements OnInit {
 
     await alert.present();
   }
-
-
-
-
 
 }

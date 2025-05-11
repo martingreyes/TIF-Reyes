@@ -77,9 +77,11 @@
       <ion-fab slot="fixed" vertical="bottom" horizontal="end" style="bottom: 50px;">
         <ion-button *ngIf="getTotalQuantity() < 1; else elseBlock" (click)="mostrarAlerta()">Ver Facturas</ion-button>
         <ng-template #elseBlock>
-            <ion-button tab="tab2" routerLink="/tabs/tab2">Ver Facturas</ion-button>
+           <!-- <ion-button [routerLink]="['/tabs/tab2']">Ver Facturas</ion-button> -->
+            <!-- <ion-button tab="tab2" href="/tabs/tab2">Ver Facturas</ion-button> -->
+            <ion-button (click)="goToTab2()">Ver Facturas</ion-button>
         </ng-template>
-    </ion-fab>
+      </ion-fab>
     
     
       <ion-fab slot="fixed" vertical="bottom" horizontal="start" style="bottom: 50px;">
