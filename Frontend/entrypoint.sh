@@ -1,14 +1,15 @@
 #!/bin/sh
 
-# Agrega http:// explícitamente y verifica variables
-BACKEND_URL="http://${BACKEND_HOST}:${BACKEND_PORT}"
+echo "[entrypoint.sh] Generando archivo env.js con BACKEND_HOST=${BACKEND_HOST} y BACKEND_PORT=${BACKEND_PORT}..."
 
-echo "Generando archivo env-config.js con BACKEND_URL=${BACKEND_URL}"
+# Valores por defecto (opcional)
+: "${BACKEND_HOST:=localhost}"
+: "${BACKEND_PORT:=3000}"
 
-cat <<EOF > /usr/share/nginx/html/assets/env-config.js
-window.env = {
-  apiUrl: "${BACKEND_URL}"
-};
-EOF
+# Inyectar variables en el template y generar env.js
+envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js
 
+echo "[entrypoint.sh] Archivo env.js generado correctamente."
+
+# Ejecutar Nginx
 exec "$@"

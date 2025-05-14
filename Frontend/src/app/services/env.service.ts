@@ -1,18 +1,20 @@
-// env.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnvService {
-  public apiUrl = '';
+  public apiUrl: string;
 
   constructor() {
-    this.loadEnvironment();
-  }
+    const host = window.__env.BACKEND_HOST;
+    const port = window.__env.BACKEND_PORT;
 
-  private loadEnvironment() {
-    const env = (window as any).env;
-    this.apiUrl = env?.apiUrl || '';
+    if (!host || !port) {
+      console.error('BACKEND_HOST o BACKEND_PORT no están definidos en window.process.env');
+      this.apiUrl = ''; // Evita crash por null
+    } else {
+      this.apiUrl = `http://${host}:${port}`;  
+    }
   }
 }
