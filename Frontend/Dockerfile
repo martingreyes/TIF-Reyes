@@ -15,15 +15,14 @@ WORKDIR /app/Frontend
 RUN npm install -g @angular/cli
 
 RUN npm install
-# RUN npm run build --prod
-RUN npm run build -- --configuration=production --base-href=/frontend/ --deploy-url=/frontend/
+RUN npm run build --prod
 
 
 # Etapa 2: Imagen final con NGINX
 FROM nginx:alpine
 
 # Copiar archivos compilados de Angular
-COPY --from=build /app/Frontend/www /usr/share/nginx/html/frontend
+COPY --from=build /app/Frontend/www /usr/share/nginx/html
 
 
 # Copiar entrypoint y darle permisos
