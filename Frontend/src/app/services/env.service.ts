@@ -7,6 +7,7 @@ export class EnvService {
   public apiUrl: string;
 
   constructor() {
+    console.log('window.__env:', (window as any).__env);
     const host = window.__env.BACKEND_HOST;
     const port = window.__env.BACKEND_PORT;
 
