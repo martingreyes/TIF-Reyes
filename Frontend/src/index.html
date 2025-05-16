@@ -20,17 +20,8 @@
 </head>
 
 <body>
-  <script src="assets/env.js"></script>
-  <script>
-    window['process'] = {
-      env: {
-        BACKEND_HOST: window.__env.BACKEND_HOST,
-        BACKEND_PORT: window.__env.BACKEND_PORT
-      }
-    };
-  </script>
   <app-root></app-root>
-
+  <script src="assets/env-config.js"></script>
 </body>
 
 </html>

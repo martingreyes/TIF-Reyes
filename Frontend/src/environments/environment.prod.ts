@@ -1,4 +1,7 @@
+export interface Environment {
+    API_URL: string;
+  }
+  
 export const environment = {
-  production: true,
-  apiUrl: ''
-};
+    apiUrl: '${API_URL}'
+  }

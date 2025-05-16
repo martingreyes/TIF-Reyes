@@ -1,18 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-# Salir si alguna variable requerida no está definida
-: "${BACKEND_HOST:?La variable BACKEND_HOST no está definida}"
-: "${BACKEND_PORT:?La variable BACKEND_PORT no está definida}"
 
-echo "[entrypoint.sh] Contenido antes de reemplazar:"
-cat /usr/share/nginx/html/assets/env.template.js
+echo "Using API_URL from environment variable: $API_URL"
 
-echo "[entrypoint.sh] Generando archivo env.js con BACKEND_HOST=${BACKEND_HOST} y BACKEND_PORT=${BACKEND_PORT}..."
+# Run envsubst to replace placeholders in environment.ts with actual environment variable values
+envsubst < src/environments/environment.ts > src/environments/environment.tmp.ts && \
+mv src/environments/environment.tmp.ts src/environments/environment.ts
 
-# Inyectar variables en el template y generar env.js
-envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js
-
-echo "[entrypoint.sh] Archivo env.js generado correctamente."
-
-# Ejecutar Nginx
+# Start the Angular application
 exec "$@"
