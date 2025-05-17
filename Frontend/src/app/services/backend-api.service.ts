@@ -12,7 +12,7 @@ export class BackendApiService {
   ) {}
 
   private getApiUrl(): string {
-    return environment.apiUrl;
+    return 'pepe';
   }
 
   getInfo() {
