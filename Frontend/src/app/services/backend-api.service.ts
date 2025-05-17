@@ -18,19 +18,19 @@ export class BackendApiService {
   }
 
   getInfo() {
-    return this.http.get(`${this.getBackUrl()}/api/info`);
+    return this.http.get(`${this.getBackUrl()}api/info`);
   }
 
   getProductosByCategory(categoria: string): Observable<any> {
     const params = new HttpParams().set('categoria', categoria);
-    return this.http.get(`${this.getBackUrl()}/api/productos`, { params });
+    return this.http.get(`${this.getBackUrl()}api/productos`, { params });
   }
 
   getProductosByDescription(description: string): Observable<any> {
     if (!description?.trim()) {
       return throwError(() => new Error('Debe ingresar un término de búsqueda'));
     }
-    
+    const params = new HttpParams().set('descripcion', description);
     return this.http.get(`${this.getBackUrl()}/productos`, {
       params: new HttpParams().set('api/descripcion', description)
     });
