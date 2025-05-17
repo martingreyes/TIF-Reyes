@@ -11,8 +11,6 @@ WORKDIR /app/Frontend
     
 RUN npm install -g @angular/cli
 
-RUN npm run build -- --configuration=production
-
 RUN npm install && npm run build --prod
 
 FROM nginx:alpine
