@@ -16,7 +16,7 @@ RUN npm install
 # Argumento para la URL de la API (se pasa en el build)
 ARG API_URL
 # Reemplaza el marcador en environment.prod.ts
-RUN sed -i "s|\${API_URL}|${API_URL}|g" src/environments/environment.prod.ts
+RUN sed -i "s|\\${API_URL}|${API_URL}|g" src/environments/environment.prod.ts
                         
 # Build de Angular para producción
 RUN npm run build --prod
