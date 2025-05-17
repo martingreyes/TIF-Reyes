@@ -19,7 +19,7 @@ def get_info():
     data = mariadbclient.get_info()
     return jsonify(data), 200
 
-@app.route('/api/productos/')
+@app.route('/api/productos')
 def get_productos():
     if lock_manager.is_locked():
         return jsonify({"error": "La base de datos está siendo actualizada. Intenta nuevamente en unos minutos."}), 423
