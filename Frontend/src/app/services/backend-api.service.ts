@@ -31,8 +31,7 @@ export class BackendApiService {
       return throwError(() => new Error('Debe ingresar un término de búsqueda'));
     }
     const params = new HttpParams().set('descripcion', description);
-    return this.http.get(`${this.getBackUrl()}/productos`, {
-      params: new HttpParams().set('api/descripcion', description)
-    });
+    return this.http.get(`${this.getBackUrl()}api/productos`, { params });
+
   }
 }
