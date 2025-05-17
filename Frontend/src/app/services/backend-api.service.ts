@@ -18,13 +18,12 @@ export class BackendApiService {
   }
 
   getInfo() {
-    return this.http.get(`${this.getBackUrl()}/info`);
+    return this.http.get(`${this.getBackUrl()}/api/info`);
   }
 
   getProductosByCategory(categoria: string): Observable<any> {
-    console.log('Pepeeee: ', this.getBackUrl)
     const params = new HttpParams().set('categoria', categoria);
-    return this.http.get(`${this.getBackUrl()}/productos/`, { params });
+    return this.http.get(`${this.getBackUrl()}/api/productos/`, { params });
   }
 
   getProductosByDescription(description: string): Observable<any> {
@@ -33,7 +32,7 @@ export class BackendApiService {
     }
     
     return this.http.get(`${this.getBackUrl()}/productos`, {
-      params: new HttpParams().set('descripcion', description)
+      params: new HttpParams().set('api/descripcion', description)
     });
   }
 }
