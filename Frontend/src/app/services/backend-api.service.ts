@@ -23,7 +23,7 @@ export class BackendApiService {
 
   getProductosByCategory(categoria: string): Observable<any> {
     const params = new HttpParams().set('categoria', categoria);
-    return this.http.get(`${this.getBackUrl()}/api/productos/`, { params });
+    return this.http.get(`${this.getBackUrl()}/api/productos`, { params });
   }
 
   getProductosByDescription(description: string): Observable<any> {
