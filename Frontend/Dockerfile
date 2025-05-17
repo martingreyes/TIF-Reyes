@@ -14,7 +14,7 @@ RUN npm install -g @angular/cli
 RUN npm install && npm run build --prod
 
 FROM nginx:alpine
-COPY --from=builder /app/www /usr/share/nginx/html
+COPY --from=builder /app/Frontend/www /usr/share/nginx/html
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
