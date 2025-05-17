@@ -8,7 +8,6 @@ RUN git clone --filter=blob:none --sparse https://github.com/martingreyes/TIF-Re
     && git sparse-checkout set Frontend
 
 RUN npm run build -- --configuration=production
-
 RUN npm install && npm run build --prod
 
 FROM nginx:alpine
