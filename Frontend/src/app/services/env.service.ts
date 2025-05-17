@@ -5,15 +5,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EnvService {
-  public apiUrl = '';
+  public apiUrl = 'pepe'
 
-  constructor() {
-    this.loadEnvironment();
-  }
-
-  private loadEnvironment() {
-    const env = (window as any).env;
-    // this.apiUrl = env?.apiUrl || '';
-    this.apiUrl = 'http://${environment.apiUrl}'
-  }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { EnvService } from './env.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,10 @@ import { EnvService } from './env.service';
 export class BackendApiService {
   constructor(
     private http: HttpClient,
-    private envService: EnvService
   ) {}
 
   private getApiUrl(): string {
-    if (!this.envService.apiUrl) {
-      throw new Error('API URL no está configurada');
-    }
-    return this.envService.apiUrl;
+    return environment.apiUrl;
   }
 
   getInfo() {
