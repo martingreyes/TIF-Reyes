@@ -120,20 +120,14 @@ export class Tab2Page implements OnInit {
       };
     });
 
-    // Ordenar (misma lógica anterior)
     this.sortedSupermarkets.sort((a, b) => {
-      if (a.missingProducts === 0 && b.missingProducts === 0) {
-        return a.total - b.total;
-      } else if (a.missingProducts === 0) {
-        return -1;
-      } else if (b.missingProducts === 0) {
-        return 1;
-      } else {
-        return b.missingProducts - a.missingProducts || b.total - a.total;
+      if (a.missingProducts !== b.missingProducts) {
+        return a.missingProducts - b.missingProducts; // Ascendente por productos faltantes
       }
+      return a.total - b.total; // Si tienen la misma cantidad de faltantes, ordena por total
     });
 
-    console.log('Supermercados ordenados con URLs:', this.sortedSupermarkets);
+
   }
 
   getIconColor(index: number): string {

@@ -17,6 +17,7 @@ export class BackendApiService {
     return this.configService.getConfig().backendUrl;
   }
 
+  
   getInfo() {
     return this.http.get(`${this.getBackUrl()}api/info`);
   }
