@@ -6,7 +6,21 @@ import logging
 from flask_cors import CORS # type: ignore
 
 app = Flask(__name__)
-CORS(app)
+from flask import Flask
+from flask_cors import CORS
+import os
+
+app = Flask(__name__)
+
+CORS(
+    app,
+    origins=os.getenv("CORS_ALLOWED_ORIGINS", "*").split(","),
+    methods=os.getenv("CORS_ALLOWED_METHODS", "GET").split(","),
+    allow_headers=os.getenv("CORS_ALLOWED_HEADERS", "Content-Type,Authorization,X-Requested-With").split(","),
+    expose_headers=os.getenv("CORS_EXPOSED_HEADERS", "Content-Length,Content-Range").split(","),
+    supports_credentials=os.getenv("CORS_ALLOW_CREDENTIALS", "false").lower() == "true"
+)
+
 load_dotenv()
 
 mariadbclient = MariaDBClient()
