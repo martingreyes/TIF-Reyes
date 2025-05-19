@@ -11,4 +11,4 @@ CronJob/venv
 WebScraping/venv
 Backend/venv
 boot_comands.txt
-k8s/um-cloud/secrets.yaml
+secrets.yaml
