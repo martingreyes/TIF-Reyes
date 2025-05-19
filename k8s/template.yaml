@@ -1,0 +1,231 @@
+#T* Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+  name: web
+
+spec:
+  rules:
+  - host: guarnier.my.kube.um.edu.ar
+    http:
+      paths:
+      - backend:
+          service:
+            name: metabase #* nombre del servicio
+            port:
+              number: 3000 #* puerto del servicio
+        path: /
+        pathType: Prefix
+
+---
+#T* Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: metabase #* nombre del servicio
+  labels:
+    app: metabase #* nombre del 
+
+spec:
+  selector:
+    app: metabase #* nombre de los pods
+  ports:
+    - protocol: TCP
+      port: 3000 #* puerto del pod
+      targetPort: 3000 #* puerto que expone el servicio
+
+---
+#T* Deployment
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: metabase #* nombre del Deployment
+  labels:
+    app: metabase #* etiqueta del Deployment (agrupación)
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metabase #* selector para identificar los Pods
+
+  template:
+    metadata:
+      labels:
+        app: metabase #* etiqueta para agrupar los Pods
+
+    spec:
+      containers:
+        - name: metabase #* nombre del conteiner
+          image: metabase/metabase:v0.48.6 #* imagen
+
+          ports:
+            - containerPort: 3000 #* puerto del contenedor
+            - containerPort: 3001 #* otro puerto del contenedor
+
+          env:
+            #! Variables de entorno de ConfigMap
+            - name: MB_DB_TYPE #* nombre de la variable dentro del pod
+              valueFrom:
+                configMapKeyRef:
+                  name: mb-db-config #* nombre del ConfigMap
+                  key: MB_DB_TYPE #* nombre de la variable dentro del ConfigMap
+            
+            #! Variables de entorno de Secret
+            - name: MB_DB_PASS #* nombre de la variable dentro del pod
+              valueFrom:
+                secretKeyRef:
+                  name: mb-db-secret #* nombre del Secret
+                  key: MB_DB_PASS #* nombre de la variable dentro del Secret
+---
+#T* StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db  #* nombre del StatefulSet
+  labels:
+    app: db #* etiqueta del StatefulSet (agrupación)
+
+spec:
+  serviceName: "db" #* nombre del servicio
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db #* selector para identificar los Pods
+  
+  template:
+    metadata:
+      generateName: db #* nombre para los pods
+      labels:
+        app: db #* etiqueta para agrupar los Pods
+  
+    spec:
+
+      #! Container que se ejecuta al iniciar/reiniciar cada pod
+      initContainers:
+        - name: init
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          command: ['rm', '-rf', '/var/lib/postgresql/data/lost+found']
+          
+          #! Volumen que solo monta el initContainer. No se comparte con otros containers.
+          volumeMounts:
+          - name: data  #* nombre del volumeClaimTemplates
+            mountPath: /var/lib/postgresql/data #! Montar una carpeta anterior de la que se quiere borrar.
+      
+      #! Container principal.
+      containers:
+        - name: db
+          image: postgres:12.18-bullseye
+          imagePullPolicy: IfNotPresent
+          resources: {}
+        
+          ports:
+            - containerPort: 5432 #* puerto del contenedor
+              name: db
+
+            - containerPort: 1234 #* otro puerto del contenedor
+              name: db2
+    
+          env:
+            #! Variables de entorno de ConfigMap
+            - name: POSTGRES_DB #* nombre de la variable dentro del pod
+              valueFrom:
+                configMapKeyRef:
+                  name: mb-db-config #* nombre del ConfigMap
+                  key: MB_DB_DBNAME #* nombre de la variable dentro del ConfigMap
+            
+            #! Variables de entorno de Secret
+            - name: POSTGRES_PASSWORD #* nombre de la variable dentro del pod
+              valueFrom:
+                secretKeyRef:
+                  name: mb-db-secret #* nombre del Secret
+                  key: MB_DB_PASS #* nombre de la variable dentro del Secret
+          
+          #! Lugar de montado de volumen en el container principal.
+          volumeMounts:
+            #! Volumen para datos persistentes
+            - name: data #* nombre del volumeClaimTemplates
+              mountPath: /var/lib/postgresql/data
+            
+            - name: data2 #* nombre del volumeClaimTemplates
+              mountPath: /ruta/del/volumen
+            
+            #! Volumen para carga configmap con archivos
+            - name: mb-db-config-files #* nombre del ConfigMap con archivos
+              mountPath: /music/example
+      
+      #! Volumen para carga configmap con archivos
+      volumes:
+        - name: mb-db-config-files 
+          configMap:
+            name: mb-db-config-files #* nombre del ConfigMap con archivos
+            
+            items:
+            - key: index.html #* nombre del archivo
+              path: index.html #* ruta del archivo
+            
+            - key: archivo_2 #* nombre del archivo
+              path: ruta/a/guardar/archivo_2    #! La ruta parte de la ruta en volumeMounts.
+  
+  #! Volumenes de datos persistentes
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
+    
+    - metadata:
+        name: data2
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
+
+status: 
+  replicas: 1
+
+---
+#T* ConfigMap de variables
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mb-db-config #* nombre del ConfigMap
+
+data:
+  VARIABLE_1: valor_1
+  VARIABLE_2: valor_2
+
+---
+#T* ConfigMap de archivos
+#! Solo para StatefulSet y arhivos pequeños. 
+# kubectl create configmap music-example --from-file=music1.mp3 --from-file=music2.mp3 --dry-run=client -o yaml > music-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mb-db-config-files #* nombre del ConfigMap
+
+data:
+  index.html: |
+    <h1>Hola, soy Guarnold (〃￣︶￣)人(￣︶￣〃)</h1>
+  archivo_2: |
+    contenido del archivo 2
+
+---
+#T* Secret
+apiVersion: v1
+kind: Secret
+metadata:
+  creationTimestamp: null 
+  name: mb-db-secret #* nombre del Secret
+
+data:
+  VARIABLE_1: dmFsb3JfMQ==      #! Encode: Ctrl+E; Decode: Ctrl+D

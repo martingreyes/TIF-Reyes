@@ -1,0 +1,60 @@
+#T* Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webscraping
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webscraping 
+  template:
+    metadata:
+      labels:
+        app: webscraping 
+    spec:
+      containers:
+      - name: webscraping
+        image: martingreyes/tif-webscraping:latest
+        ports:
+        - containerPort: 9080
+        env:
+        - name: REDIS_HOST
+          value: "redis-service"  
+        - name: REDIS_PORT
+          value: "6379"
+---
+#T* ConfigMap
+---
+#T* Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: webscraping-service
+spec:
+  selector:
+    app: webscraping
+  ports:
+  - port: 9080
+    targetPort: 9080
+---
+#T* Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webscraping-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: webscraping.my.kube.um.edu.ar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: webscraping-service
+            port:
+              number: 9080
+

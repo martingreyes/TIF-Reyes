@@ -1,0 +1,56 @@
+#T* Deployment
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjob
+  namespace: martingreyes-tif
+spec:
+  schedule: "49 23 * * *" # Ejecuta todos los días a las 23:38 (UTC)
+  timeZone: "America/Argentina/Buenos_Aires"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cronjob
+            image: martingreyes/tif-cronjob:latest
+            command: ["python", "app.py"]
+            envFrom:
+              - configMapRef:
+                  name: cronjob-config
+              - secretRef:
+                  name: cronjob-secret
+          restartPolicy: OnFailure
+---
+#T* ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cronjob-config
+  namespace: martingreyes-tif
+data:
+  ENDPOINT_HOST: webscraping-service
+  ENDPOINT_PORT: "9080"
+  DB_HOST: mariadb-service
+  DB_PORT: "3306"
+  DB_NAME: Versus
+  REDIS_HOST: redis-service
+  REDIS_PORT: "6379"
+
+---
+#T* Secret
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cronjob-secret
+  namespace: martingreyes-tif
+type: Opaque
+stringData:
+  DB_USER: root
+  DB_PASSWORD: root
+  API_KEYS: >-
+    AIzaSyB3rhdiwSZLNE1WNT7myNa9Oqy_EmdsRiI,
+    AIzaSyAb3p4hG6SfFohZb0Lusq6aIdBqwh6vpjs,
+    AIzaSyDUHiTi4t8t8NTzZHlpAX38COlWE0Wr_c0
+
+

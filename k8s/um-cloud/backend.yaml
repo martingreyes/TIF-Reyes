@@ -1,0 +1,89 @@
+#T* Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend 
+  template:
+    metadata:
+      labels:
+        app: backend 
+    spec:
+      containers:
+      - name: backend
+        image: martingreyes/tif-backend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5001
+        envFrom:
+        - configMapRef:
+            name: backend-config
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: DB_PASSWORD
+---
+#T* ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+  DB_HOST: mariadb-service
+  DB_PORT: "3306"
+  DB_USER: root
+  DB_NAME: Versus
+  REDIS_HOST: redis-service
+  REDIS_PORT: "6379"
+  CORS_ALLOWED_ORIGINS: https://versus.my.kube.um.edu.ar
+  CORS_ALLOWED_METHODS: GET,POST,PUT,DELETE,OPTIONS
+  CORS_ALLOWED_HEADERS: Content-Type,Authorization,X-Requested-With
+  CORS_EXPOSED_HEADERS: Content-Length,Content-Range
+  CORS_ALLOW_CREDENTIALS: "true"
+---
+#T* Secret
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backend-secrets
+type: Opaque
+data:
+  DB_PASSWORD: cm9vdA== 
+---
+#T* Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+  - port: 5001
+    targetPort: 5001
+---
+#T* Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+  - host: backend.my.kube.um.edu.ar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 5001
