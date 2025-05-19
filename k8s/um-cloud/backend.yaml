@@ -47,15 +47,6 @@ data:
   CORS_EXPOSED_HEADERS: Content-Length,Content-Range
   CORS_ALLOW_CREDENTIALS: "true"
 ---
-#T* Secret
-apiVersion: v1
-kind: Secret
-metadata:
-  name: backend-secrets
-type: Opaque
-data:
-  DB_PASSWORD: cm9vdA== 
----
 #T* Service
 apiVersion: v1
 kind: Service

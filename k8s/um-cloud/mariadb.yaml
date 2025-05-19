@@ -40,15 +40,6 @@ spec:
 ---
 #T* ConfigMap
 ---
-#T* Secret
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mariadb-secret
-type: Opaque
-data:
-  root-password: cm9vdA==
----
 #T* Service
 apiVersion: v1
 kind: Service
