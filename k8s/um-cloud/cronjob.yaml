@@ -5,10 +5,13 @@ metadata:
   name: cronjob
   namespace: martingreyes-tif
 spec:
-  schedule: "35 21 * * *" # Ejecuta todos los días a las 21:35 (UTC)
+  schedule: "10 22 * * *" # Ejecuta todos los días a las 21:35 (UTC)
   timeZone: "America/Argentina/Buenos_Aires"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
+      ttlSecondsAfterFinished: 172800  # Borra Jobs/Pods 48 hs después de completarse
       template:
         spec:
           containers:

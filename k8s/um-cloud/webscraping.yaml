@@ -32,29 +32,12 @@ kind: Service
 metadata:
   name: webscraping-service
 spec:
+  type: NodePort
   selector:
     app: webscraping
   ports:
   - port: 9080
     targetPort: 9080
----
-#T* Ingress
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: webscraping-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  rules:
-  - host: webscraping.my.kube.um.edu.ar
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: webscraping-service
-            port:
-              number: 9080
+    nodePort: 30080
+
 
