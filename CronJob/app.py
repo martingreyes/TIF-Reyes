@@ -34,7 +34,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-logging.getLogger("google.api_core.bidi").setLevel(logging.WARNING)
+logging.getLogger("google_ganai").setLevel(logging.WARNING)
 
 #! Asyncio + Aiohttp Approach
 async def async_scraping(supermercados):
