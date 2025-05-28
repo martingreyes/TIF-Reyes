@@ -34,6 +34,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
+logging.getLogger("google.api_core.bidi").setLevel(logging.WARNING)
 
 #! Asyncio + Aiohttp Approach
 async def async_scraping(supermercados):
@@ -132,8 +133,11 @@ def main():
                     else:
                         respuesta = [prompt]
                     all_responses.append(respuesta)
+                    
                 except Exception as e:
                     logging.error(f"Error al procesar el prompt: {prompt} . Error: {e}")
+                if indice % 10 == 0:
+                    logging.info(f"Gemini requests: {indice}/{len(listas_productos)}")
                 indice += 1
 
             logging.info(f"Gemini tiene que agrupar {total_elementos} productos")

@@ -4,6 +4,7 @@ import pandas as pd
 import ast
 import os
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
@@ -76,7 +77,8 @@ Devuélveme únicamente la lista de listas, sin ningún texto adicional.
             )
             return ast.literal_eval(response.text)
         except Exception as e:
-            print(f"Error con API key {self.api_keys[self.index]}: {e}")
+            # print(f"Error con API key {self.api_keys[self.index]}: {e}")
+            logging.error(f"Error: {e}")
             self._rotate_key()
             return self.ask(prompt)
         
