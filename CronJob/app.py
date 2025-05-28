@@ -35,6 +35,9 @@ logging.basicConfig(
 )
 
 logging.getLogger("google_ganai").setLevel(logging.WARNING)
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("AFC").setLevel(logging.WARNING)
+
 
 #! Asyncio + Aiohttp Approach
 async def async_scraping(supermercados):
