@@ -18,8 +18,8 @@ WORKDIR /app/WebScraping
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /app/WebScraping/marketscraper/marketscraper
+WORKDIR /app/WebScraping/marketscraper
 
-EXPOSE 9080
+EXPOSE 5002
 
-CMD ["scrapyrt", "-i", "0.0.0.0", "-p", "9080"]
+CMD ["gunicorn", "--config", "gunicorn_conf.py", "wsgi:app"]
