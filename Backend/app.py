@@ -4,10 +4,6 @@ from main.ResourceLockManager import ResourceLockManager
 from dotenv import load_dotenv
 import logging
 from flask_cors import CORS # type: ignore
-
-app = Flask(__name__)
-from flask import Flask
-from flask_cors import CORS
 import os
 
 app = Flask(__name__)
