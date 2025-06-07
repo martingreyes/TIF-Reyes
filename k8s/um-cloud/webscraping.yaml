@@ -17,7 +17,7 @@ spec:
       - name: webscraping
         image: martingreyes/tif-webscraping:latest
         ports:
-        - containerPort: 9080
+        - containerPort: 5002
         env:
         - name: REDIS_HOST
           value: "redis-service"  
@@ -36,8 +36,8 @@ spec:
   selector:
     app: webscraping
   ports:
-  - port: 9080
-    targetPort: 9080
+  - port: 5002
+    targetPort: 5002
     nodePort: 30080
 
 
