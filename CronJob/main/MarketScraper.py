@@ -18,7 +18,7 @@ class MarketScraper:
     def __init__(self):
         self.host = os.getenv("ENDPOINT_HOST")
         self.port = os.getenv("ENDPOINT_PORT")
-        self.url = 'http://{}:{}/run_spider?spider_name='.format(self.host, self.port)  
+        self.url = 'http://{}:{}/crawl.json?start_requests=true&spider_name='.format(self.host, self.port) 
 
     # def fetch_data(self, spider_name: str) -> dict:
     #     response = requests.get(self.url+spider_name)

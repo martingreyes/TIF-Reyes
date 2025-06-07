@@ -34,7 +34,7 @@ metadata:
   namespace: martingreyes-tif
 data:
   ENDPOINT_HOST: webscraping-service
-  ENDPOINT_PORT: "5002"
+  ENDPOINT_PORT: "9080"
   DB_HOST: mariadb-service
   DB_PORT: "3306"
   DB_NAME: Versus

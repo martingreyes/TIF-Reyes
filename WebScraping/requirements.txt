@@ -3,7 +3,3 @@ requests
 unidecode
 scrapyrt
 scrapy-redis
-flask
-flask-cors
-gunicorn
-gevent
