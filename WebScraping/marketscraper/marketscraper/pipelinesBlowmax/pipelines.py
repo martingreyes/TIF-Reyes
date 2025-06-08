@@ -36,7 +36,7 @@ class BlowmaxPipeline:
     marcas_yerbas = ["CHAMIGO","PLAYADITO","ROSAMONTE","TARAGUI","VERDEFLOR","YERBACID"]
 
     marcas_fideos = ["LA PROVIDENCIA", "BAUZA", "DON VICENTE","LUCCHETTI","MATARAZZO",
-                    "SAN AGUSTIN","TERRABUSI","BAUZAS","NANI", "BLUE PATNA","ARGENTINA", "FAVORITA","SANTA ISABEL"]
+                    "SAN AGUSTIN","TERRABUSI","BAUZAS","NANI", "BLUE PATNA","ARGENTINA", "FAVORITA","SANTA ISABEL", "CELESTIAL"]
 
     def capturar_marca(self,nombre):
         nombre = nombre.replace("  "," ").strip()

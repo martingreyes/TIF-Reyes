@@ -69,6 +69,9 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_marca("Fideos Matarazzo Tallarin N°7 X 500 Gr"), "Matarazzo")
         self.assertEqual(modoMarket.capturar_marca("Fideos Matarazzo Spaghetti L/gluten X 500 G"), "Matarazzo")
         self.assertEqual(modoMarket.capturar_marca(" Pan Rebanado Dialecto Salvado X 360 Gr"), "Dialecto")
+        self.assertEqual(modoMarket.capturar_marca("Pan Bauducco Rebanado Integral X390 G"), "Bauducco")
+        self.assertEqual(modoMarket.capturar_marca("Fideos Nostra Pasta Morron X 400 G"), "Nostra Pasta")
+        self.assertEqual(modoMarket.capturar_marca("Fideos Delverde Linguine X 500 Gr"), "Delverde")
        
     
 
@@ -155,6 +158,9 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Yuka Tirabuzon Garbanzo S/gluten X 250 G"), "Tirabuzon Garbanzo S/gluten")
         self.assertEqual(modoMarket.capturar_descripcion("Gaseosa Pritty Limon X 3 Lt"), "")
         self.assertEqual(modoMarket.capturar_descripcion("Fideos Barilla Tortiglioni X 500g"), "Tortiglioni")
+        self.assertEqual(modoMarket.capturar_descripcion("Pan Bauducco Rebanado Integral X390 G"), "Rebanado Integral")
+        self.assertEqual(modoMarket.capturar_descripcion("Fideos Nostra Pasta Morron X 400 G"), "Morron")
+        self.assertEqual(modoMarket.capturar_descripcion("Fideos Delverde Linguine X 500 Gr"), "Linguine")
     
     def test_volumen(self):
         modoMarket = ModoMarketPipeline()
@@ -273,6 +279,10 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(modoMarket.capturar_volumen("Fideos Wakas Penne Rigate Maiz X 300 G"), "300")
         self.assertEqual(modoMarket.capturar_volumen("Fideos Yuka Tirabuzon Garbanzo S/gluten X 250 G"), "250")
         self.assertEqual(modoMarket.capturar_volumen("Gaseosa Pritty Limon X 3 Lt"), "3000")
+        self.assertEqual(modoMarket.capturar_volumen("Pan Bauducco Rebanado Integral X390 G"), "390")
+        self.assertEqual(modoMarket.capturar_volumen("Fideos Nostra Pasta Morron X 400 G"), "400")
+        self.assertEqual(modoMarket.capturar_volumen("Fideos Delverde Linguine X 500 Gr"), "500")
+        
 
         
         

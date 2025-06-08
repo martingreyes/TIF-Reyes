@@ -64,6 +64,7 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(blowmax.capturar_marca("FIDEOS SAN AGUSTIN TALLARIN X 500GR"), "SAN AGUSTIN")
         self.assertEqual(blowmax.capturar_marca("FIDEOS TERRABUSI MOSTACHOL 500GR"), "TERRABUSI")
         self.assertEqual(blowmax.capturar_marca("GASEOSA SCHWEPPES POMELO S/AZUCAR LATA X310C"), "SCHWEPPES")
+        self.assertEqual(blowmax.capturar_marca("FIDEOS CELESTIAL RADIATORE 500GR"), "CELESTIAL")
 
     def test_descripcion(self):
         blowmax = BlowmaxPipeline()
@@ -141,6 +142,10 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(blowmax.capturar_descripcion("FIDEOS FAVORITA TALLARIN C/HIERRO 500GR  "), "TALLARIN C/HIERRO")     
         self.assertEqual(blowmax.capturar_descripcion("FIDEOS FAVORITA TIRABUZON C/HIERRO 500GR  "), "TIRABUZON C/HIERRO")  
         self.assertEqual(blowmax.capturar_descripcion("GASEOSA SCHWEPPES POMELO S/AZUCAR LATA X310C"), "POMELO S/AZUCAR LATA")   
+        self.assertEqual(blowmax.capturar_descripcion("FIDEOS CELESTIAL RADIATORE 500GR"), "RADIATORE")
+        self.assertEqual(blowmax.capturar_descripcion("FIDEOS CELESTIAL TIRABUZON 500GR  "), "TIRABUZON")
+        self.assertEqual(blowmax.capturar_descripcion("FIDEOS CELESTIAL MOSTACHOL 500GR  "), "MOSTACHOL")
+        self.assertEqual(blowmax.capturar_descripcion("FIDEOS CELESTIAL SPAGHETTI 500GR  "), "SPAGHETTI")
            
 
     def test_volumen(self):
@@ -223,6 +228,12 @@ class TestExpresionesRegulares(unittest.TestCase):
         self.assertEqual(blowmax.capturar_volumen("JABON REXONA NUTRITIVA ORCHID 3X125GR"), "375")
         self.assertEqual(blowmax.capturar_volumen("JABON REXONA SENSIBLE FR DERM X125G"), "125")
         self.assertEqual(blowmax.capturar_volumen("JABON REXONA SENSIBLE FRESH 3X125G"), "375")
+
+        self.assertEqual(blowmax.capturar_volumen("FIDEOS CELESTIAL RADIATORE 500GR"), "500")
+        self.assertEqual(blowmax.capturar_volumen("FIDEOS CELESTIAL TIRABUZON 500GR  "), "500")
+        self.assertEqual(blowmax.capturar_volumen("FIDEOS CELESTIAL MOSTACHOL 500GR  "), "500")
+        self.assertEqual(blowmax.capturar_volumen("FIDEOS CELESTIAL SPAGHETTI 500GR  "), "500")
+
 
 
 
