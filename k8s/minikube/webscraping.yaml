@@ -32,12 +32,11 @@ kind: Service
 metadata:
   name: webscraping-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: webscraping
   ports:
   - port: 9080
     targetPort: 9080
-    nodePort: 30080
 
 
