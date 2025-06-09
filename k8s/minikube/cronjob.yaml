@@ -1,0 +1,43 @@
+#T* Deployment
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjob
+spec:
+  schedule: "0 6 * * *" # Ejecuta todos los días a las 21:35 (UTC)
+  timeZone: "America/Argentina/Buenos_Aires"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 172800  # Borra Jobs/Pods 48 hs después de completarse
+      template:
+        spec:
+          containers:
+          - name: cronjob
+            image: martingreyes/tif-cronjob:latest
+            imagePullPolicy: Always
+            command: ["python", "app.py"]
+            envFrom:
+              - configMapRef:
+                  name: cronjob-config
+              - secretRef:
+                  name: cronjob-secret
+          restartPolicy: OnFailure
+---
+#T* ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cronjob-config
+data:
+  ENDPOINT_HOST: webscraping-service
+  ENDPOINT_PORT: "9080"
+  DB_HOST: mariadb-service
+  DB_PORT: "3306"
+  DB_NAME: Versus
+  REDIS_HOST: redis-service
+  REDIS_PORT: "6379"
+
+
+

@@ -1,0 +1,43 @@
+#T* Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webscraping
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webscraping 
+  template:
+    metadata:
+      labels:
+        app: webscraping 
+    spec:
+      containers:
+      - name: webscraping
+        image: martingreyes/tif-webscraping:latest
+        ports:
+        - containerPort: 9080
+        env:
+        - name: REDIS_HOST
+          value: "redis-service"  
+        - name: REDIS_PORT
+          value: "6379"
+---
+#T* ConfigMap
+---
+#T* Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: webscraping-service
+spec:
+  type: NodePort
+  selector:
+    app: webscraping
+  ports:
+  - port: 9080
+    targetPort: 9080
+    nodePort: 30080
+
+

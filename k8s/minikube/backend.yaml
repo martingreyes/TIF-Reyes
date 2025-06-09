@@ -1,0 +1,61 @@
+#T* Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend 
+  template:
+    metadata:
+      labels:
+        app: backend 
+    spec:
+      containers:
+      - name: backend
+        image: martingreyes/tif-backend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5001
+        envFrom:
+        - configMapRef:
+            name: backend-config
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: DB_PASSWORD
+---
+#T* ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+  DB_HOST: mariadb-service
+  DB_PORT: "3306"
+  DB_USER: root
+  DB_NAME: Versus
+  REDIS_HOST: redis-service
+  REDIS_PORT: "6379"
+  CORS_ALLOWED_ORIGINS: "*"
+  CORS_ALLOWED_METHODS: GET,POST,PUT,DELETE,OPTIONS
+  CORS_ALLOWED_HEADERS: Content-Type,Authorization,X-Requested-With
+  CORS_EXPOSED_HEADERS: Content-Length,Content-Range
+  CORS_ALLOW_CREDENTIALS: "true"
+---
+#T* Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  type: LoadBalancer  
+  selector:
+    app: backend
+  ports:
+  - port: 5001
+    targetPort: 5001
